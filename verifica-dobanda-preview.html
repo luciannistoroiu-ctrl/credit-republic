@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verifică Dobânda — Credit Republic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+  /* ── RESET & TOKENS ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink:        #111827;
+    --ink-2:      #4B5563;
+    --ink-3:      #6B7280;
+    --ink-4:      #9CA3AF;
+    --border:     #E5E7EB;
+    --border-2:   #F0F3F7;
+    --bg:         #F9FAFB;
+    --bg-2:       #F4F5F7;
+    --white:      #FFFFFF;
+    --primary:    #2C86F6;
+    --primary-10: rgba(44,134,246,.10);
+    --primary-20: rgba(44,134,246,.20);
+    --primary-60: rgba(44,134,246,.60);
+    --green:      #10B981;
+    --green-10:   rgba(16,185,129,.10);
+    --green-20:   rgba(16,185,129,.20);
+    --red:        #EF4444;
+    --red-10:     rgba(239,68,68,.10);
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --ease: cubic-bezier(.4,0,.2,1);
+    --ease-spring: cubic-bezier(.34,1.56,.64,1);
+  }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    width: 100%;
+    border-bottom: 1px solid var(--border-2);
+    background: var(--white);
+    padding: 8px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .topbar span { font-size: 11px; font-weight: 600; color: var(--ink-2); }
+  .topbar a {
+    font-size: 11px; font-weight: 600; color: var(--ink-2);
+    text-decoration: none; display: flex; align-items: center; gap: 6px;
+    transition: color .15s;
+  }
+  .topbar a:hover { color: var(--ink); }
+  .topbar-wa { width: 16px; height: 16px; color: #25D366; }
+
+  /* ── NAV ── */
+  .nav {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border-2);
+    padding: 0 24px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky; top: 0; z-index: 50;
+  }
+  .nav-logo img { height: 36px; width: auto; object-fit: contain; }
+  .nav-links { display: flex; gap: 24px; align-items: center; }
+  .nav-links a { font-size: 13px; font-weight: 500; color: var(--ink-3); text-decoration: none; transition: color .15s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--ink); font-weight: 600; }
+  .nav-cta {
+    background: var(--ink); color: var(--white);
+    font-size: 13px; font-weight: 700;
+    padding: 10px 20px; border-radius: 10px;
+    text-decoration: none; transition: background .15s, transform .15s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .nav-cta:hover { background: #1F2937; transform: translateY(-1px); }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 56px 24px 48px;
+    text-align: center;
+  }
+  .page-header .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--ink-3); font-family: monospace;
+    border: 1px solid var(--border);
+    padding: 5px 12px; border-radius: 999px;
+    margin-bottom: 20px;
+  }
+  .page-header h1 {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 800;
+    letter-spacing: -.04em;
+    line-height: 1.06;
+    color: var(--ink);
+    margin-bottom: 16px;
+    max-width: 18ch;
+    margin-left: auto; margin-right: auto;
+  }
+  .page-header p {
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    color: var(--ink-3);
+    line-height: 1.65;
+    max-width: 48ch;
+    margin: 0 auto;
+  }
+
+  /* ── MAIN WRAPPER ── */
+  .section {
+    padding: 48px 24px 80px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .container { max-width: 860px; margin: 0 auto; }
+
+  /* ── MAIN CARD ── */
+  .main-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  }
+
+  /* ── SLIDER ZONE ── */
+  .slider-zone {
+    padding: 32px 32px 28px;
+    border-bottom: 1px solid var(--border);
+  }
+  .slider-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .slider-label { font-size: 15px; font-weight: 600; color: var(--ink); }
+  .slider-readout { display: flex; align-items: baseline; gap: 6px; }
+  .slider-val {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    font-weight: 900;
+    letter-spacing: -.05em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    transition: color .2s var(--ease);
+  }
+  .slider-val.state-neutral { color: var(--primary); }
+  .slider-val.state-good    { color: var(--green); }
+  .slider-val.state-bad     { color: var(--red); }
+  .slider-unit { font-size: 13px; font-weight: 500; color: var(--ink-4); }
+
+  /* custom range slider */
+  .slider-wrap { position: relative; padding: 6px 0; margin-bottom: 10px; }
+  input[type=range] {
+    -webkit-appearance: none; appearance: none;
+    width: 100%; height: 6px;
+    border-radius: 999px;
+    background: transparent;
+    outline: none; cursor: pointer;
+    position: relative; z-index: 2;
+  }
+  /* track background via box-shadow trick */
+  .slider-track-bg {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    left: 0; right: 0; height: 6px;
+    border-radius: 999px;
+    background: var(--border);
+    pointer-events: none;
+  }
+  .slider-track-fill {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    left: 0; height: 6px;
+    border-radius: 999px;
+    background: var(--primary);
+    pointer-events: none;
+    transition: width .08s, background .2s var(--ease);
+    z-index: 1;
+  }
+  .slider-track-fill.state-good { background: var(--green); }
+  .slider-track-fill.state-bad  { background: var(--red); }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 24px; height: 24px;
+    border-radius: 999px;
+    background: var(--white);
+    border: 2px solid var(--primary);
+    box-shadow: 0 2px 8px rgba(44,134,246,.25);
+    cursor: grab;
+    transition: border-color .2s, box-shadow .2s, transform .15s var(--ease-spring);
+    position: relative; z-index: 3;
+  }
+  input[type=range]:active::-webkit-slider-thumb { transform: scale(1.2); cursor: grabbing; }
+  input[type=range].state-good::-webkit-slider-thumb { border-color: var(--green); box-shadow: 0 2px 8px rgba(16,185,129,.25); }
+  input[type=range].state-bad::-webkit-slider-thumb  { border-color: var(--red);   box-shadow: 0 2px 8px rgba(239,68,68,.25); }
+  input[type=range]::-moz-range-thumb {
+    width: 22px; height: 22px; border-radius: 999px;
+    background: var(--white); border: 2px solid var(--primary);
+    box-shadow: 0 2px 8px rgba(44,134,246,.25); cursor: grab;
+  }
+  .slider-scale {
+    display: flex; justify-content: space-between;
+    font-size: 11px; font-weight: 700;
+    color: var(--ink-4); letter-spacing: .04em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── VISUAL SCALE ── */
+  .scale-zone {
+    padding: 28px 32px 0;
+    position: relative;
+  }
+  .scale-track {
+    position: relative;
+    height: 12px;
+    background: var(--bg-2);
+    border-radius: 999px;
+    overflow: visible;
+    border: 1px solid var(--border);
+  }
+  .scale-fill {
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--green-20), var(--primary-20));
+    transition: width .15s var(--ease);
+  }
+  .scale-band {
+    position: absolute;
+    top: -2px; bottom: -2px;
+    border-radius: 999px;
+    background: rgba(16,185,129,.18);
+    border: 1px solid rgba(16,185,129,.30);
+    transition: left .15s var(--ease), width .15s var(--ease);
+    pointer-events: none;
+  }
+  /* markers */
+  .scale-markers {
+    position: relative;
+    height: 80px;
+    margin-top: 0;
+  }
+  .scale-marker {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    transition: left .15s var(--ease);
+  }
+  .scale-marker .tick {
+    width: 1.5px; height: 20px;
+    margin-top: -1px;
+  }
+  .scale-marker.avbs .tick { background: var(--green); }
+  .scale-marker.bnr  .tick { background: rgba(17,24,39,.45); }
+  .scale-marker .mlabel {
+    text-align: center;
+    margin-top: 6px;
+  }
+  .scale-marker .mlabel .mval {
+    display: block;
+    font-size: 13px; font-weight: 800;
+    letter-spacing: -.02em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+  }
+  .scale-marker.avbs .mlabel .mval { color: var(--green); }
+  .scale-marker.bnr  .mlabel .mval { color: var(--ink); }
+  .scale-marker .mlabel .mname {
+    display: block;
+    font-size: 10px; font-weight: 600;
+    color: var(--ink-4);
+    letter-spacing: .03em;
+    line-height: 1.3;
+    margin-top: 2px;
+  }
+
+  /* "Tu" badge */
+  .scale-you {
+    position: absolute;
+    top: -10px;
+    transform: translateX(-50%);
+    z-index: 10;
+    transition: left .15s var(--ease), background .2s;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .scale-you .you-pill {
+    background: var(--ink);
+    color: var(--white);
+    font-size: 12px; font-weight: 800;
+    padding: 5px 11px; border-radius: 8px;
+    white-space: nowrap; font-variant-numeric: tabular-nums;
+    box-shadow: 0 2px 8px rgba(0,0,0,.18);
+    transition: background .2s;
+    letter-spacing: -.01em;
+  }
+  .scale-you.state-good .you-pill { background: var(--green); }
+  .scale-you.state-bad  .you-pill { background: var(--red); }
+  .scale-you .you-arrow {
+    width: 0; height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--ink);
+    transition: border-top-color .2s;
+    margin-top: -1px;
+  }
+  .scale-you.state-good .you-arrow { border-top-color: var(--green); }
+  .scale-you.state-bad  .you-arrow { border-top-color: var(--red); }
+  .scale-you .you-label {
+    font-size: 9px; font-weight: 700;
+    color: var(--ink-4); letter-spacing: .08em;
+    text-transform: uppercase; margin-top: 4px;
+  }
+
+  /* ── VERDICT + CARD ── */
+  .bottom-zone {
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: minmax(0,1.1fr) minmax(0,1fr);
+    gap: 0;
+  }
+  @media(max-width: 700px) { .bottom-zone { grid-template-columns: 1fr; } }
+
+  .verdict-zone {
+    padding: 32px 32px 32px;
+    border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  @media(max-width: 700px) { .verdict-zone { border-right: none; border-bottom: 1px solid var(--border); } }
+
+  .verdict-eyebrow {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-4);
+  }
+  .verdict-eyebrow svg { width: 13px; height: 13px; stroke: var(--primary); stroke-width: 2.5; fill: none; }
+
+  .verdict-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 12px; font-weight: 700;
+    padding: 5px 12px; border-radius: 999px;
+    letter-spacing: .01em; width: fit-content;
+    transition: background .2s, color .2s;
+  }
+  .verdict-badge svg { width: 13px; height: 13px; stroke: currentColor; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .verdict-badge.good { background: var(--green-10); color: #065f46; }
+  .verdict-badge.bad  { background: var(--red-10);   color: #991b1b; }
+
+  .verdict-title {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 800; letter-spacing: -.03em;
+    color: var(--ink); line-height: 1.25;
+  }
+  .verdict-body {
+    font-size: 14px; color: var(--ink-3);
+    line-height: 1.65; max-width: 36ch;
+  }
+
+  /* caveat */
+  .verdict-caveat {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--ink-4);
+    line-height: 1.6;
+    padding-left: 12px;
+    border-left: 2px solid var(--primary-60);
+    margin-left: 0;
+  }
+
+  /* ── ACTION CARD ── */
+  .action-zone {
+    padding: 32px 28px;
+    display: flex; flex-direction: column;
+    background: var(--bg);
+  }
+  .action-card { flex: 1; }
+
+  /* Alert card */
+  .alert-card { display: flex; flex-direction: column; gap: 14px; height: 100%; }
+  .alert-head { display: flex; align-items: center; gap: 8px; }
+  .alert-head svg { width: 16px; height: 16px; stroke: var(--primary); stroke-width: 2; fill: none; }
+  .alert-head h4 { font-size: 15px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
+  .alert-sub { font-size: 13px; color: var(--ink-3); line-height: 1.6; }
+
+  /* tel input */
+  .tel-wrap { position: relative; }
+  .tel-icon {
+    position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
+    width: 15px; height: 15px; stroke: var(--ink-4); stroke-width: 2; fill: none;
+    pointer-events: none;
+  }
+  input[type=tel] {
+    width: 100%;
+    padding: 12px 14px 12px 38px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: var(--font);
+    font-size: 14px; font-weight: 500;
+    color: var(--ink);
+    background: var(--white);
+    outline: none;
+    font-variant-numeric: tabular-nums;
+    transition: border-color .15s, box-shadow .15s;
+    -webkit-appearance: none;
+  }
+  input[type=tel]::placeholder { color: var(--ink-4); font-weight: 400; }
+  input[type=tel]:focus { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(17,24,39,.07); }
+  input[type=tel].err { border-color: var(--red); }
+  input[type=tel].err:focus { box-shadow: 0 0 0 3px rgba(239,68,68,.10); }
+  .tel-err { font-size: 12px; color: var(--red); font-weight: 500; min-height: 1em; margin-top: 4px; }
+
+  /* consent */
+  .consent-wrap {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 12px; color: var(--ink-3);
+    line-height: 1.55; cursor: pointer;
+  }
+  .consent-wrap input[type=checkbox] {
+    width: 15px; height: 15px; flex: none;
+    margin-top: 1px; accent-color: var(--ink);
+    cursor: pointer; border-radius: 4px;
+  }
+
+  /* buttons */
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; padding: 13px 18px;
+    border: none; border-radius: 10px;
+    font-family: var(--font); font-size: 14px; font-weight: 700;
+    letter-spacing: -.01em; cursor: pointer;
+    transition: background .18s, transform .18s, opacity .15s;
+    text-decoration: none;
+  }
+  .btn svg { width: 15px; height: 15px; stroke: currentColor; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .btn-primary { background: var(--ink); color: var(--white); }
+  .btn-primary:hover:not(:disabled) { background: #1F2937; transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: .35; cursor: not-allowed; transform: none !important; }
+
+  /* success state */
+  .done-state { display: none; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 8px 0; }
+  .done-state.active { display: flex; }
+  .done-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--primary-10);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .done-icon svg { width: 22px; height: 22px; stroke: var(--primary); stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .done-title { font-size: 15px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
+  .done-sub { font-size: 13px; color: var(--ink-3); line-height: 1.6; max-width: 26ch; }
+
+  /* CTA card (when rate > BNR) */
+  .cta-card { display: none; flex-direction: column; gap: 14px; height: 100%; }
+  .cta-card.active { display: flex; }
+  .cta-head { display: flex; align-items: center; gap: 8px; }
+  .cta-head svg { width: 18px; height: 18px; stroke: var(--primary); stroke-width: 2; fill: none; }
+  .cta-head h4 { font-size: 15px; font-weight: 800; color: var(--ink); letter-spacing: -.02em; }
+  .cta-sub { font-size: 13px; color: var(--ink-3); line-height: 1.6; }
+  .cta-micro {
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+    font-size: 11px; color: var(--ink-4); text-align: center;
+  }
+  .cta-micro svg { width: 12px; height: 12px; stroke: var(--primary); stroke-width: 2; fill: none; flex: none; }
+
+  /* ── SOURCES GRID ── */
+  .sources {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  @media(max-width: 600px) { .sources { grid-template-columns: 1fr; } }
+  .src-item { font-size: 12px; color: var(--ink-4); line-height: 1.6; }
+  .src-item strong { display: block; color: var(--ink-2); font-weight: 700; font-size: 12px; margin-bottom: 3px; }
+
+  /* ── TRANSITIONS ── */
+  .fade-out { animation: fadeOut .18s var(--ease) forwards; }
+  .fade-in  { animation: fadeIn  .22s var(--ease) forwards; }
+  @keyframes fadeOut { to { opacity: 0; transform: translateY(4px); } }
+  @keyframes fadeIn  { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width: 640px) {
+    .slider-zone, .verdict-zone, .action-zone { padding: 24px 20px; }
+    .scale-zone { padding: 20px 20px 0; }
+    .slider-header { flex-direction: column; gap: 4px; }
+    .page-header { padding: 40px 20px 36px; }
+    .nav { padding: 0 16px; }
+    .nav-links { display: none; }
+    .topbar { padding: 7px 16px; }
+  }
+
+  /* ── FLOATING CTA (site live style) ── */
+  .floating-cta {
+    position: fixed; bottom: 20px; right: 20px; z-index: 100;
+    background: var(--ink); color: var(--white);
+    display: flex; align-items: center; gap: 8px;
+    padding: 13px 20px; border-radius: 10px;
+    font-size: 13px; font-weight: 700;
+    box-shadow: 0 8px 24px rgba(0,0,0,.20);
+    cursor: pointer; border: none;
+    transition: background .15s, transform .15s;
+  }
+  .floating-cta:hover { background: #1F2937; transform: translateY(-2px); }
+  .floating-dot {
+    width: 8px; height: 8px; border-radius: 3px;
+    background: var(--primary);
+    animation: pulse 2s ease infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.4; } }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span>Partener AVBS Credite România.</span>
+  <a href="https://wa.me/+40750470020" target="_blank">
+    <svg class="topbar-wa" fill="currentColor" viewBox="0 0 24 24" style="color:#25D366">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884z"/>
+    </svg>
+    WhatsApp
+  </a>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="https://creditrepublic.ro">
+    <img src="https://creditrepublic.ro/wp-content/uploads/2026/08/Untitled-August-04-2026-at-15.08.09-2-1.png"
+         onerror="this.style.display='none';this.nextSibling.style.display='block'"
+         alt="Credit Republic">
+    <span style="display:none;font-size:16px;font-weight:900;letter-spacing:-.03em;color:var(--ink)">Credit Republic</span>
+  </a>
+  <div class="nav-links">
+    <a href="#">Despre</a>
+    <a href="#" class="active">Verifică Dobânda</a>
+    <a href="#">Ipotecar cu AI</a>
+    <a href="#">Parteneriate</a>
+  </div>
+  <a class="nav-cta" href="#">
+    Obține Precalificarea
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+  </a>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="badge">
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+    Poziția ta în piață
+  </div>
+  <h1>Dobânda ta există.<br>Un punct de referință, nu.</h1>
+  <p>Pune-ți dobânda pe scală lângă media pieței de azi și compară cu ce se poate obține prin rețeaua AVBS Credite.</p>
+</header>
+
+<!-- MAIN SECTION -->
+<section class="section">
+  <div class="container">
+
+    <div class="main-card">
+
+      <!-- ① SLIDER -->
+      <div class="slider-zone">
+        <div class="slider-header">
+          <label for="rate-slider" class="slider-label">Ce dobândă ai acum la credit?</label>
+          <div class="slider-readout">
+            <span class="slider-val state-bad" id="sliderVal">7,20</span>
+            <span class="slider-unit">% dobândă nominală</span>
+          </div>
+        </div>
+
+        <div class="slider-wrap">
+          <div class="slider-track-bg"></div>
+          <div class="slider-track-fill state-bad" id="sliderFill"></div>
+          <input type="range" id="rate-slider" class="state-bad"
+                 min="3" max="12" step="0.05" value="7.2"
+                 aria-label="Dobânda ta actuală">
+        </div>
+
+        <div class="slider-scale">
+          <span>3,00%</span>
+          <span>12,00%</span>
+        </div>
+      </div>
+
+      <!-- ② SCALA VIZUALĂ -->
+      <div class="scale-zone">
+        <div style="position:relative;">
+          <div class="scale-track">
+            <div class="scale-band" id="scaleBand"></div>
+          </div>
+
+          <div class="scale-markers" style="position:relative;">
+            <!-- "Tu" badge -->
+            <div class="scale-you state-bad" id="scaleYou">
+              <div class="you-pill" id="youPill">Tu: 7,20%</div>
+              <div class="you-arrow"></div>
+              <div class="you-label">tu</div>
+            </div>
+
+            <!-- AVBS marker -->
+            <div class="scale-marker avbs" id="markerAvbs">
+              <div class="tick"></div>
+              <div class="mlabel">
+                <span class="mval">4,95%</span>
+                <span class="mname">Optim AVBS</span>
+              </div>
+            </div>
+
+            <!-- BNR marker -->
+            <div class="scale-marker bnr" id="markerBnr">
+              <div class="tick"></div>
+              <div class="mlabel">
+                <span class="mval">6,42%</span>
+                <span class="mname">Media BNR</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ③ VERDICT + ACTION -->
+      <div class="bottom-zone">
+
+        <!-- Verdict -->
+        <div class="verdict-zone">
+          <div class="verdict-eyebrow">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg>
+            Verdict orientativ
+          </div>
+
+          <div class="verdict-badge bad" id="verdictBadge">
+            <svg viewBox="0 0 24 24" id="verdictIcon">
+              <path d="M12 9v4M12 17h.01" stroke-linecap="round"/>
+            </svg>
+            <span id="verdictBadgeText">Peste media pieței</span>
+          </div>
+
+          <h3 class="verdict-title" id="verdictTitle">
+            Dobânda ta este peste media pieței de azi.
+          </h3>
+          <p class="verdict-body" id="verdictBody">
+            Plătești o dobândă mai mare decât media actuală a creditelor pentru locuințe. Poți verifica gratuit dacă te încadrezi la o refinanțare cu costuri reduse.
+          </p>
+
+          <div class="verdict-caveat">
+            Dobânda nominală nu include comisioanele și asigurările. La precalificare comparăm costul total (DAE) — nu rata lunară.
+          </div>
+        </div>
+
+        <!-- Action card -->
+        <div class="action-zone">
+
+          <!-- ALERT FORM (dobânda ≤ BNR) -->
+          <div class="action-card" id="alertCard" style="display:none">
+            <div id="alertForm" class="alert-card">
+              <div class="alert-head">
+                <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                <h4>Activează alerta de dobândă</h4>
+              </div>
+              <p class="alert-sub" id="alertSubtext">
+                Primești un mesaj pe WhatsApp <strong>doar</strong> dacă dobânzile din piață coboară sub dobânda ta.
+              </p>
+
+              <div class="tel-wrap">
+                <svg class="tel-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.42 2 2 0 0 1 3.62 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <input type="tel" id="phoneInput" placeholder="07xx xxx xxx" autocomplete="tel" inputmode="tel">
+              </div>
+              <p class="tel-err" id="telErr"></p>
+
+              <label class="consent-wrap">
+                <input type="checkbox" id="consentCheck">
+                <span>Accept să primesc notificări pe WhatsApp când apar oferte mai avantajoase. Mă pot dezabona oricând.</span>
+              </label>
+
+              <button class="btn btn-primary" id="alertBtn" disabled>
+                <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                Primește alerta
+              </button>
+            </div>
+
+            <!-- Success state -->
+            <div class="done-state" id="doneState">
+              <div class="done-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div class="done-title">Alerta înregistrată!</div>
+              <p class="done-sub">Îți vom trimite un mesaj pe WhatsApp doar când media pieței sau ofertele optime coboară sub dobânda ta actuală.</p>
+            </div>
+          </div>
+
+          <!-- CTA CARD (dobânda > BNR) -->
+          <div class="cta-card active" id="ctaCard">
+            <div class="cta-head">
+              <svg viewBox="0 0 24 24" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <h4>Economisește la rata lunară</h4>
+            </div>
+            <p class="cta-sub">Compară instant peste 30 de oferte bancare prin asistentul nostru AI și află dacă o refinanțare îți reduce costurile.</p>
+
+            <div style="margin-top:auto">
+              <a class="btn btn-primary" href="https://creditrepublic.ro/ipotecar-cu-ai/" style="margin-bottom:10px">
+                Precalifică-te cu AI
+                <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+              <p class="cta-micro">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Fără acte încărcate · 100% gratuit · Fără impact pe scorul de credit
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SOURCES -->
+    <div class="sources">
+      <div class="src-item">
+        <strong>Media pieței (BNR)</strong>
+        Dobânda medie la creditele noi pentru locuințe în lei, conform rapoartelor BNR recente.
+      </div>
+      <div class="src-item">
+        <strong>Oferta din rețeaua AVBS</strong>
+        Credit ipotecar standard, LTV max. 75%, dobândă fixă 3 ani prin rețeaua de parteneri AVBS.
+      </div>
+      <div class="src-item">
+        <strong>Ce nu reprezintă</strong>
+        Oferta din rețea nu este o ofertă contractuală personalizată. Condițiile finale depind de profilul tău financiar.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FLOATING CTA -->
+<button class="floating-cta" onclick="window.location.href='https://creditrepublic.ro/ipotecar-cu-ai/'">
+  <span class="floating-dot"></span>
+  Obține Precalificare Gratuit
+</button>
+
+<script>
+/* ── CONFIG ── */
+const MIN  = 3, MAX = 12;
+const BNR  = 6.42;
+const AVBS = 4.95;
+
+/* ── DOM ── */
+const slider    = document.getElementById('rate-slider');
+const sliderVal = document.getElementById('sliderVal');
+const sliderFill= document.getElementById('sliderFill');
+const scaleBand = document.getElementById('scaleBand');
+const scaleYou  = document.getElementById('scaleYou');
+const youPill   = document.getElementById('youPill');
+const markerAvbs= document.getElementById('markerAvbs');
+const markerBnr = document.getElementById('markerBnr');
+const vBadge    = document.getElementById('verdictBadge');
+const vBadgeTxt = document.getElementById('verdictBadgeText');
+const vIcon     = document.getElementById('verdictIcon');
+const vTitle    = document.getElementById('verdictTitle');
+const vBody     = document.getElementById('verdictBody');
+const alertCard = document.getElementById('alertCard');
+const ctaCard   = document.getElementById('ctaCard');
+const alertForm = document.getElementById('alertForm');
+const doneState = document.getElementById('doneState');
+const phoneInput= document.getElementById('phoneInput');
+const telErr    = document.getElementById('telErr');
+const consentCk = document.getElementById('consentCheck');
+const alertBtn  = document.getElementById('alertBtn');
+const alertSub  = document.getElementById('alertSubtext');
+
+const fmt = v => v.toFixed(2).replace('.', ',');
+const pct = v => ((v - MIN) / (MAX - MIN) * 100);
+
+/* Static marker positions */
+markerAvbs.style.left = pct(AVBS) + '%';
+markerBnr.style.left  = pct(BNR)  + '%';
+scaleBand.style.left  = pct(AVBS) + '%';
+scaleBand.style.width = (pct(BNR) - pct(AVBS)) + '%';
+
+function getState(r) {
+  if (r <= AVBS) return 'sub-avbs';
+  if (r <= BNR)  return 'sub-bnr';
+  return 'over-bnr';
+}
+
+const VERDICTS = {
+  'sub-avbs': {
+    cls: 'good',
+    badgeIcon: '<path d="M20 6L9 17l-5-5"/>',
+    badgeText: 'Sub oferta optimă AVBS',
+    title: 'Dobânda ta este sub oferta optimă din piață.',
+    body: 'La condițiile din acest moment, refinanțarea s-ar putea să nu aducă o economie semnificativă. Dacă dorești, te anunțăm automat când apar oferte mai bune.',
+    showAlert: true
+  },
+  'sub-bnr': {
+    cls: 'good',
+    badgeIcon: '<path d="M20 6L9 17l-5-5"/>',
+    badgeText: 'Sub media pieței actuale',
+    title: 'Dobânda ta este sub media pieței actuale.',
+    body: 'Ești într-o zonă favorabilă față de piață. Oportunitatea unei refinanțări depinde de dosar și de costul total al creditului.',
+    showAlert: true
+  },
+  'over-bnr': {
+    cls: 'bad',
+    badgeIcon: '<path d="M12 9v4M12 17h.01" stroke-linecap="round"/>',
+    badgeText: 'Peste media pieței',
+    title: 'Dobânda ta este peste media pieței de azi.',
+    body: 'Plătești o dobândă mai mare decât media actuală a creditelor pentru locuințe. Poți verifica gratuit dacă te încadrezi la o refinanțare cu costuri reduse.',
+    showAlert: false
+  }
+};
+
+function render() {
+  const r   = parseFloat(slider.value);
+  const p   = pct(r);
+  const st  = getState(r);
+  const v   = VERDICTS[st];
+  const cls = v.cls; // 'good' | 'bad'
+  const colorClass = cls === 'good' ? 'state-good' : 'state-bad';
+
+  /* slider */
+  sliderVal.className = 'slider-val ' + colorClass;
+  sliderVal.textContent = fmt(r);
+  slider.className = colorClass;
+  sliderFill.className = 'slider-track-fill ' + colorClass;
+  sliderFill.style.width = p + '%';
+
+  /* "tu" badge */
+  const clamped = Math.max(3, Math.min(97, p));
+  scaleYou.style.left = clamped + '%';
+  scaleYou.className = 'scale-you ' + colorClass;
+  youPill.textContent = 'Tu: ' + fmt(r) + '%';
+
+  /* verdict */
+  vBadge.className = 'verdict-badge ' + cls;
+  vIcon.innerHTML = v.badgeIcon;
+  vBadgeTxt.textContent = v.badgeText;
+  vTitle.textContent = v.title;
+  vBody.textContent  = v.body;
+
+  /* panels */
+  if (v.showAlert) {
+    alertCard.style.display = 'flex';
+    alertCard.style.flexDirection = 'column';
+    ctaCard.classList.remove('active');
+    alertSub.innerHTML = 'Primești un mesaj pe WhatsApp <strong>doar</strong> dacă dobânzile din piață coboară sub <strong>' + fmt(r) + '%</strong>.';
+  } else {
+    alertCard.style.display = 'none';
+    ctaCard.classList.add('active');
+  }
+}
+
+slider.addEventListener('input', render);
+render();
+
+/* ── PHONE VALIDATION ── */
+const RO = /^(?:\+?40|0)7\d{8}$/;
+const cln = v => v.replace(/[\s.\-()]/g, '');
+let phoneTouched = false;
+
+function checkForm() {
+  const ok = RO.test(cln(phoneInput.value));
+  alertBtn.disabled = !(ok && consentCk.checked);
+  return ok;
+}
+
+phoneInput.addEventListener('input', () => {
+  phoneInput.classList.remove('err');
+  telErr.textContent = '';
+  checkForm();
+});
+
+phoneInput.addEventListener('blur', () => {
+  phoneTouched = true;
+  if (phoneInput.value && !checkForm()) {
+    phoneInput.classList.add('err');
+    telErr.textContent = 'Introduceți un număr valid din România (format 07xxxxxxxx).';
+  }
+});
+
+consentCk.addEventListener('change', checkForm);
+
+alertBtn.addEventListener('click', () => {
+  if (alertBtn.disabled) return;
+  /* TODO: POST { tel: cln(phoneInput.value), dobanda: parseFloat(slider.value), consent: true } */
+  alertForm.style.display = 'none';
+  doneState.classList.add('active');
+});
+</script>
+</body>
+</html>

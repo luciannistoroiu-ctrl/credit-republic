@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>credit republic — panou administrare & conectare lead-uri</title>
+<link rel="icon" type="image/svg+xml" href="cr_favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:#FFF8F0;
+    --plum:#2B2640;
+    --coral:#FF6B4A;
+    --sunshine:#FFD166;
+    --mint:#06D6A0;
+    --semnal:#2C86F6;
+    --plum-70:rgba(43,38,64,.70);
+    --plum-45:rgba(43,38,64,.45);
+    --display:'Outfit','Plus Jakarta Sans',sans-serif;
+    --corp:'Plus Jakarta Sans',sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:#F8F9FB;color:var(--plum);
+    font-family:var(--corp);font-size:15px;line-height:1.5;
+  }
+  .wrap{max-width:1240px;margin:0 auto;padding:24px 20px}
+  
+  /* Topbar */
+  header{background:var(--plum);color:var(--cream);padding:16px 0;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+  header .wrap{display:flex;justify-content:space-between;align-items:center}
+  .wordmark{font-family:var(--display);font-weight:700;font-size:1.2rem;display:flex;align-items:center;gap:10px}
+  .badge-live{background:var(--mint);color:var(--plum);font-size:.72rem;font-weight:800;padding:4px 10px;border-radius:999px;display:flex;align-items:center;gap:6px}
+  .badge-live::before{content:"";width:6px;height:6px;border-radius:999px;background:#059669;display:inline-block}
+
+  /* Grid KPIs */
+  .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0}
+  .kpi-card{
+    background:#fff;border:1px solid #E5E7EB;border-radius:18px;padding:20px;
+    box-shadow:0 4px 12px rgba(0,0,0,.03);display:flex;flex-direction:column;gap:6px;
+  }
+  .kpi-lbl{font-size:.78rem;font-weight:700;color:var(--plum-45);text-transform:uppercase;letter-spacing:.04em}
+  .kpi-val{font-size:1.9rem;font-family:var(--display);font-weight:800;color:var(--plum)}
+  .kpi-sub{font-size:.78rem;color:var(--plum-70)}
+
+  /* Panou Configurare Webhook */
+  .config-box{
+    background:linear-gradient(135deg,var(--plum),#1e1a2f);color:var(--cream);
+    border-radius:20px;padding:24px;margin-bottom:28px;box-shadow:0 8px 24px rgba(43,38,64,.15);
+  }
+  .config-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+  .config-title{font-size:1.15rem;font-weight:700;display:flex;align-items:center;gap:8px}
+  .config-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+  .cfg-field label{display:block;font-size:.78rem;font-weight:700;color:rgba(255,248,240,.75);margin-bottom:6px;text-transform:uppercase}
+  .cfg-field input{
+    width:100%;border:1.5px solid rgba(255,248,240,.2);border-radius:10px;
+    padding:11px 14px;font-family:inherit;font-size:.92rem;color:var(--cream);
+    background:rgba(255,248,240,.08);outline:none;
+  }
+  .cfg-field input:focus{border-color:var(--coral);background:rgba(255,248,240,.12)}
+  .cfg-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+
+  /* Butoane */
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;
+    font-size:.88rem;font-weight:700;border:none;cursor:pointer;font-family:inherit;
+    text-decoration:none;transition:transform .15s,box-shadow .15s,opacity .15s;
+  }
+  .btn:hover{transform:translateY(-1px)}
+  .btn-coral{background:var(--coral);color:#fff}
+  .btn-mint{background:var(--mint);color:var(--plum)}
+  .btn-white{background:#fff;color:var(--plum)}
+  .btn-ghost{background:rgba(255,248,240,.15);color:var(--cream)}
+  .btn-sm{padding:6px 12px;font-size:.78rem}
+
+  /* Tabel Lead-uri */
+  .table-card{
+    background:#fff;border:1px solid #E5E7EB;border-radius:20px;
+    box-shadow:0 4px 16px rgba(0,0,0,.04);overflow:hidden;
+  }
+  .table-header{
+    padding:18px 22px;border-bottom:1px solid #E5E7EB;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+  }
+  .search-wrap{display:flex;gap:10px;align-items:center}
+  .search-input{
+    border:1.5px solid #E5E7EB;border-radius:999px;padding:8px 16px;
+    font-size:.88rem;outline:none;width:240px;
+  }
+  .filter-select{
+    border:1.5px solid #E5E7EB;border-radius:999px;padding:8px 14px;
+    font-size:.85rem;outline:none;background:#fff;
+  }
+
+  table{width:100%;border-collapse:collapse;text-align:left;font-size:.88rem}
+  th{background:#F9FAFB;padding:14px 18px;font-weight:700;color:var(--plum-45);font-size:.75rem;text-transform:uppercase;border-bottom:1px solid #E5E7EB}
+  td{padding:14px 18px;border-bottom:1px solid #F0F2F5;vertical-align:middle}
+  tr:hover td{background:#FDFCFB}
+
+  .badge-tag{
+    display:inline-block;padding:4px 9px;border-radius:999px;font-size:.74rem;font-weight:700;white-space:nowrap;
+  }
+  .tag-rate{background:#FEE2E2;color:#DC2626}
+  .tag-market{background:#FEF3C7;color:#D97706}
+  .tag-affiliate{background:#D1FAE5;color:#059669}
+
+  .badge-sync{width:8px;height:8px;border-radius:999px;display:inline-block;margin-right:6px}
+  .sync-ok{background:#10B981}
+  .sync-pending{background:#F59E0B}
+
+  @media(max-width:980px){
+    .kpi-grid{grid-template-columns:1fr 1fr}
+    .config-grid{grid-template-columns:1fr}
+    table{min-width:700px}
+    .table-responsive{overflow-x:auto}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="wordmark">
+      <svg width="22" height="22" viewBox="0 0 48 48"><rect x="4" y="9" width="34" height="13" rx="6.5" fill="#FFF8F0" opacity=".35"/><rect x="10" y="26" width="34" height="13" rx="6.5" fill="#FF6B4A"/></svg>
+      <span>credit republic · lead hub</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px">
+      <span class="badge-live">MOTOR ACTIV</span>
+      <a href="index.html" style="color:var(--cream-70);font-size:.85rem;text-decoration:none">← Pagina Principală</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <!-- KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <span class="kpi-lbl">Total Lead-uri</span>
+      <span class="kpi-val" id="kpiTotal">0</span>
+      <span class="kpi-sub">înregistrate pe site</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-lbl">Alerte Dobândă (#pozitie)</span>
+      <span class="kpi-val" id="kpiRate" style="color:var(--coral)">0</span>
+      <span class="kpi-sub">clienți cu rată existentă</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-lbl">Alerte Piață (.obs)</span>
+      <span class="kpi-val" id="kpiMarket" style="color:#D97706">0</span>
+      <span class="kpi-sub">clienți care vor oferte mai bune</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-lbl">Parteneri & Afiliere</span>
+      <span class="kpi-val" id="kpiAffiliate" style="color:#059669">0</span>
+      <span class="kpi-sub">dezvoltatori & agenții</span>
+    </div>
+  </div>
+
+  <!-- Configurare Conectare Webhook & Telegram -->
+  <div class="config-box">
+    <div class="config-header">
+      <div class="config-title">
+        <span>⚡ Conectare Automată (Webhook / Make.com / Zapier / Telegram)</span>
+      </div>
+      <span style="font-size:.8rem;color:var(--cream-70)">Fiecare formular trimite automat datele instant</span>
+    </div>
+
+    <div class="config-grid">
+      <div class="cfg-field">
+        <label>URL Webhook (Make.com, Zapier, Webhook.site, Google Apps Script, CRM)</label>
+        <input type="url" id="cfgWebhook" placeholder="https://hook.eu1.make.com/xxxxxxxxxxxxxxxxxxxxxxxx">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div class="cfg-field">
+          <label>Telegram Bot Token (Opțional)</label>
+          <input type="text" id="cfgTgToken" placeholder="123456789:ABCdef...">
+        </div>
+        <div class="cfg-field">
+          <label>Telegram Chat ID (Opțional)</label>
+          <input type="text" id="cfgTgChatId" placeholder="123456789">
+        </div>
+      </div>
+    </div>
+
+    <div class="cfg-actions">
+      <button class="btn btn-coral" onclick="saveSettings()">💾 Salvează Conexiunea</button>
+      <button class="btn btn-white" onclick="sendTestLead()">🚀 Trimite un Lead de Test</button>
+      <button class="btn btn-ghost" onclick="syncPending()">🔄 Sincronizează Lead-urile Locale</button>
+      <span id="cfgMsg" style="align-self:center;font-size:.84rem;font-weight:700;color:var(--mint)"></span>
+    </div>
+  </div>
+
+  <!-- Tabel Lead-uri -->
+  <div class="table-card">
+    <div class="table-header">
+      <div>
+        <strong style="font-size:1.1rem">Inbox Lead-uri Colectate</strong>
+        <span style="display:block;font-size:.78rem;color:var(--plum-45)">Toate contactele generate prin formularele de pe site</span>
+      </div>
+
+      <div class="search-wrap">
+        <input type="text" id="searchLead" class="search-input" placeholder="Caută telefon, nume..." oninput="renderTable()">
+        <select id="filterType" class="filter-select" onchange="renderTable()">
+          <option value="all">Toate Tipurile</option>
+          <option value="alert_ratecheck_pozitie">Alertă Dobândă (#pozitie)</option>
+          <option value="alert_market_obs">Alertă Piață (.obs)</option>
+          <option value="affiliate_lead">Parteneriat / Afiliere</option>
+        </select>
+        <button class="btn btn-mint btn-sm" onclick="exportCSV()">📥 Export Excel (CSV)</button>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Data & Ora</th>
+            <th>Tip Lead</th>
+            <th>Contact Client</th>
+            <th>Detalii / Dobândă</th>
+            <th>Sursă Trafic</th>
+            <th>Status Sync</th>
+            <th>Acțiuni Rapide</th>
+          </tr>
+        </thead>
+        <tbody id="leadsTbody">
+          <!-- Rendered dynamically -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="leads-dispatcher.js"></script>
+<script>
+  // Inițializare config în interfață
+  const cfg = CreditRepublicLeads.getConfig();
+  document.getElementById('cfgWebhook').value = cfg.webhookUrl || '';
+  document.getElementById('cfgTgToken').value = cfg.telegramToken || '';
+  document.getElementById('cfgTgChatId').value = cfg.telegramChatId || '';
+
+  function saveSettings(){
+    const newCfg = {
+      webhookUrl: document.getElementById('cfgWebhook').value.trim(),
+      telegramToken: document.getElementById('cfgTgToken').value.trim(),
+      telegramChatId: document.getElementById('cfgTgChatId').value.trim(),
+      autoSync: true
+    };
+    CreditRepublicLeads.saveConfig(newCfg);
+    const msg = document.getElementById('cfgMsg');
+    msg.textContent = '✓ Configurație salvată cu succes!';
+    setTimeout(() => { msg.textContent = ''; }, 3000);
+  }
+
+  async function sendTestLead(){
+    const testData = {
+      type: 'alert_ratecheck_pozitie',
+      name: 'Ion Popescu (Test)',
+      phone: '0750470020',
+      rate: '6.85',
+      details: 'Sold 320.000 lei · Test verificare conexiune automată webhook.'
+    };
+    const lead = await CreditRepublicLeads.submitLead(testData);
+    const msg = document.getElementById('cfgMsg');
+    msg.textContent = lead.synced ? '✓ Lead test trimis prin Webhook!' : '✓ Lead test înregistrat local (Webhook opțional).';
+    setTimeout(() => { msg.textContent = ''; }, 4000);
+    renderTable();
+  }
+
+  async function syncPending(){
+    const count = await CreditRepublicLeads.syncPendingLeads();
+    const msg = document.getElementById('cfgMsg');
+    msg.textContent = `✓ S-au sincronizat ${count} lead-uri.`;
+    setTimeout(() => { msg.textContent = ''; }, 4000);
+    renderTable();
+  }
+
+  function renderTable(){
+    const leads = CreditRepublicLeads.getAllLeads();
+    const query = document.getElementById('searchLead').value.toLowerCase();
+    const typeFilter = document.getElementById('filterType').value;
+
+    // Actualizare KPIs
+    document.getElementById('kpiTotal').textContent = leads.length;
+    document.getElementById('kpiRate').textContent = leads.filter(l => l.type === 'alert_ratecheck_pozitie').length;
+    document.getElementById('kpiMarket').textContent = leads.filter(l => l.type === 'alert_market_obs').length;
+    document.getElementById('kpiAffiliate').textContent = leads.filter(l => l.type === 'affiliate_lead').length;
+
+    const filtered = leads.filter(l => {
+      const matchType = (typeFilter === 'all' || l.type === typeFilter);
+      const str = (l.phone + ' ' + (l.name || '') + ' ' + (l.email || '') + ' ' + (l.category || '')).toLowerCase();
+      const matchQuery = str.includes(query);
+      return matchType && matchQuery;
+    });
+
+    const tbody = document.getElementById('leadsTbody');
+    if (filtered.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;padding:36px;color:var(--plum-45)">Nu există lead-uri înregistrate încă. Formularele de pe site le vor afișa automat aici.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filtered.map(l => {
+      const dateStr = new Date(l.timestamp).toLocaleString('ro-RO', { day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit' });
+      
+      let typeBadge = '';
+      let msgContext = '';
+      if (l.type === 'alert_ratecheck_pozitie') {
+        typeBadge = `<span class="badge-tag tag-rate">Dobândă: ${l.rate}%</span>`;
+        msgContext = `Bună, am văzut solicitarea ta de alertă pentru dobânda de ${l.rate}%. Avem oferte optime începând de la 4.95% prin AVBS. Vrei să facem o simulare gratuită?`;
+      } else if (l.type === 'alert_market_obs') {
+        typeBadge = `<span class="badge-tag tag-market">Alertă Piață</span>`;
+        msgContext = `Bună, ai activat alerta pentru scăderea pieței bancare pe Credit Republic.`;
+      } else if (l.type === 'affiliate_lead') {
+        typeBadge = `<span class="badge-tag tag-affiliate">Afiliat: ${l.category || 'Partener'}</span>`;
+        msgContext = `Bună ${l.name || ''}, îți mulțumim pentru interesul în programul de parteneriat Credit Republic!`;
+      }
+
+      const syncIndicator = l.synced 
+        ? `<span class="badge-sync sync-ok" title="Sincronizat Webhook"></span><span style="color:#059669;font-weight:700;font-size:.78rem">Sincronizat</span>`
+        : `<span class="badge-sync sync-pending" title="Salvat doar local"></span><span style="color:#D97706;font-weight:700;font-size:.78rem">Local</span>`;
+
+      const cleanPhone = (l.phone || '').replace(/[^0-9]/g, '');
+      const waUrl = `https://wa.me/${cleanPhone.startsWith('0') ? '4' + cleanPhone : cleanPhone}?text=${encodeURIComponent(msgContext)}`;
+
+      return `
+        <tr>
+          <td><span style="font-weight:600">${dateStr}</span></td>
+          <td>${typeBadge}</td>
+          <td>
+            <strong>${l.name || 'Vizitator'}</strong><br>
+            <a href="tel:${l.phone}" style="color:var(--plum);text-decoration:none;font-weight:700;font-variant-numeric:tabular-nums">${l.phone}</a>
+            ${l.email ? `<br><span style="font-size:.78rem;color:var(--plum-45)">${l.email}</span>` : ''}
+          </td>
+          <td>
+            ${l.rate ? `Dobândă actuală: <b>${l.rate}%</b><br>` : ''}
+            ${l.category ? `Profil: <b>${l.category}</b><br>` : ''}
+            ${l.details ? `<span style="font-size:.8rem;color:var(--plum-70)">${l.details}</span>` : '<span style="color:var(--plum-45)">—</span>'}
+          </td>
+          <td>
+            <span style="font-size:.78rem;color:var(--plum-70)">
+              ${(l.source && l.source.utm_source) ? `utm: <b>${l.source.utm_source}</b>` : 'organic'}
+            </span>
+          </td>
+          <td>${syncIndicator}</td>
+          <td>
+            <div style="display:flex;gap:6px">
+              <a href="${waUrl}" target="_blank" class="btn btn-mint btn-sm" title="Trimite WhatsApp">💬 WhatsApp</a>
+              <a href="tel:${l.phone}" class="btn btn-ghost btn-sm" style="color:var(--plum);border:1px solid #D1D5DB" title="Apelează">📞 Sună</a>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function exportCSV(){
+    const leads = CreditRepublicLeads.getAllLeads();
+    if (leads.length === 0) { alert('Nu există date pentru export.'); return; }
+
+    const headers = ['ID', 'Data', 'Tip', 'Nume', 'Telefon', 'Email', 'Dobanda', 'Categorie', 'Detalii', 'Sursa', 'Sincronizat'];
+    const rows = leads.map(l => [
+      l.id,
+      new Date(l.timestamp).toLocaleString('ro-RO'),
+      l.type,
+      `"${(l.name || '').replace(/"/g, '""')}"`,
+      `"${l.phone}"`,
+      `"${l.email || ''}"`,
+      l.rate || '',
+      `"${(l.category || '').replace(/"/g, '""')}"`,
+      `"${(l.details || '').replace(/"/g, '""')}"`,
+      `"${l.source ? l.source.utm_source || 'direct' : ''}"`,
+      l.synced ? 'DA' : 'NU'
+    ]);
+
+    const csvContent = 'data:text/csv;charset=utf-8,\uFEFF' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `credit_republic_leads_${new Date().toISOString().slice(0,10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  renderTable();
+</script>
+</body>
+</html>

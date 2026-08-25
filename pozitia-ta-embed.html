@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>credit republic — simulator credit & precalificare embed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF8F0;
+    --plum:#2B2640;
+    --coral:#FF6B4A;
+    --sunshine:#FFD166;
+    --mint:#06D6A0;
+    --plum-70:rgba(43,38,64,.70);
+    --plum-45:rgba(43,38,64,.45);
+    --display:'Outfit','Plus Jakarta Sans',sans-serif;
+    --corp:'Plus Jakarta Sans',sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;padding:16px;background:var(--cream);color:var(--plum);
+    font-family:var(--corp);font-size:15px;line-height:1.5;
+  }
+  .card{
+    background:#fff;border:1px solid rgba(43,38,64,.14);border-radius:20px;
+    padding:22px;box-shadow:0 8px 24px rgba(43,38,64,.06);max-width:440px;margin:0 auto;
+  }
+  .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;border-bottom:1px solid rgba(43,38,64,.10);padding-bottom:10px}
+  .brand{font-family:var(--display);font-weight:700;font-size:1.05rem;letter-spacing:-.02em;color:var(--plum);display:flex;align-items:center;gap:8px}
+  .tag{font-size:.72rem;font-weight:700;background:rgba(6,214,160,.18);color:var(--plum);padding:4px 10px;border-radius:999px}
+  .row{margin-bottom:14px}
+  .row label{display:block;font-size:.82rem;font-weight:700;margin-bottom:5px;color:var(--plum-70)}
+  .input-wrap{position:relative}
+  input[type=number],select{
+    width:100%;border:1.5px solid rgba(43,38,64,.16);border-radius:12px;
+    padding:11px 14px;font-family:inherit;font-size:.95rem;color:var(--plum);
+    background:var(--cream);outline:none;
+  }
+  input[type=number]:focus,select:focus{border-color:var(--coral)}
+  .res-box{
+    background:var(--plum);color:var(--cream);border-radius:14px;padding:16px;
+    margin:18px 0 14px;display:flex;justify-content:space-between;align-items:center;
+  }
+  .res-box .lbl{font-size:.8rem;color:rgba(255,248,240,.75)}
+  .res-box .val{font-size:1.35rem;font-family:var(--display);font-weight:700;color:var(--sunshine)}
+  .btn{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    width:100%;background:var(--coral);color:var(--cream);
+    border-radius:999px;padding:14px 20px;font-family:inherit;
+    font-size:.95rem;font-weight:700;border:none;cursor:pointer;
+    text-decoration:none;transition:transform .15s ease,box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(255,107,74,.3)}
+  .footer-note{font-size:.72rem;color:var(--plum-45);text-align:center;margin-top:10px}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="head">
+    <div class="brand">
+      <svg width="18" height="18" viewBox="0 0 48 48"><rect x="4" y="9" width="34" height="13" rx="6.5" fill="#2B2640" opacity=".28"/><rect x="10" y="26" width="34" height="13" rx="6.5" fill="#FF6B4A"/></svg>
+      <span>credit republic</span>
+    </div>
+    <span class="tag">0 lei comision</span>
+  </div>
+
+  <div class="row">
+    <label>Preț Proprietate (Lei / € echivalent)</label>
+    <div class="input-wrap">
+      <input type="number" id="propPrice" value="450000" step="10000" oninput="calcRate()">
+    </div>
+  </div>
+
+  <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div>
+      <label>Avans</label>
+      <select id="propAdvance" onchange="calcRate()">
+        <option value="0.15">15% (standard)</option>
+        <option value="0.20">20%</option>
+        <option value="0.25">25%</option>
+        <option value="0.05">5% (noua casă)</option>
+      </select>
+    </div>
+    <div>
+      <label>Perioadă</label>
+      <select id="propYears" onchange="calcRate()">
+        <option value="25">25 ani (300 luni)</option>
+        <option value="30">30 ani (360 luni)</option>
+        <option value="20">20 ani (240 luni)</option>
+        <option value="15">15 ani (180 luni)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="res-box">
+    <div>
+      <span class="lbl" style="display:block">Rată lunară optimă</span>
+      <span style="font-size:.7rem;color:var(--mint)">dobândă de la 4.95% fixă AVBS</span>
+    </div>
+    <div class="val" id="monthlyRate">~2.215 lei</div>
+  </div>
+
+  <button class="btn" id="avbs-credit-widget">
+    Verifică dacă te încadrezi →
+  </button>
+  <div class="footer-note">analiză gratuită la toate băncile · broker autorizat AVBS</div>
+</div>
+
+<script>
+  function calcRate(){
+    const price = parseFloat(document.getElementById('propPrice').value) || 0;
+    const advPct = parseFloat(document.getElementById('propAdvance').value) || 0.15;
+    const years = parseInt(document.getElementById('propYears').value, 10) || 25;
+    
+    const loan = price * (1 - advPct);
+    const r = 0.0495 / 12;
+    const n = years * 12;
+    const monthly = Math.round(loan * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1));
+
+    document.getElementById('monthlyRate').textContent = `~${monthly.toLocaleString('ro-RO')} lei`;
+  }
+  calcRate();
+</script>
+
+<!-- AVBS Official Widget Script -->
+<a id="avbs-credit-widget" href="javascript:void(0)" style="display:none;" aria-hidden="true"></a>
+<script
+  src="https://avbs-public.neooffice.ro/plugins/avbs-avatar-public/embed.js"
+  data-trigger="#avbs-credit-widget"
+  data-partner="sxa703cog7ob70mr5b5koyei"
+  defer
+></script>
+</body>
+</html>
