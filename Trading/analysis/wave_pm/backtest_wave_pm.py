@@ -237,7 +237,11 @@ def main():
 
     print(f"Backtesting {len(symbols)} symbols")
     print(f"Period: {start_date} to {end_date}")
-    print(f"Interval: Daily (1d)\n")
+    print(f"Interval: Daily (1d)")
+    print(f"\nData sources (in order):")
+    print(f"  1. TradingView CSV exports (./tradingview_data/)")
+    print(f"  2. Cached CSV files (./data_cache/)")
+    print(f"  3. yfinance (requires internet)\n")
 
     # Create harness
     harness = BacktestHarness()
@@ -255,6 +259,27 @@ def main():
 
     # Save to file
     harness.save_report()
+
+    # If no data was fetched, show instructions
+    successful = [s for s in results.values() if s.get('status') == 'success']
+    if not successful:
+        print("\n" + "=" * 80)
+        print("⚠️  NO DATA FETCHED - HOW TO FIX")
+        print("=" * 80)
+        print("\nOption 1: Use TradingView CSV exports (Recommended - Offline)")
+        print("-" * 80)
+        print("1. Open TradingView: https://www.tradingview.com/chart/")
+        print("2. Open chart for each symbol (AAPL, MSFT, NVDA, etc.)")
+        print("3. Right-click chart → 'Export data' → Save CSV")
+        print("4. Place files in: ./tradingview_data/")
+        print("   Example: ./tradingview_data/AAPL_daily.csv")
+        print("5. Re-run backtest")
+        print("\nOption 2: Run on machine with internet access")
+        print("-" * 80)
+        print("1. Ensure yfinance is installed: pip install yfinance")
+        print("2. Run backtest on machine with internet")
+        print("3. Data will be cached for offline use")
+        print("=" * 80 + "\n")
 
 
 if __name__ == '__main__':
