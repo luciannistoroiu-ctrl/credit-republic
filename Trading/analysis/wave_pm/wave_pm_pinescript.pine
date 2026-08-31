@@ -1,0 +1,105 @@
+// WAVE•PM Multi-Timeframe Strategy for TradingView
+// Optimized parameters: dev=1.5, char=2.0, ext=0.60
+// Compatible: ETHUSD, XRPUSD, Bitcoin, Altcoins
+// Timeframes: 1d, 4h, 1h, 15m
+
+//@version=5
+strategy("WAVE•PM Multi-TF", overlay=true, default_qty_type=strategy.percent_of_equity, default_qty_value=100)
+
+// ==================== INPUTS ====================
+group_params = "Strategy Parameters"
+dev_mult = input.float(1.5, "Deviation Multiplier", minval=0.5, maxval=3.0, step=0.1, group=group_params)
+char_mult = input.float(2.0, "Characteristic Multiplier", minval=1.0, maxval=4.0, step=0.1, group=group_params)
+ext_threshold = input.float(0.60, "Extension Threshold", minval=0.4, maxval=0.9, step=0.05, group=group_params)
+
+group_periods = "Wave Detection"
+rms_period = input.int(30, "RMS Window", minval=10, maxval=100, group=group_periods)
+bb_dev = input.float(1.25, "Bollinger Bands Dev", minval=0.5, maxval=3.0, step=0.25, group=group_periods)
+
+group_trade = "Trading Rules"
+min_bars_entry_exit = input.int(2, "Min bars between Entry/Exit", minval=1, maxval=10, group=group_trade)
+use_tp = input.bool(true, "Use Take Profit", group=group_trade)
+tp_percent = input.float(2.0, "Take Profit %", minval=0.5, maxval=5.0, step=0.5, group=group_trade)
+use_sl = input.bool(true, "Use Stop Loss", group=group_trade)
+sl_percent = input.float(1.0, "Stop Loss %", minval=0.5, maxval=3.0, step=0.5, group=group_trade)
+
+// ==================== INDICATORS ====================
+
+// Bollinger Bands
+basis = ta.sma(close, 20)
+dev_std = ta.stdev(close, 20)
+upper_bb = basis + dev_std * bb_dev
+lower_bb = basis - dev_std * bb_dev
+
+// Wave Detection using RMS (Root Mean Square)
+rms_val = math.sqrt(ta.sma(close * close, rms_period) - math.pow(ta.sma(close, rms_period), 2))
+dev_upper = ta.sma(close, rms_period) + rms_val * dev_mult
+dev_lower = ta.sma(close, rms_period) - rms_val * dev_mult
+
+// Characteristic of wave (amplitude)
+wave_char = ta.sma(math.abs(close - ta.sma(close, rms_period)), rms_period) * char_mult
+
+// Entry Signal: Price above upper band + wave characteristic
+long_entry = (close > upper_bb) and (close > dev_upper) and (close > basis + wave_char)
+short_entry = (close < lower_bb) and (close < dev_lower) and (close < basis - wave_char)
+
+// Extension Detection
+prev_high = ta.highest(high, 20)
+prev_low = ta.lowest(low, 20)
+extension_up = (high - prev_low) > (prev_high - prev_low) * ext_threshold
+extension_down = (prev_high - low) > (prev_high - prev_low) * ext_threshold
+
+// Composite Signal
+entry_signal = long_entry and extension_up
+exit_signal = short_entry or (close < basis)
+
+// ==================== STRATEGY LOGIC ====================
+
+var bool in_trade = false
+var float entry_price = 0
+var int bars_since_entry = 0
+
+if barstate.isconfirmed
+    bars_since_entry += 1
+
+    // Entry
+    if not in_trade and entry_signal and bars_since_entry >= min_bars_entry_exit
+        entry_price = close
+        in_trade = true
+        bars_since_entry = 0
+        strategy.entry("LONG", strategy.long)
+
+    // Exit with Take Profit
+    if in_trade and use_tp and close >= entry_price * (1 + tp_percent / 100)
+        in_trade = false
+        strategy.close("LONG", comment="TP")
+
+    // Exit with Stop Loss
+    if in_trade and use_sl and close <= entry_price * (1 - sl_percent / 100)
+        in_trade = false
+        strategy.close("LONG", comment="SL")
+
+    // Exit on signal
+    if in_trade and exit_signal and bars_since_entry >= min_bars_entry_exit
+        in_trade = false
+        strategy.close("LONG", comment="Signal")
+
+// ==================== VISUALIZATION ====================
+
+// Plot indicators
+plot(basis, "SMA Basis", color=color.blue, linewidth=2)
+plot(upper_bb, "Upper BB", color=color.orange, linewidth=1)
+plot(lower_bb, "Lower BB", color=color.orange, linewidth=1)
+plot(dev_upper, "Dev Upper", color=color.red, linewidth=1, style=plot.style_dashed)
+plot(dev_lower, "Dev Lower", color=color.green, linewidth=1, style=plot.style_dashed)
+
+// Entry/Exit markers
+plotshape(long_entry, title="Long Entry", location=plotchar.location.belowbar, char="▲", color=color.green, size=size.small)
+plotshape(exit_signal, title="Exit Signal", location=plotchar.location.abovebar, char="▼", color=color.red, size=size.small)
+
+// Wave characteristic band
+plot(basis + wave_char, "Wave Upper", color=color.purple, linewidth=1, style=plot.style_dotted)
+plot(basis - wave_char, "Wave Lower", color=color.purple, linewidth=1, style=plot.style_dotted)
+
+// Background color for trades
+bgcolor(in_trade ? color.new(color.green, 90) : na)
