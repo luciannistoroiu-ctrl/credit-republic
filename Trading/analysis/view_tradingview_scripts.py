@@ -6,8 +6,19 @@ This tool connects to your TradingView account and displays your scripts.
 """
 
 import os
+import sys
+from pathlib import Path
 from typing import List, Dict
 import json
+
+# Add parent directory to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+try:
+    from load_credentials import load_credentials
+except ImportError:
+    def load_credentials():
+        return None, None
 
 
 class TradingViewScriptManager:
@@ -18,11 +29,15 @@ class TradingViewScriptManager:
         Initialize TradingView connection.
 
         Args:
-            username: TradingView username (or from env TRADINGVIEW_USERNAME)
-            password: TradingView password (or from env TRADINGVIEW_PASSWORD)
+            username: TradingView username (or from .env.local)
+            password: TradingView password (or from .env.local)
         """
-        self.username = username or os.getenv('TRADINGVIEW_USERNAME')
-        self.password = password or os.getenv('TRADINGVIEW_PASSWORD')
+        # Try to load from parameters first, then from .env.local
+        if not username or not password:
+            username, password = load_credentials()
+
+        self.username = username
+        self.password = password
         self.scripts = []
         self.connected = False
 
