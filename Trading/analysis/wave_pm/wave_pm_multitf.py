@@ -68,15 +68,19 @@ class MultiTFAnalyzer:
         'NONE': 0.0
     }
 
-    def __init__(self, cache_dir: Optional[str] = None, tradingview_dir: Optional[str] = None):
+    def __init__(self, cache_dir: Optional[str] = None, tradingview_dir: Optional[str] = None, fetcher=None):
         """
         Initialize MTF analyzer.
 
         Args:
             cache_dir: Directory for cached data
             tradingview_dir: Directory for TradingView CSV exports
+            fetcher: Optional custom data fetcher (defaults to DataFetcher)
         """
-        self.fetcher = DataFetcher(cache_dir=cache_dir, tradingview_dir=tradingview_dir)
+        if fetcher is not None:
+            self.fetcher = fetcher
+        else:
+            self.fetcher = DataFetcher(cache_dir=cache_dir, tradingview_dir=tradingview_dir)
         self.strategies = {}  # {timeframe: WavePMStrategy}
         self.signals = {}  # {timeframe: List[MTFSignal]}
 
@@ -297,6 +301,7 @@ class MultiTFAnalyzer:
     def batch_analyze(
         symbols: List[str],
         timeframes: Optional[List[str]] = None,
+        fetcher=None,
         **strategy_kwargs
     ) -> Dict[str, CompositeSignal]:
         """
@@ -305,12 +310,13 @@ class MultiTFAnalyzer:
         Args:
             symbols: List of symbols
             timeframes: Timeframes to analyze
+            fetcher: Optional custom data fetcher
             **strategy_kwargs: Strategy parameters
 
         Returns:
             Dict of {symbol: CompositeSignal}
         """
-        analyzer = MultiTFAnalyzer()
+        analyzer = MultiTFAnalyzer(fetcher=fetcher)
         results = {}
 
         for symbol in symbols:
