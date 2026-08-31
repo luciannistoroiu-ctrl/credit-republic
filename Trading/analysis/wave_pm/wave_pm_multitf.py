@@ -13,6 +13,7 @@ Entry signal requires Daily confirmation + weighted composite score.
 from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
 import pandas as pd
+from datetime import datetime, timedelta
 
 from data_fetcher import DataFetcher, get_prices_series
 from wave_pm_strategy import WavePMStrategy
@@ -79,10 +80,24 @@ class MultiTFAnalyzer:
         self.strategies = {}  # {timeframe: WavePMStrategy}
         self.signals = {}  # {timeframe: List[MTFSignal]}
 
+    def _get_start_date_for_period(self, period: str) -> str:
+        """Convert period string to start date (YYYY-MM-DD format)."""
+        end_date = datetime.now()
+        period_map = {
+            '60d': timedelta(days=60),
+            '1y': timedelta(days=365),
+            '2y': timedelta(days=730),
+            '10y': timedelta(days=3650),
+        }
+        days = period_map.get(period, timedelta(days=365))
+        start_date = end_date - days
+        return start_date.strftime('%Y-%m-%d')
+
     def analyze_symbol(
         self,
         symbol: str,
         timeframes: Optional[List[str]] = None,
+        timeframe_periods: Optional[Dict[str, str]] = None,
         **strategy_kwargs
     ) -> Optional[CompositeSignal]:
         """
@@ -91,6 +106,7 @@ class MultiTFAnalyzer:
         Args:
             symbol: Ticker symbol (AAPL, BTCUSD, etc.)
             timeframes: List of timeframes (default: ['1d', '4h', '1h', '15m'])
+            timeframe_periods: Dict mapping timeframes to periods (e.g., {'15m': '60d'})
             **strategy_kwargs: Args for WavePMStrategy
 
         Returns:
@@ -106,7 +122,13 @@ class MultiTFAnalyzer:
         tf_data = {}
         for tf in timeframes:
             print(f"  {tf:<5}", end=" ", flush=True)
-            df = self.fetcher.fetch(symbol, interval=tf)
+
+            # Determine start date if timeframe_periods provided
+            start_date = None
+            if timeframe_periods and tf in timeframe_periods:
+                start_date = self._get_start_date_for_period(timeframe_periods[tf])
+
+            df = self.fetcher.fetch(symbol, interval=tf, start=start_date)
 
             if df.empty:
                 print("✗")

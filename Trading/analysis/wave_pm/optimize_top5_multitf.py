@@ -37,6 +37,14 @@ class MultiTFCryptoOptimizer:
     TIMEFRAMES = ['1d', '4h', '1h', '15m']
     WEIGHTS = {'1d': 0.40, '4h': 0.30, '1h': 0.20, '15m': 0.10}
 
+    # Timeframe-specific periods (yfinance limitations)
+    TIMEFRAME_PERIODS = {
+        '1d': '10y',   # 10 years of daily data
+        '4h': '2y',    # 2 years of 4h data
+        '1h': '1y',    # 1 year of hourly data
+        '15m': '60d'   # 60 days only (yfinance limitation)
+    }
+
     def __init__(self):
         self.fetcher = DataFetcher()
         self.analyzer = MultiTFAnalyzer()
@@ -47,10 +55,11 @@ class MultiTFCryptoOptimizer:
                           ext_threshold: float) -> dict:
         """Test a single parameter set across all timeframes."""
         try:
-            # Analyze with multi-timeframe
+            # Analyze with multi-timeframe (with timeframe-specific periods)
             composite_signal = self.analyzer.analyze_symbol(
                 symbol=symbol,
                 timeframes=self.TIMEFRAMES,
+                timeframe_periods=self.TIMEFRAME_PERIODS,
                 dev_mult=dev_mult,
                 char_mult=char_mult,
                 ext_threshold=ext_threshold
@@ -207,6 +216,7 @@ class MultiTFCryptoOptimizer:
             'type': 'Multi-Timeframe Optimization',
             'timeframes': self.TIMEFRAMES,
             'timeframe_weights': self.WEIGHTS,
+            'timeframe_periods': self.TIMEFRAME_PERIODS,
             'best_per_crypto': self.best_params_per_crypto,
         }
 
@@ -223,10 +233,10 @@ class MultiTFCryptoOptimizer:
         print("🚀 WAVE•PM Top 5 Crypto Multi-Timeframe Optimizer")
         print("=" * 70)
         print(f"\nTimeframe Weights:")
-        print(f"  • Daily (1d): 40% (primary)")
-        print(f"  • 4-hour (4h): 30%")
-        print(f"  • Hourly (1h): 20%")
-        print(f"  • 15-min (15m): 10%")
+        print(f"  • Daily (1d): 40% (primary) - 10 years history")
+        print(f"  • 4-hour (4h): 30% - 2 years history")
+        print(f"  • Hourly (1h): 20% - 1 year history")
+        print(f"  • 15-min (15m): 10% - 60 days (yfinance limit)")
         print(f"\nOptimizing for top 5 cryptos...")
 
         for symbol in self.TOP5_CRYPTOS:
