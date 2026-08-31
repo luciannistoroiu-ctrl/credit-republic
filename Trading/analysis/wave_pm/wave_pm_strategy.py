@@ -216,6 +216,9 @@ class WavePMStrategy:
             return None
 
         # Breakout detection: price crosses above upper comp band
+        if prev_upper_comp is None or upper_comp is None:
+            return None
+
         breakout = (prev_price <= prev_upper_comp and price > upper_comp)
 
         # Rising detection: current min_osc > previous min_osc
