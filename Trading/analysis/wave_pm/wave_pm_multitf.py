@@ -172,6 +172,49 @@ class MultiTFAnalyzer:
         composite = self._compute_composite_signal(symbol, tf_signals, tf_states)
         return composite
 
+    def analyze_symbol_cached(
+        self,
+        symbol: str,
+        tf_data: Dict[str, pd.DataFrame],
+        **strategy_kwargs
+    ) -> Optional[CompositeSignal]:
+        """
+        Analyze symbol with pre-fetched data (no fetching).
+
+        Args:
+            symbol: Ticker symbol
+            tf_data: Dict of {timeframe: DataFrame}
+            **strategy_kwargs: Args for WavePMStrategy
+
+        Returns:
+            CompositeSignal with hierarchical analysis
+        """
+        if not tf_data:
+            return None
+
+        tf_signals = {}
+        tf_states = {}
+
+        for tf in tf_data:
+            df = tf_data[tf]
+            if df.empty:
+                continue
+
+            prices = get_prices_series(df, column='close')
+            strategy = WavePMStrategy(**strategy_kwargs)
+
+            for price in prices:
+                strategy.update(price)
+
+            state = strategy.get_current_state()
+            signals = strategy.get_signals()
+
+            tf_signals[tf] = signals
+            tf_states[tf] = state
+
+        composite = self._compute_composite_signal(symbol, tf_signals, tf_states)
+        return composite
+
     def _compute_composite_signal(
         self,
         symbol: str,

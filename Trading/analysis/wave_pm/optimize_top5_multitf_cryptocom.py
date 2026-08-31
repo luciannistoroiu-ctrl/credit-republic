@@ -49,14 +49,13 @@ class MultiTFCryptoOptimizer:
         self.results = {}
         self.best_params_per_crypto = {}
 
-    def test_parameter_set(self, symbol: str, dev_mult: float, char_mult: float,
-                          ext_threshold: float) -> dict:
-        """Test a single parameter set across all timeframes."""
+    def test_parameter_set(self, symbol: str, tf_data: dict, dev_mult: float,
+                          char_mult: float, ext_threshold: float) -> dict:
+        """Test a single parameter set with pre-fetched data (no fetch overhead)."""
         try:
-            composite_signal = self.analyzer.analyze_symbol(
+            composite_signal = self.analyzer.analyze_symbol_cached(
                 symbol=symbol,
-                timeframes=self.TIMEFRAMES,
-                timeframe_periods=self.TIMEFRAME_PERIODS,
+                tf_data=tf_data,
                 dev_mult=dev_mult,
                 char_mult=char_mult,
                 ext_threshold=ext_threshold
@@ -79,7 +78,6 @@ class MultiTFCryptoOptimizer:
                 'confidence_avg': confidence / 100 if confidence else 0
             }
         except Exception as e:
-            print(f"    ❌ Error: {e}")
             return None
 
     def optimize_symbol(self, symbol: str) -> list:
@@ -88,6 +86,32 @@ class MultiTFCryptoOptimizer:
         print(f"🔍 Optimizing {symbol} (Crypto.com MCP - FREE)")
         print(f"{'=' * 70}")
 
+        # Fetch data ONCE for all timeframes
+        print(f"📥 Fetching data (once for all {len(self.TIMEFRAMES)} timeframes)...")
+        tf_data = {}
+        for tf in self.TIMEFRAMES:
+            start_date = None
+            if tf in self.TIMEFRAME_PERIODS:
+                from datetime import datetime, timedelta
+                period = self.TIMEFRAME_PERIODS[tf]
+                period_map = {
+                    '60d': timedelta(days=60),
+                    '1y': timedelta(days=365),
+                    '2y': timedelta(days=730),
+                    '10y': timedelta(days=3650),
+                }
+                days = period_map.get(period, timedelta(days=365))
+                start_date = (datetime.now() - days).strftime('%Y-%m-%d')
+
+            df = self.fetcher.fetch(symbol, interval=tf, start=start_date)
+            if not df.empty:
+                tf_data[tf] = df
+                print(f"  ✓ {tf}: {len(df)} bars")
+
+        if not tf_data:
+            print(f"  ✗ No data available for {symbol}")
+            return []
+
         dev_mult_range = [1.5, 1.7, 1.8, 1.9, 2.0, 2.2]
         char_mult_range = [2.0, 2.3, 2.5, 2.8, 3.0]
         ext_threshold_range = [0.60, 0.65, 0.70]
@@ -95,9 +119,8 @@ class MultiTFCryptoOptimizer:
         results = []
         total_combos = len(dev_mult_range) * len(char_mult_range) * len(ext_threshold_range)
 
-        print(f"Testing {total_combos} parameter combinations...")
+        print(f"\nTesting {total_combos} parameter combinations (data already loaded)...")
         print(f"Timeframes: 1d (40%), 4h (30%), 1h (20%), 15m (10%)")
-        print("Data: Crypto.com (FREE) → TradingView CSV → Cache")
         print("-" * 70)
 
         combo_count = 0
@@ -110,7 +133,7 @@ class MultiTFCryptoOptimizer:
                 progress = (combo_count / total_combos) * 100
                 print(f"  {progress:.0f}% ({combo_count}/{total_combos})")
 
-            stats = self.test_parameter_set(symbol, dev_mult, char_mult, ext_threshold)
+            stats = self.test_parameter_set(symbol, tf_data, dev_mult, char_mult, ext_threshold)
 
             if stats and stats['total_signals'] > 0:
                 results.append({
