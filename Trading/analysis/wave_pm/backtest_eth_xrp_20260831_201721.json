@@ -1,0 +1,223 @@
+{
+  "timestamp": "2026-08-31T20:17:21.167638",
+  "type": "WAVE\u2022PM Multi-Timeframe Backtest",
+  "data_source": "Crypto.com MCP (FREE)",
+  "results": {
+    "ETHUSD": {
+      "symbol": "ETHUSD",
+      "parameters": {
+        "dev_mult": 1.5,
+        "char_mult": 2.0,
+        "ext_threshold": 0.6,
+        "timeframes": [
+          "1d",
+          "4h",
+          "1h",
+          "15m"
+        ],
+        "weights": {
+          "1d": 0.4,
+          "4h": 0.3,
+          "1h": 0.2,
+          "15m": 0.1
+        }
+      },
+      "data": {
+        "timeframes": [
+          "1d",
+          "4h",
+          "1h",
+          "15m"
+        ],
+        "total_bars": 3650,
+        "start_price": 2549.3,
+        "end_price": 2512.7,
+        "price_change_pct": -1.4356882281410723
+      },
+      "trades": [
+        {
+          "entry_bar": 2496,
+          "exit_bar": 2502,
+          "entry_price": 1689.61,
+          "exit_price": 1645.91,
+          "pnl_percent": -2.586395677108908,
+          "bars_held": 6
+        },
+        {
+          "entry_bar": 2914,
+          "exit_bar": 2918,
+          "entry_price": 1637.43,
+          "exit_price": 1622.96,
+          "pnl_percent": -0.883701898707122,
+          "bars_held": 4
+        },
+        {
+          "entry_bar": 2921,
+          "exit_bar": 2929,
+          "entry_price": 1665.55,
+          "exit_price": 1609.14,
+          "pnl_percent": -3.386869202365576,
+          "bars_held": 8
+        },
+        {
+          "entry_bar": 2950,
+          "exit_bar": 2954,
+          "entry_price": 1672.03,
+          "exit_price": 1601.84,
+          "pnl_percent": -4.197891186162931,
+          "bars_held": 4
+        },
+        {
+          "entry_bar": 3037,
+          "exit_bar": 3064,
+          "entry_price": 1665.28,
+          "exit_price": 1649.97,
+          "pnl_percent": -0.9193649116064533,
+          "bars_held": 27
+        },
+        {
+          "entry_bar": 3066,
+          "exit_bar": 3072,
+          "entry_price": 1683.31,
+          "exit_price": 1672.65,
+          "pnl_percent": -0.6332761048172859,
+          "bars_held": 6
+        },
+        {
+          "entry_bar": 3080,
+          "exit_bar": 3084,
+          "entry_price": 1699.06,
+          "exit_price": 1682.42,
+          "pnl_percent": -0.9793650606806042,
+          "bars_held": 4
+        },
+        {
+          "entry_bar": 3087,
+          "exit_bar": 3089,
+          "entry_price": 1697.22,
+          "exit_price": 1680.69,
+          "pnl_percent": -0.9739456287340458,
+          "bars_held": 2
+        },
+        {
+          "entry_bar": 3115,
+          "exit_bar": 3203,
+          "entry_price": 1690.67,
+          "exit_price": 1784.5,
+          "pnl_percent": 5.549870761295813,
+          "bars_held": 88
+        },
+        {
+          "entry_bar": 3255,
+          "exit_bar": 3277,
+          "entry_price": 1863.53,
+          "exit_price": 1831.51,
+          "pnl_percent": -1.7182444071198202,
+          "bars_held": 22
+        },
+        {
+          "entry_bar": 3551,
+          "exit_bar": 3567,
+          "entry_price": 2769.63,
+          "exit_price": 2747.13,
+          "pnl_percent": -0.8123828814679216,
+          "bars_held": 16
+        },
+        {
+          "entry_bar": 3570,
+          "exit_bar": 3575,
+          "entry_price": 2771.1,
+          "exit_price": 2722.04,
+          "pnl_percent": -1.7704160802569358,
+          "bars_held": 5
+        }
+      ],
+      "statistics": {
+        "total_trades": 12,
+        "winning_trades": 1,
+        "losing_trades": 11,
+        "win_rate": 8.333333333333332,
+        "avg_win": 5.549870761295813,
+        "avg_loss": -1.714713912638873,
+        "total_pnl_percent": -13.311982277731792,
+        "profit_factor": 0.2942378328265211
+      }
+    },
+    "XRPUSD": {
+      "symbol": "XRPUSD",
+      "parameters": {
+        "dev_mult": 1.5,
+        "char_mult": 2.0,
+        "ext_threshold": 0.6,
+        "timeframes": [
+          "1d",
+          "4h",
+          "1h",
+          "15m"
+        ],
+        "weights": {
+          "1d": 0.4,
+          "4h": 0.3,
+          "1h": 0.2,
+          "15m": 0.1
+        }
+      },
+      "data": {
+        "timeframes": [
+          "1d",
+          "4h",
+          "1h",
+          "15m"
+        ],
+        "total_bars": 3650,
+        "start_price": 2.56,
+        "end_price": 1.77,
+        "price_change_pct": -30.859375
+      },
+      "trades": [
+        {
+          "entry_bar": 2393,
+          "exit_bar": 2396,
+          "entry_price": 2.72,
+          "exit_price": 2.63,
+          "pnl_percent": -3.308823529411776,
+          "bars_held": 3
+        },
+        {
+          "entry_bar": 2408,
+          "exit_bar": 2427,
+          "entry_price": 2.7,
+          "exit_price": 2.68,
+          "pnl_percent": -0.7407407407407414,
+          "bars_held": 19
+        },
+        {
+          "entry_bar": 2429,
+          "exit_bar": 2432,
+          "entry_price": 2.74,
+          "exit_price": 2.64,
+          "pnl_percent": -3.6496350364963535,
+          "bars_held": 3
+        },
+        {
+          "entry_bar": 2439,
+          "exit_bar": 2776,
+          "entry_price": 2.77,
+          "exit_price": 3.82,
+          "pnl_percent": 37.906137184115515,
+          "bars_held": 337
+        }
+      ],
+      "statistics": {
+        "total_trades": 4,
+        "winning_trades": 1,
+        "losing_trades": 3,
+        "win_rate": 25.0,
+        "avg_win": 37.906137184115515,
+        "avg_loss": -2.566399768882957,
+        "total_pnl_percent": 30.206937877466643,
+        "profit_factor": 4.923386923024651
+      }
+    }
+  }
+}

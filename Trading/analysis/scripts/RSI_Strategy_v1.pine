@@ -1,0 +1,18 @@
+// Pine Script™ v5
+description('Sample Pine Script from script_001')
+strategy(title='Trading Strategy', shorttitle='TS', overlay=true)
+
+// Define indicators
+rsi = ta.rsi(close, 14)
+sma = ta.sma(close, 50)
+
+// Strategy logic
+if rsi < 30
+    strategy.entry("Long", strategy.long)
+if rsi > 70
+    strategy.close("Long")
+
+// Plot
+plot(sma, color=color.blue, title='50 SMA')
+hline(30, 'Oversold', color=color.red)
+hline(70, 'Overbought', color=color.green)

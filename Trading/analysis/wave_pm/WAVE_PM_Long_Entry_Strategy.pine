@@ -1,0 +1,167 @@
+//@version=6
+strategy("WAVE-PM Long Entry (Comprimat breakout + Long-band trigger)", shorttitle="WPM-LONG", overlay=true,
+     default_qty_type=strategy.percent_of_equity, default_qty_value=10,
+     initial_capital=10000, commission_type=strategy.commission.percent, commission_value=0.05,
+     max_labels_count=50)
+
+// =====================================================================
+// WAVE-PM LONG ENTRY STRATEGY
+//
+// Intrare LONG doar cand AMBELE conditii sunt adevarate simultan:
+//
+//   Conditia 1: pretul sparge peste banda "Comprimat" (1.25 SD, lungimea
+//               cea mai comprimata din spectru) SI WAVE-PM e in crestere
+//               (valoarea minima din spectru azi > cea de ieri)
+//
+//   Conditia 2: fie pretul INTRA (coboara) in limita inferioara a benzii
+//               pe cea mai lunga perioada scanata care e inca >= prag
+//               (implicit 0.7), fie pretul IESE peste limita superioara
+//               a aceleiasi benzi
+//
+// Ambele conditii trebuie sa fie adevarate in ACEEASI bara.
+// =====================================================================
+
+// ---- WAVE-PM - spectrul de lungimi -----------------------------------------
+grpWave = "WAVE-PM - lungimi scanate"
+devMult       = input.float(2.2, "Multiplicator deviatie", minval=0.1, step=0.1, group=grpWave)
+charMult      = input.float(3.0, "Multiplicator fereastra RMS (x lungimea randului)", minval=0.5, step=0.5, group=grpWave)
+minCharPeriod = input.int(30, "Fereastra RMS minima", minval=5, group=grpWave)
+
+len1  = input.int(14,  "Lungime 1", minval=2, group=grpWave)
+len2  = input.int(20,  "Lungime 2", minval=2, group=grpWave)
+len3  = input.int(28,  "Lungime 3", minval=2, group=grpWave)
+len4  = input.int(39,  "Lungime 4", minval=2, group=grpWave)
+len5  = input.int(55,  "Lungime 5", minval=2, group=grpWave)
+len6  = input.int(77,  "Lungime 6", minval=2, group=grpWave)
+len7  = input.int(109, "Lungime 7", minval=2, group=grpWave)
+len8  = input.int(153, "Lungime 8", minval=2, group=grpWave)
+len9  = input.int(215, "Lungime 9", minval=2, group=grpWave)
+len10 = input.int(303, "Lungime 10", minval=2, group=grpWave)
+len11 = input.int(426, "Lungime 11", minval=2, group=grpWave)
+len12 = input.int(600, "Lungime 12", minval=2, group=grpWave)
+
+// ---- Bollinger Bands - baza fixa Whistler ----------------------------------
+bbBaseDev = input.float(1.25, "Deviatie standard (fixa)", minval=0.1, step=0.05, group="Bollinger Bands")
+
+// ---- Praguri -----------------------------------------------------------------
+grpThresh = "Praguri"
+extThreshold = input.float(0.7, "Prag 'extins' (pt. banda lunga)", minval=0.0, maxval=1.0, step=0.05, group=grpThresh)
+
+grpDisp = "Afisare"
+showTable = input.bool(true, "Afiseaza tabel conditii", group=grpDisp)
+
+// ---- Culori -----------------------------------------------------------------
+colCompressed = color.rgb(0, 90, 220)
+colLongest    = color.rgb(255, 150, 0)
+colOk   = color.rgb(0, 170, 90)
+colBad  = color.rgb(150, 150, 150)
+
+// ---- tanh manual (Pine nu are math.tanh nativ) -----------------------------
+f_tanh(x) =>
+    xx = math.max(-40.0, math.min(40.0, x))
+    e2x = math.exp(2 * xx)
+    (e2x - 1) / (e2x + 1)
+
+// ---- Formula WAVE-PM, aplicata pentru o lungime data -----------------------
+waveOscForLen(len) =>
+    dev = devMult * ta.stdev(close, len, true)
+    charLen = math.max(minCharPeriod, math.round(charMult * len))
+    rmsVal = math.sqrt(ta.sma(math.pow(dev, 2), charLen))
+    rmsVal != 0 ? f_tanh(dev / rmsVal) : 0.0
+
+osc1  = waveOscForLen(len1)
+osc2  = waveOscForLen(len2)
+osc3  = waveOscForLen(len3)
+osc4  = waveOscForLen(len4)
+osc5  = waveOscForLen(len5)
+osc6  = waveOscForLen(len6)
+osc7  = waveOscForLen(len7)
+osc8  = waveOscForLen(len8)
+osc9  = waveOscForLen(len9)
+osc10 = waveOscForLen(len10)
+osc11 = waveOscForLen(len11)
+osc12 = waveOscForLen(len12)
+
+lens = array.from(len1, len2, len3, len4, len5, len6, len7, len8, len9, len10, len11, len12)
+oscs = array.from(osc1, osc2, osc3, osc4, osc5, osc6, osc7, osc8, osc9, osc10, osc11, osc12)
+
+minVal = array.min(oscs)
+minIdx = array.indexof(oscs, minVal)
+compLen = array.get(lens, minIdx)   // cel mai comprimat
+
+// Cea mai lunga perioada scanata care e inca >= prag
+int longestAbove = na
+oscAtLongest = 0.0
+for i = 0 to array.size(lens) - 1
+    if array.get(oscs, i) >= extThreshold
+        cand = array.get(lens, i)
+        if na(longestAbove) or cand > longestAbove
+            longestAbove := cand
+            oscAtLongest := array.get(oscs, i)
+hasLongest = not na(longestAbove)
+
+// ---- Banda 1: Comprimat (1.25 SD fix) --------------------------------------
+basisComp = ta.sma(close, compLen)
+devComp   = ta.stdev(close, compLen, true)
+upperComp = basisComp + bbBaseDev * devComp
+lowerComp = basisComp - bbBaseDev * devComp
+
+// ---- Banda 2: Cea mai lunga perioada >= prag (1.25 SD fix) -----------------
+safeLongLen = nz(longestAbove, array.max(lens))
+basisLong = ta.sma(close, safeLongLen)
+devLong   = ta.stdev(close, safeLongLen, true)
+upperLongRaw = basisLong + bbBaseDev * devLong
+lowerLongRaw = basisLong - bbBaseDev * devLong
+upperLong = hasLongest ? upperLongRaw : float(na)
+lowerLong = hasLongest ? lowerLongRaw : float(na)
+
+// ---- Randare ------------------------------------------------------------------
+p1u = plot(upperComp, "Comprimat - sus", color=color.new(colCompressed, 30))
+p1l = plot(lowerComp, "Comprimat - jos", color=color.new(colCompressed, 30))
+fill(p1u, p1l, color=color.new(colCompressed, 85), title="Umbrire Comprimat")
+
+p2u = plot(upperLong, "Cea mai lunga>=prag - sus", color=color.new(colLongest, 30))
+p2l = plot(lowerLong, "Cea mai lunga>=prag - jos", color=color.new(colLongest, 30))
+fill(p2u, p2l, color=color.new(colLongest, 88), title="Umbrire Cea mai lunga")
+
+// ---- Conditia 1: breakout Comprimat + WAVE-PM in crestere -------------------
+compRising = minVal > minVal[1]
+cond1 = ta.crossover(close, upperComp) and compRising
+
+// ---- Conditia 2: intrare in limita inf. SAU iesire peste limita sup. -------
+enterLower = hasLongest and ta.crossunder(close, lowerLong)
+exitUpper  = hasLongest and ta.crossover(close, upperLong)
+cond2 = enterLower or exitUpper
+
+// ---- Intrare LONG: ambele conditii, simultan --------------------------------
+longEntry = cond1 and cond2
+
+if longEntry
+    strategy.entry("Long", strategy.long)
+
+// ---- Iesire (ipoteza rezonabila, nu explicit din carte - ajustabila) -------
+// SL: revenire sub linia de baza a benzii Comprimat (breakout esuat)
+// TP: atingerea limitei superioare a benzii lungi
+if strategy.position_size > 0
+    if close < basisComp
+        strategy.close("Long", comment="SL - breakout esuat")
+    if high >= upperLongRaw
+        strategy.close("Long", comment="TP - banda lunga")
+
+plotshape(longEntry, "Semnal Long", style=shape.triangleup, location=location.belowbar, color=colOk, size=size.small)
+
+// ---- Tabel conditii (colt dreapta-sus) --------------------------------------
+var table condTable = table.new(position.top_right, 2, 4, border_width=1)
+
+if showTable and barstate.islast
+    table.cell(condTable, 0, 0, "Conditie", bgcolor=color.new(color.gray, 70), text_color=color.white, text_size=size.tiny)
+    table.cell(condTable, 1, 0, "Status", bgcolor=color.new(color.gray, 70), text_color=color.white, text_size=size.tiny)
+
+    table.cell(condTable, 0, 1, "C1: breakout + WAVE-PM creste", bgcolor=color.new(cond1 ? colOk : colBad, 40), text_color=color.white, text_size=size.tiny)
+    table.cell(condTable, 1, 1, cond1 ? "DA" : "NU", bgcolor=color.new(cond1 ? colOk : colBad, 40), text_color=color.white, text_size=size.tiny)
+
+    table.cell(condTable, 0, 2, "C2: intrare/iesire banda lunga", bgcolor=color.new(cond2 ? colOk : colBad, 40), text_color=color.white, text_size=size.tiny)
+    table.cell(condTable, 1, 2, cond2 ? "DA" : "NU", bgcolor=color.new(cond2 ? colOk : colBad, 40), text_color=color.white, text_size=size.tiny)
+
+    table.cell(condTable, 0, 3, "LONG ENTRY", bgcolor=color.new(longEntry ? colOk : colBad, 20), text_color=color.white, text_size=size.tiny)
+    table.cell(condTable, 1, 3, longEntry ? "DA" : "NU", bgcolor=color.new(longEntry ? colOk : colBad, 20), text_color=color.white, text_size=size.tiny)

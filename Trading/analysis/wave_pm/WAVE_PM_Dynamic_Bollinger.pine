@@ -1,0 +1,226 @@
+//@version=6
+indicator("WAVE•PM Triple Containment Bands (Whistler 1.25 SD)", shorttitle="WPM-3BB", overlay=true, max_labels_count=50)
+
+// =====================================================================
+// WAVE•PM TRIPLE CONTAINMENT BANDS
+//
+// In loc de o singura banda Bollinger pe o perioada fixa, construim
+// TREI benzi separate, fiecare legata de cate unul din cei 3 metrici
+// din heatmap-ul WAVE-PM:
+//
+//   1) "Comprimat"      -> perioada = lungimea cu cea mai MICA valoare WAVE-PM
+//   2) "Extins"          -> perioada = lungimea cu cea mai MARE valoare WAVE-PM
+//   3) "Cea mai lunga >= prag" -> perioada = cea mai lunga dintre lungimile
+//      scanate care e inca >= pragul de extindere (implicit 0.7)
+//
+// Fiecare banda foloseste EXACT 1.25 SD (recomandarea lui Whistler) ca
+// deviatie standard - multiplicatorul e fix, identic pe toate cele 3 benzi.
+// Singurul lucru care variaza dinamic, bara cu bara, e PERIOADA fiecarei
+// benzi (compLen / extLen / longestAbove).
+// =====================================================================
+
+// ---- Bollinger Bands - baza (Whistler) ------------------------------------
+grpBB = "Bollinger Bands - baza Whistler"
+bbBaseDev = input.float(1.25, "Deviatie standard baza", minval=0.1, step=0.05, group=grpBB, tooltip="Whistler recomanda 1.25 SD in loc de valoarea implicita 2.0 - creeaza 'Containment Zone' (~70% din distributie).")
+bbSrc     = input.source(close, "Sursa", group=grpBB)
+
+// ---- WAVE-PM - spectrul de lungimi -----------------------------------------
+grpWave = "WAVE-PM - lungimi scanate"
+devMult       = input.float(2.2, "Multiplicator deviatie", minval=0.1, step=0.1, group=grpWave)
+charMult      = input.float(3.0, "Multiplicator fereastra RMS (x lungimea randului)", minval=0.5, step=0.5, group=grpWave)
+minCharPeriod = input.int(30, "Fereastra RMS minima", minval=5, group=grpWave)
+
+len1  = input.int(14,  "Lungime 1", minval=2, group=grpWave)
+len2  = input.int(20,  "Lungime 2", minval=2, group=grpWave)
+len3  = input.int(28,  "Lungime 3", minval=2, group=grpWave)
+len4  = input.int(39,  "Lungime 4", minval=2, group=grpWave)
+len5  = input.int(55,  "Lungime 5", minval=2, group=grpWave)
+len6  = input.int(77,  "Lungime 6", minval=2, group=grpWave)
+len7  = input.int(109, "Lungime 7", minval=2, group=grpWave)
+len8  = input.int(153, "Lungime 8", minval=2, group=grpWave)
+len9  = input.int(215, "Lungime 9", minval=2, group=grpWave)
+len10 = input.int(303, "Lungime 10", minval=2, group=grpWave)
+len11 = input.int(426, "Lungime 11", minval=2, group=grpWave)
+len12 = input.int(600, "Lungime 12", minval=2, group=grpWave)
+
+// ---- Ajustare automata a PERIOADEI (multiplicatorul ramane fix la 1.25) ----
+grpDyn = "Ajustare automata perioada"
+extThreshold = input.float(0.7, "Prag 'extins' (pt. banda 3)", minval=0.0, maxval=1.0, step=0.05, group=grpDyn)
+
+grpDisp = "Afisare"
+showTable       = input.bool(true, "Afiseaza tabel metrici", group=grpDisp)
+showCompressed  = input.bool(true, "Arata banda Comprimat", group=grpDisp)
+showExtended    = input.bool(true, "Arata banda Extins", group=grpDisp)
+showLongest     = input.bool(true, "Arata banda Cea mai lunga >= prag", group=grpDisp)
+
+// ---- Culori -----------------------------------------------------------------
+colCompressed = color.rgb(0, 90, 220)
+colExtended   = color.rgb(230, 30, 20)
+colLongest    = color.rgb(255, 150, 0)
+
+// ---- tanh manual (Pine nu are math.tanh nativ) -----------------------------
+f_tanh(x) =>
+    xx = math.max(-40.0, math.min(40.0, x))
+    e2x = math.exp(2 * xx)
+    (e2x - 1) / (e2x + 1)
+
+// ---- Formula WAVE-PM, aplicata pentru o lungime data -----------------------
+waveOscForLen(len) =>
+    dev = devMult * ta.stdev(bbSrc, len, true)
+    charLen = math.max(minCharPeriod, math.round(charMult * len))
+    rmsVal = math.sqrt(ta.sma(math.pow(dev, 2), charLen))
+    rmsVal != 0 ? f_tanh(dev / rmsVal) : 0.0
+
+osc1  = waveOscForLen(len1)
+osc2  = waveOscForLen(len2)
+osc3  = waveOscForLen(len3)
+osc4  = waveOscForLen(len4)
+osc5  = waveOscForLen(len5)
+osc6  = waveOscForLen(len6)
+osc7  = waveOscForLen(len7)
+osc8  = waveOscForLen(len8)
+osc9  = waveOscForLen(len9)
+osc10 = waveOscForLen(len10)
+osc11 = waveOscForLen(len11)
+osc12 = waveOscForLen(len12)
+
+lens = array.from(len1, len2, len3, len4, len5, len6, len7, len8, len9, len10, len11, len12)
+oscs = array.from(osc1, osc2, osc3, osc4, osc5, osc6, osc7, osc8, osc9, osc10, osc11, osc12)
+
+// ---- Cei 3 metrici (calculati pe FIECARE bara) -----------------------------
+minVal = array.min(oscs)
+maxVal = array.max(oscs)
+minIdx = array.indexof(oscs, minVal)
+maxIdx = array.indexof(oscs, maxVal)
+compLen = array.get(lens, minIdx)   // metric 1: cel mai comprimat
+extLen  = array.get(lens, maxIdx)   // metric 2: cel mai extins
+
+int longestAbove = na
+oscAtLongest = 0.0
+for i = 0 to array.size(lens) - 1
+    if array.get(oscs, i) >= extThreshold
+        cand = array.get(lens, i)
+        if na(longestAbove) or cand > longestAbove
+            longestAbove := cand
+            oscAtLongest := array.get(oscs, i)
+// metric 3: longestAbove (poate fi na daca nimic nu e >= prag in bara curenta)
+
+// ---- Multiplicator FIX (1.25, per recomandarea lui Whistler) ---------------
+// Doar PERIOADA fiecarei benzi e dinamica (legata de cei 3 metrici) -
+// deviatia standard ramane exact bbBaseDev pentru toate cele 3 benzi.
+multCompressed = bbBaseDev
+multExtended   = bbBaseDev
+multLongest    = na(longestAbove) ? na : bbBaseDev
+
+// ---- Banda 1: Comprimat -----------------------------------------------------
+basisComp = ta.sma(bbSrc, compLen)
+devComp   = ta.stdev(bbSrc, compLen, true)
+upperComp = basisComp + multCompressed * devComp
+lowerComp = basisComp - multCompressed * devComp
+
+// ---- Banda 2: Extins ---------------------------------------------------------
+basisExt = ta.sma(bbSrc, extLen)
+devExt   = ta.stdev(bbSrc, extLen, true)
+upperExt = basisExt + multExtended * devExt
+lowerExt = basisExt - multExtended * devExt
+
+// ---- Banda 3: Cea mai lunga >= prag ------------------------------------------
+// ta.sma/ta.stdev au nevoie de o lungime valida in FIECARE bara, deci folosim
+// un fallback (extLen) cand nimic nu trece de prag - dar ascundem plot-ul atunci.
+safeLongest = nz(longestAbove, extLen)
+basisLong = ta.sma(bbSrc, safeLongest)
+devLong   = ta.stdev(bbSrc, safeLongest, true)
+upperLongRaw = basisLong + bbBaseDev * devLong
+lowerLongRaw = basisLong - bbBaseDev * devLong
+hasLongest = not na(longestAbove)
+upperLong = hasLongest ? upperLongRaw : float(na)
+lowerLong = hasLongest ? lowerLongRaw : float(na)
+
+// ---- Randare ------------------------------------------------------------------
+// Ierarhie vizuala: linie de baza (SMA) groasa si clara = reperul principal;
+// marginile benzii = subtiri, discrete; umbrirea = foarte usoara (context).
+
+// Banda 1: Comprimat (semnalul imediat)
+p1u = plot(showCompressed ? upperComp : na, "Comprimat - sus", color=color.new(colCompressed, 55), linewidth=1)
+p1l = plot(showCompressed ? lowerComp : na, "Comprimat - jos", color=color.new(colCompressed, 55), linewidth=1)
+fill(p1u, p1l, color=color.new(colCompressed, 88), title="Umbrire Comprimat")
+plot(showCompressed ? basisComp : na, "Comprimat - baza (SMA)", color=color.new(colCompressed, 5), linewidth=2)
+
+// Banda 2: Extins
+p2u = plot(showExtended ? upperExt : na, "Extins - sus", color=color.new(colExtended, 55), linewidth=1)
+p2l = plot(showExtended ? lowerExt : na, "Extins - jos", color=color.new(colExtended, 55), linewidth=1)
+fill(p2u, p2l, color=color.new(colExtended, 90), title="Umbrire Extins")
+plot(showExtended ? basisExt : na, "Extins - baza (SMA)", color=color.new(colExtended, 5), linewidth=2)
+
+// Banda 3: Cea mai lunga >= prag (context, cea mai discreta)
+p3u = plot(showLongest ? upperLong : na, "Cea mai lunga>=prag - sus", color=color.new(colLongest, 55), linewidth=1)
+p3l = plot(showLongest ? lowerLong : na, "Cea mai lunga>=prag - jos", color=color.new(colLongest, 55), linewidth=1)
+fill(p3u, p3l, color=color.new(colLongest, 92), title="Umbrire Cea mai lunga")
+plot(showLongest and hasLongest ? basisLong : na, "Lung - baza (SMA)", color=color.new(colLongest, 5), linewidth=2)
+
+// ---- Etichete pe marginea dreapta, cu numele si perioada fiecarei benzi ----
+var label[] bandLabels = array.new_label()
+
+if barstate.islast
+    if array.size(bandLabels) > 0
+        for i = 0 to array.size(bandLabels) - 1
+            label.delete(array.get(bandLabels, i))
+        array.clear(bandLabels)
+
+    lx = bar_index + 3
+    if showCompressed
+        array.push(bandLabels, label.new(lx, basisComp, "Comprimat (" + str.tostring(compLen) + ")", color=color.new(colCompressed, 10), textcolor=color.white, style=label.style_label_left, size=size.small))
+    if showExtended
+        array.push(bandLabels, label.new(lx, basisExt, "Extins (" + str.tostring(extLen) + ")", color=color.new(colExtended, 10), textcolor=color.white, style=label.style_label_left, size=size.small))
+    if showLongest and hasLongest
+        array.push(bandLabels, label.new(lx, basisLong, "Lung (" + str.tostring(longestAbove) + ")", color=color.new(colLongest, 10), textcolor=color.white, style=label.style_label_left, size=size.small))
+
+// ---- Entry Long: breakout Comprimat + WAVE-PM in crestere, SI intrare/iesire banda lunga --
+compRising = minVal > minVal[1]
+cond1 = ta.crossover(bbSrc, upperComp) and compRising
+enterLower = hasLongest and ta.crossunder(bbSrc, lowerLong)
+exitUpper  = hasLongest and ta.crossover(bbSrc, upperLong)
+cond2 = enterLower or exitUpper
+longEntry = cond1 and cond2
+
+// ---- Exit / SL: pretul intra sub banda superioara SAU iese din banda inferioara (banda lunga) --
+slEnterUnderUpper = hasLongest and ta.crossunder(bbSrc, upperLong)
+slExitLower       = hasLongest and ta.crossover(bbSrc, lowerLong)
+longExit = slEnterUnderUpper or slExitLower
+
+plotshape(longEntry, "Entry Long", style=shape.triangleup, location=location.belowbar, color=color.new(color.lime, 0), size=size.small, text="ENTRY")
+plotshape(longExit,  "Exit / SL",  style=shape.triangledown, location=location.abovebar, color=color.new(color.red, 0), size=size.small, text="EXIT")
+
+// ---- Alerte ---------------------------------------------------------------------
+alertcondition(ta.crossover(bbSrc, upperExt), "Iesire peste banda Extins", "Pretul a iesit peste banda 'Extins' (SD ajustat de WAVE-PM).")
+alertcondition(ta.crossunder(bbSrc, lowerExt), "Iesire sub banda Extins", "Pretul a iesit sub banda 'Extins' (SD ajustat de WAVE-PM).")
+alertcondition(longEntry, "Entry Long", "Breakout Comprimat + WAVE-PM in crestere + banda lunga (intrare/iesire) - semnal de entry LONG.")
+alertcondition(longExit, "Exit / SL Long", "Pretul a intrat sub banda superioara SAU a iesit din banda inferioara (perioada >=0.7) - semnal de exit/SL.")
+
+// ---- Tabel metrici (colt dreapta-sus) ---------------------------------------
+var table infoTable = table.new(position.top_right, 4, 4, border_width=1)
+
+if showTable and barstate.islast
+    inZoneComp = bbSrc <= upperComp and bbSrc >= lowerComp
+    inZoneExt  = bbSrc <= upperExt  and bbSrc >= lowerExt
+    inZoneLong = hasLongest ? (bbSrc <= upperLong and bbSrc >= lowerLong) : bool(na)
+
+    table.cell(infoTable, 0, 0, "Metric", bgcolor=color.new(color.gray, 70), text_color=color.white, text_size=size.tiny)
+    table.cell(infoTable, 1, 0, "Lungime", bgcolor=color.new(color.gray, 70), text_color=color.white, text_size=size.tiny)
+    table.cell(infoTable, 2, 0, "Mult.", bgcolor=color.new(color.gray, 70), text_color=color.white, text_size=size.tiny)
+    table.cell(infoTable, 3, 0, "In banda", bgcolor=color.new(color.gray, 70), text_color=color.white, text_size=size.tiny)
+
+    table.cell(infoTable, 0, 1, "Comprimat", bgcolor=color.new(colCompressed, 40), text_color=color.white, text_size=size.tiny)
+    table.cell(infoTable, 1, 1, str.tostring(compLen), bgcolor=color.new(colCompressed, 40), text_color=color.white, text_size=size.tiny)
+    table.cell(infoTable, 2, 1, str.tostring(multCompressed, "#.##"), bgcolor=color.new(colCompressed, 40), text_color=color.white, text_size=size.tiny)
+    table.cell(infoTable, 3, 1, inZoneComp ? "DA" : "NU", bgcolor=color.new(colCompressed, 40), text_color=color.white, text_size=size.tiny)
+
+    table.cell(infoTable, 0, 2, "Extins", bgcolor=color.new(colExtended, 40), text_color=color.white, text_size=size.tiny)
+    table.cell(infoTable, 1, 2, str.tostring(extLen), bgcolor=color.new(colExtended, 40), text_color=color.white, text_size=size.tiny)
+    table.cell(infoTable, 2, 2, str.tostring(multExtended, "#.##"), bgcolor=color.new(colExtended, 40), text_color=color.white, text_size=size.tiny)
+    table.cell(infoTable, 3, 2, inZoneExt ? "DA" : "NU", bgcolor=color.new(colExtended, 40), text_color=color.white, text_size=size.tiny)
+
+    table.cell(infoTable, 0, 3, "Lunga >= prag", bgcolor=color.new(colLongest, 40), text_color=color.white, text_size=size.tiny)
+    table.cell(infoTable, 1, 3, hasLongest ? str.tostring(longestAbove) : "-", bgcolor=color.new(colLongest, 40), text_color=color.white, text_size=size.tiny)
+    table.cell(infoTable, 2, 3, hasLongest ? str.tostring(multLongest, "#.##") : "-", bgcolor=color.new(colLongest, 40), text_color=color.white, text_size=size.tiny)
+    table.cell(infoTable, 3, 3, hasLongest ? (inZoneLong ? "DA" : "NU") : "-", bgcolor=color.new(colLongest, 40), text_color=color.white, text_size=size.tiny)

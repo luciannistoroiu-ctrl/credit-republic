@@ -1,0 +1,171 @@
+//@version=6
+indicator("WAVE • PM Length Heatmap — Compression / Extension Scanner", shorttitle="WPM-HEAT", overlay=false, max_labels_count=50)
+
+// =====================================================================
+// WAVE•PM LENGTH HEATMAP
+//
+// Rulează formula WAVE•PM (din "Volatility Illuminated", Mark Whistler)
+// în paralel pe un set de lungimi (12 "rânduri"), afișând rezultatul ca
+// o hartă termică orizontală (jos = lungime scurtă, sus = lungime lungă),
+// similar cu imaginea de referință.
+//
+// Culoare:
+//   albastru/verde -> energie COMPRIMATĂ (0)  = distribuție îngustă, "storing"
+//   galben/roșu    -> energie EXTINSĂ (1)     = distribuție largă, "releasing"
+//
+// Un tabel în colțul din dreapta-sus arată, pentru bara curentă, care
+// lungime este cea mai comprimată și care e cea mai extinsă.
+// =====================================================================
+
+// ---- Inputs generale ---------------------------------------------------
+grpCore = "WAVE•PM — Setări de bază"
+src           = input.source(close, "Sursă", group=grpCore)
+devMult       = input.float(2.2, "Multiplicator deviație", minval=0.1, step=0.1, group=grpCore)
+charMult      = input.float(3.0, "Multiplicator fereastră RMS (× lungimea rândului)", minval=0.5, step=0.5, group=grpCore, tooltip="Fereastra de normalizare a fiecărui rând = charMult × lungimea acelui rând. Trebuie să fie proporțională cu lungimea, altfel rândurile lungi (ex. 500) devin 'plate' — deviația lor se mișcă prea lent ca o fereastră fixă să prindă variație reală.")
+minCharPeriod = input.int(30, "Fereastră RMS minimă", minval=5, group=grpCore)
+
+grpLen = "Lungimi scanate (jos → sus)"
+len1  = input.int(14,  "Rând 1 (cel mai jos)", minval=2, group=grpLen)
+len2  = input.int(20,  "Rând 2",  minval=2, group=grpLen)
+len3  = input.int(28,  "Rând 3",  minval=2, group=grpLen)
+len4  = input.int(39,  "Rând 4",  minval=2, group=grpLen)
+len5  = input.int(55,  "Rând 5",  minval=2, group=grpLen)
+len6  = input.int(77,  "Rând 6",  minval=2, group=grpLen)
+len7  = input.int(109, "Rând 7",  minval=2, group=grpLen)
+len8  = input.int(153, "Rând 8",  minval=2, group=grpLen)
+len9  = input.int(215, "Rând 9",  minval=2, group=grpLen)
+len10 = input.int(303, "Rând 10", minval=2, group=grpLen)
+len11 = input.int(426, "Rând 11", minval=2, group=grpLen)
+len12 = input.int(600, "Rând 12 (cel mai sus)", minval=2, group=grpLen)
+
+grpDisp = "Afișare"
+showLabels  = input.bool(true, "Afișează etichetele lungimilor (dreapta)", group=grpDisp)
+labelOffset = input.int(3, "Distanță etichete (bare)", minval=1, group=grpDisp)
+extThreshold = input.float(0.7, "Prag 'extins'", minval=0.0, maxval=1.0, step=0.05, group=grpDisp, tooltip="Găsește cea mai lungă perioadă (dintre cele scanate) al cărei WAVE•PM este ≥ acest prag — adică până unde 'ajunge' extinderea curentă pe scala lungimilor.")
+
+// ---- Culori heatmap (albastru → verde → galben → roșu) ------------------
+colCompressed = color.rgb(0, 40, 160)
+colMid1       = color.rgb(0, 170, 90)
+colMid2       = color.rgb(255, 225, 0)
+colExtended   = color.rgb(230, 30, 20)
+
+heatColor(v) =>
+    vv = math.max(0.0, math.min(1.0, v))
+    vv <= 0.33 ? color.from_gradient(vv, 0.0, 0.33, colCompressed, colMid1) :
+     vv <= 0.66 ? color.from_gradient(vv, 0.33, 0.66, colMid1, colMid2) :
+     color.from_gradient(vv, 0.66, 1.0, colMid2, colExtended)
+
+// Pine nu are math.tanh() nativ — îl implementăm manual:
+// tanh(x) = (e^2x - 1) / (e^2x + 1)
+f_tanh(x) =>
+    xx = math.max(-40.0, math.min(40.0, x))  // clamp pentru a evita overflow la exp()
+    e2x = math.exp(2 * xx)
+    (e2x - 1) / (e2x + 1)
+
+// ---- Formula WAVE•PM, aplicată pentru o lungime dată --------------------
+// Fereastra RMS a fiecărui rând scalează cu propria lungime (charMult × len),
+// nu e fixă — altfel rândurile lungi nu mai arată variație reală.
+waveOscForLen(len) =>
+    dev = devMult * ta.stdev(src, len, true)
+    charLen = math.max(minCharPeriod, math.round(charMult * len))
+    rmsVal = math.sqrt(ta.sma(math.pow(dev, 2), charLen))
+    rmsVal != 0 ? f_tanh(dev / rmsVal) : 0.0
+
+osc1  = waveOscForLen(len1)
+osc2  = waveOscForLen(len2)
+osc3  = waveOscForLen(len3)
+osc4  = waveOscForLen(len4)
+osc5  = waveOscForLen(len5)
+osc6  = waveOscForLen(len6)
+osc7  = waveOscForLen(len7)
+osc8  = waveOscForLen(len8)
+osc9  = waveOscForLen(len9)
+osc10 = waveOscForLen(len10)
+osc11 = waveOscForLen(len11)
+osc12 = waveOscForLen(len12)
+
+// ---- Randare heatmap: granițe comune între rânduri adiacente ------------
+b0  = plot(0,  display=display.none)
+b1  = plot(1,  display=display.none)
+b2  = plot(2,  display=display.none)
+b3  = plot(3,  display=display.none)
+b4  = plot(4,  display=display.none)
+b5  = plot(5,  display=display.none)
+b6  = plot(6,  display=display.none)
+b7  = plot(7,  display=display.none)
+b8  = plot(8,  display=display.none)
+b9  = plot(9,  display=display.none)
+b10 = plot(10, display=display.none)
+b11 = plot(11, display=display.none)
+b12 = plot(12, display=display.none)
+
+fill(b0,  b1,  color=heatColor(osc1),  title="Rând 1")
+fill(b1,  b2,  color=heatColor(osc2),  title="Rând 2")
+fill(b2,  b3,  color=heatColor(osc3),  title="Rând 3")
+fill(b3,  b4,  color=heatColor(osc4),  title="Rând 4")
+fill(b4,  b5,  color=heatColor(osc5),  title="Rând 5")
+fill(b5,  b6,  color=heatColor(osc6),  title="Rând 6")
+fill(b6,  b7,  color=heatColor(osc7),  title="Rând 7")
+fill(b7,  b8,  color=heatColor(osc8),  title="Rând 8")
+fill(b8,  b9,  color=heatColor(osc9),  title="Rând 9")
+fill(b9,  b10, color=heatColor(osc10), title="Rând 10")
+fill(b10, b11, color=heatColor(osc11), title="Rând 11")
+fill(b11, b12, color=heatColor(osc12), title="Rând 12")
+
+// ---- Etichete cu lungimea fiecărui rând (marginea dreaptă) --------------
+var label[] rowLabels = array.new_label()
+
+if showLabels and barstate.islast
+    if array.size(rowLabels) > 0
+        for i = 0 to array.size(rowLabels) - 1
+            label.delete(array.get(rowLabels, i))
+        array.clear(rowLabels)
+
+    lx = bar_index + labelOffset
+    array.push(rowLabels, label.new(lx, 0.5,  str.tostring(len1),  color=heatColor(osc1),  textcolor=color.white, style=label.style_label_left, size=size.small))
+    array.push(rowLabels, label.new(lx, 1.5,  str.tostring(len2),  color=heatColor(osc2),  textcolor=color.white, style=label.style_label_left, size=size.small))
+    array.push(rowLabels, label.new(lx, 2.5,  str.tostring(len3),  color=heatColor(osc3),  textcolor=color.white, style=label.style_label_left, size=size.small))
+    array.push(rowLabels, label.new(lx, 3.5,  str.tostring(len4),  color=heatColor(osc4),  textcolor=color.white, style=label.style_label_left, size=size.small))
+    array.push(rowLabels, label.new(lx, 4.5,  str.tostring(len5),  color=heatColor(osc5),  textcolor=color.white, style=label.style_label_left, size=size.small))
+    array.push(rowLabels, label.new(lx, 5.5,  str.tostring(len6),  color=heatColor(osc6),  textcolor=color.white, style=label.style_label_left, size=size.small))
+    array.push(rowLabels, label.new(lx, 6.5,  str.tostring(len7),  color=heatColor(osc7),  textcolor=color.white, style=label.style_label_left, size=size.small))
+    array.push(rowLabels, label.new(lx, 7.5,  str.tostring(len8),  color=heatColor(osc8),  textcolor=color.white, style=label.style_label_left, size=size.small))
+    array.push(rowLabels, label.new(lx, 8.5,  str.tostring(len9),  color=heatColor(osc9),  textcolor=color.white, style=label.style_label_left, size=size.small))
+    array.push(rowLabels, label.new(lx, 9.5,  str.tostring(len10), color=heatColor(osc10), textcolor=color.white, style=label.style_label_left, size=size.small))
+    array.push(rowLabels, label.new(lx, 10.5, str.tostring(len11), color=heatColor(osc11), textcolor=color.white, style=label.style_label_left, size=size.small))
+    array.push(rowLabels, label.new(lx, 11.5, str.tostring(len12), color=heatColor(osc12), textcolor=color.white, style=label.style_label_left, size=size.small))
+
+// ---- Tabel: cea mai comprimată / cea mai extinsă lungime -----------------
+var table infoTable = table.new(position.top_right, 2, 4, border_width=1)
+
+if barstate.islast
+    lens = array.from(len1, len2, len3, len4, len5, len6, len7, len8, len9, len10, len11, len12)
+    oscs = array.from(osc1, osc2, osc3, osc4, osc5, osc6, osc7, osc8, osc9, osc10, osc11, osc12)
+
+    minVal = array.min(oscs)
+    maxVal = array.max(oscs)
+    minIdx = array.indexof(oscs, minVal)
+    maxIdx = array.indexof(oscs, maxVal)
+
+    compLen = array.get(lens, minIdx)
+    extLen  = array.get(lens, maxIdx)
+
+    // Cea mai lungă perioadă (dintre cele scanate) care e încă >= extThreshold
+    int longestAboveLen = na
+    for i = 0 to array.size(lens) - 1
+        if array.get(oscs, i) >= extThreshold
+            candLen = array.get(lens, i)
+            if na(longestAboveLen) or candLen > longestAboveLen
+                longestAboveLen := candLen
+
+    table.cell(infoTable, 0, 0, "Metric", bgcolor=color.new(color.gray, 70), text_color=color.white, text_size=size.tiny)
+    table.cell(infoTable, 1, 0, "Lungime / Val", bgcolor=color.new(color.gray, 70), text_color=color.white, text_size=size.tiny)
+
+    table.cell(infoTable, 0, 1, "Cel mai comprimat", bgcolor=color.new(colCompressed, 40), text_color=color.white, text_size=size.tiny)
+    table.cell(infoTable, 1, 1, str.tostring(compLen) + "  (" + str.tostring(minVal, "#.##") + ")", bgcolor=color.new(colCompressed, 40), text_color=color.white, text_size=size.tiny)
+
+    table.cell(infoTable, 0, 2, "Cel mai extins", bgcolor=color.new(colExtended, 40), text_color=color.white, text_size=size.tiny)
+    table.cell(infoTable, 1, 2, str.tostring(extLen) + "  (" + str.tostring(maxVal, "#.##") + ")", bgcolor=color.new(colExtended, 40), text_color=color.white, text_size=size.tiny)
+
+    table.cell(infoTable, 0, 3, "Cea mai lungă ≥ " + str.tostring(extThreshold, "#.##"), bgcolor=color.new(colExtended, 60), text_color=color.white, text_size=size.tiny)
+    table.cell(infoTable, 1, 3, na(longestAboveLen) ? "—" : str.tostring(longestAboveLen), bgcolor=color.new(colExtended, 60), text_color=color.white, text_size=size.tiny)

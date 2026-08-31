@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-08-31T20:10:38.836399",
+  "type": "Multi-Timeframe Optimization",
+  "data_source": "Crypto.com MCP (FREE - No Auth Required)",
+  "timeframes": [
+    "1d",
+    "4h",
+    "1h",
+    "15m"
+  ],
+  "timeframe_weights": {
+    "1d": 0.4,
+    "4h": 0.3,
+    "1h": 0.2,
+    "15m": 0.1
+  },
+  "timeframe_periods": {
+    "1d": "10y",
+    "4h": "2y",
+    "1h": "1y",
+    "15m": "60d"
+  },
+  "best_per_crypto": {
+    "ETHUSD": {
+      "dev_mult": 1.5,
+      "char_mult": 2.0,
+      "ext_threshold": 0.6,
+      "entry_signals": 0,
+      "exit_signals": 0,
+      "total_signals": 1,
+      "avg_confidence": 0.4,
+      "quality_score": 0.4
+    }
+  },
+  "top5_cryptos": [
+    "BTCUSD",
+    "ETHUSD",
+    "BNBUSD",
+    "SOLUSD",
+    "XRPUSD"
+  ]
+}
