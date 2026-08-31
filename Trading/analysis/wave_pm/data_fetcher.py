@@ -90,8 +90,7 @@ class DataFetcher:
                 start=start,
                 end=end,
                 interval=interval,
-                progress=False,
-                show_errors=True
+                progress=False
             )
 
             if df.empty:
