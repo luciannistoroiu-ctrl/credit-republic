@@ -1,0 +1,74 @@
+//@version=6
+indicator("WAVE • PM — Whistler Active Volatility Energy / Price Mass", shorttitle="WAVE•PM", overlay=false)
+
+// =====================================================================
+// WAVE • PM  (Whistler Active Volatility Energy - Price Mass)
+// Recreated in Pine Script from the algorithm described/coded (MQL4)
+// in "Volatility Illuminated" by Mark Whistler.
+//
+// Concept: measures whether the "energy" of price distribution
+// (a Bollinger-style deviation band) is expanding or compressing
+// relative to its own recent history. It does NOT indicate direction —
+// only whether the market's volatility "mass" is releasing (expanding,
+// oscillator rising toward 1) or storing (compressing, oscillator
+// falling toward 0).
+//
+// Algorithm (short & long versions run in parallel):
+//   1. Dev = multiplier * StDev(close, period)      <- deviation "band width"
+//   2. RMS = sqrt( SMA( Dev^2, characteristicPeriod ) )   <- self-normalizer
+//   3. Oscillator = tanh( Dev / RMS )                <- squashed into ~[0,1)
+//
+// Note: the original MQL4 code normalizes by broker "Point" before and
+// after the RMS step purely to avoid float overflow in MetaTrader 4 —
+// that scaling cancels out algebraically, so it's omitted here.
+// =====================================================================
+
+// ---- Inputs -----------------------------------------------------------
+grpShort = "Short Leg"
+shortPeriod   = input.int(14,  "MA / StDev Period", minval=2, group=grpShort)
+shortDevMult  = input.float(2.2, "Deviation Multiplier", minval=0.1, step=0.1, group=grpShort)
+
+grpLong = "Long Leg"
+longPeriod    = input.int(55,  "MA / StDev Period", minval=2, group=grpLong)
+longDevMult   = input.float(2.2, "Deviation Multiplier", minval=0.1, step=0.1, group=grpLong)
+
+grpNorm = "Normalization"
+charPeriod    = input.int(100, "Characteristic Period (RMS window)", minval=10, group=grpNorm)
+src           = input.source(close, "Source", group=grpNorm)
+
+// ---- Core calculation ---------------------------------------------------
+// Population StDev of price around its own SMA (classic band-width term)
+shortDev = shortDevMult * ta.stdev(src, shortPeriod, true)
+longDev  = longDevMult  * ta.stdev(src, longPeriod, true)
+
+rms(seriesFloat, len) =>
+    math.sqrt(ta.sma(math.pow(seriesFloat, 2), len))
+
+// Pine nu are math.tanh() nativ — îl implementăm manual (aceeași formulă
+// folosită și în codul MQL4 original din carte): tanh(x) = (e^2x - 1)/(e^2x + 1)
+f_tanh(x) =>
+    xx = math.max(-40.0, math.min(40.0, x))  // clamp pentru a evita overflow la exp()
+    e2x = math.exp(2 * xx)
+    (e2x - 1) / (e2x + 1)
+
+shortRMS = rms(shortDev, charPeriod)
+longRMS  = rms(longDev, charPeriod)
+
+shortOsc = shortRMS != 0 ? f_tanh(shortDev / shortRMS) : 0.0
+longOsc  = longRMS  != 0 ? f_tanh(longDev  / longRMS)  : 0.0
+
+// ---- Plotting -------------------------------------------------------
+plot(shortOsc, "Short WAVE•PM", color=color.blue, linewidth=2)
+plot(longOsc,  "Long WAVE•PM",  color=color.red,  linewidth=2)
+
+hline(0.9, "Extended (0.9)", color=color.new(color.gray, 40), linestyle=hline.style_dotted)
+hline(0.5, "Compression / Expansion (0.5)", color=color.gray, linestyle=hline.style_dashed)
+hline(0.0, "Zero", color=color.new(color.gray, 70))
+
+bgcolor(shortOsc < 0.5 and longOsc < 0.5 ? color.new(color.orange, 90) : na,
+     title="Both legs < 0.5 — energy compressed (lateral / storing)")
+
+// ---- Alerts -----------------------------------------------------------
+alertcondition(ta.crossover(shortOsc, 0.5),  "Short WAVE•PM crossed above 0.5", "Short-term energy starting to expand.")
+alertcondition(ta.crossunder(shortOsc, 0.5), "Short WAVE•PM crossed below 0.5", "Short-term energy compressing.")
+alertcondition(ta.crossunder(shortOsc, longOsc) and shortOsc[1] >= longOsc[1], "Short crossed below Long WAVE•PM", "Possible trend exhaustion — short-term mass rolling under long-term mass.")
