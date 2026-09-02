@@ -1,0 +1,19 @@
+/* credit republic — bază. reset + schela de pagină.
+   sursa: components.html + exemplu-landing.html (pachetul încărcat 2026-08-27) */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--cr-fundal);
+  color: var(--cr-text);
+  font-family: var(--cr-font);
+  font-size: var(--cr-t-corp);
+  line-height: var(--cr-lh-normal);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, p { margin: 0; }
+a { color: var(--cr-text); text-decoration: underline; text-underline-offset: 4px; }
+a:hover { color: var(--cr-coral); }
+:focus-visible { outline: 2px solid var(--cr-semnal); outline-offset: 3px; }
+
+/* învelișul de pagină */
+.invelis { max-width: var(--cr-latime-max); margin: 0 auto; padding-inline: var(--cr-sp-4); }

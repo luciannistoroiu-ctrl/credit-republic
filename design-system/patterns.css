@@ -1,0 +1,175 @@
+/* credit republic — stratul de componente.
+   sursa: components.html (pachetul reîncărcat 2026-08-28), verbatim.
+   toate valorile vin din tokens/tokens.css. nimic hardcodat.
+   regulile de folosire — și mai ales de nefolosire — în guidelines/design-system.md */
+
+/* ---------- 1. tipografie ---------- */
+
+.cr-afirmatie {
+  font-size: var(--cr-t-afirmatie);
+  font-weight: var(--cr-greutate-tare);
+  line-height: var(--cr-lh-strans);
+  letter-spacing: var(--cr-ls-strans);
+  max-width: 18ch;
+  margin: 0;
+}
+.cr-titlu {
+  font-size: var(--cr-t-titlu);
+  font-weight: var(--cr-greutate-tare);
+  line-height: var(--cr-lh-strans);
+  letter-spacing: var(--cr-ls-strans);
+  margin: 0;
+}
+.cr-corp { max-width: var(--cr-latime-text); margin: 0; }
+.cr-secundar { color: var(--cr-text-secundar); }
+.cr-eticheta {
+  font-size: var(--cr-t-eticheta);
+  color: var(--cr-text-secundar);
+  margin: 0;
+}
+
+/* ---------- 2. pastila ---------- */
+/* semnătura tiparului grafic. MERGE DOAR pe fundal color-block plat.
+   pe fotografie NU se pune pastilă — acolo trece text liber, §5 din 02 */
+
+.cr-pastila {
+  display: inline-block;
+  padding: var(--cr-sp-2) var(--cr-sp-4);
+  border-radius: var(--cr-raza-pastila);
+  font-weight: var(--cr-greutate-tare);
+  line-height: var(--cr-lh-strans);
+}
+.cr-pastila--cream    { background: var(--cr-cream);    color: var(--cr-plum); }
+.cr-pastila--coral    { background: var(--cr-coral);    color: var(--cr-cream); }
+.cr-pastila--mint     { background: var(--cr-mint);     color: var(--cr-plum); }
+.cr-pastila--sunshine { background: var(--cr-sunshine); color: var(--cr-plum); }
+.cr-pastila--inclinat { transform: rotate(-2deg); }
+
+/* ---------- 3. butoane ---------- */
+/* un singur buton primar pe ecran. verbul CTA e identic peste tot */
+
+.cr-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cr-sp-2);
+  padding: var(--cr-sp-3) var(--cr-sp-5);
+  border: 0;
+  border-radius: var(--cr-raza-pastila);
+  font: inherit;
+  font-weight: var(--cr-greutate-tare);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform var(--cr-tranzitie), background var(--cr-tranzitie);
+}
+.cr-btn:hover { transform: translateY(-1px); }
+.cr-btn--primar {
+  background: var(--cr-semnal);
+  color: #FFFFFF;
+}
+.cr-btn--plum {
+  background: var(--cr-plum);
+  color: var(--cr-cream);
+}
+.cr-btn--secundar {
+  background: transparent;
+  color: var(--cr-text);
+  box-shadow: inset 0 0 0 1.5px var(--cr-plum);
+}
+.cr-btn--text {
+  background: none; padding: var(--cr-sp-2) 0;
+  color: var(--cr-text); text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ---------- 4. coada de oferte ---------- */
+/* semnătura vizuală a brandului: un șir de oferte, prima încercuită
+   (cea acceptată din reflex), una mai departe plină (cea aleasă). */
+
+.cr-coada { display: flex; flex-direction: column; gap: var(--cr-sp-2); max-width: 420px; }
+.cr-coada__rand {
+  height: 20px;
+  border-radius: var(--cr-raza-pastila);
+  background: var(--cr-linie);
+}
+.cr-coada__rand--prima {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--cr-coral);
+}
+.cr-coada__rand--aleasa { background: var(--cr-mint); }
+/* lățimi descrescătoare — un șir, nu un grafic */
+.cr-coada__rand:nth-child(1) { width: 100%; }
+.cr-coada__rand:nth-child(2) { width: 92%; }
+.cr-coada__rand:nth-child(3) { width: 86%; }
+.cr-coada__rand:nth-child(4) { width: 78%; }
+.cr-coada__rand:nth-child(5) { width: 71%; }
+.cr-coada__rand:nth-child(6) { width: 64%; }
+
+/* ---------- 5. cipul de rezultat ---------- */
+/* singurul loc unde apare semnalul, în afară de butonul primar.
+   valoarea e mereu una verificată, care aparține vizitatorului */
+
+.cr-cip {
+  display: inline-flex; flex-direction: column; gap: var(--cr-sp-1);
+  padding: var(--cr-sp-3) var(--cr-sp-4);
+  background: var(--cr-suprafata);
+  border: var(--cr-bordura);
+  border-radius: var(--cr-raza-medie);
+}
+.cr-cip__eticheta { font-size: var(--cr-t-eticheta); color: var(--cr-text-secundar); }
+.cr-cip__valoare {
+  font-size: var(--cr-t-titlu);
+  font-weight: var(--cr-greutate-tare);
+  line-height: 1;
+  letter-spacing: var(--cr-ls-strans);
+}
+.cr-cip--pozitiv .cr-cip__valoare { color: var(--cr-rezultat-pozitiv); }
+
+/* ---------- 6. cadrul vizual 4:5 ---------- */
+/* grila de ancore, materializată. subiectul în banda de corp,
+   textul în cap sau talpă — niciodată amândouă în aceeași bandă */
+
+.cr-cadru {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  width: 100%; max-width: 360px;
+  overflow: hidden;
+  border-radius: var(--cr-raza-mica);
+  background: var(--cr-plum);
+  color: var(--cr-text-invers);
+}
+.cr-cadru--cream    { background: var(--cr-cream);    color: var(--cr-plum); }
+.cr-cadru--coral    { background: var(--cr-coral);    color: var(--cr-cream); }
+.cr-cadru--sunshine { background: var(--cr-sunshine); color: var(--cr-plum); }
+
+.cr-cadru__strat {
+  position: absolute;
+  left: var(--cr-marja-cadru);
+  right: var(--cr-marja-cadru);
+}
+.cr-cadru__strat--cap   { top: 11%; }
+.cr-cadru__strat--talpa { bottom: 11%; }
+
+.cr-cadru__afirmatie {
+  font-size: 1.5rem;
+  font-weight: var(--cr-greutate-tare);
+  line-height: var(--cr-lh-strans);
+  letter-spacing: var(--cr-ls-strans);
+  margin: 0;
+}
+.cr-cadru__secundar {
+  font-size: 0.8125rem; opacity: .8; margin: var(--cr-sp-2) 0 0;
+}
+/* text liber pe fotografie: fără cutie, fără umbră, fără contur */
+.cr-cadru__foto { position: absolute; inset: 0; object-fit: cover; width: 100%; height: 100%; }
+
+/* ---------- 7. banda de transparență ---------- */
+
+.cr-transparenta {
+  display: flex; flex-wrap: wrap; gap: var(--cr-sp-4);
+  padding: var(--cr-sp-4);
+  background: var(--cr-suprafata);
+  border: var(--cr-bordura);
+  border-radius: var(--cr-raza-medie);
+}
+.cr-transparenta__item { display: flex; flex-direction: column; gap: var(--cr-sp-1); }
+.cr-transparenta__valoare { font-weight: var(--cr-greutate-tare); }

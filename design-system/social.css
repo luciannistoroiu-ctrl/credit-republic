@@ -1,0 +1,115 @@
+/* credit republic — stratul de social v5.0
+   se încarcă DUPĂ tokens.css. pânze la dimensiuni exacte, fără responsive.
+   grila de benzi e structurală: subiectul în corp, textul în cap sau talpă. */
+
+/* ---------- pânze ---------- */
+.s-canvas{
+  position:relative; overflow:hidden;
+  width:var(--s-w); height:var(--s-h);
+  --s-mt:8%; --s-mb:8%; --s-ms:8%;      /* marje */
+  --s-ancora:10%;                        /* ancora textului = zona critică 1:1 */
+  background:var(--cr-cream); color:var(--cr-ink);
+  font-family:var(--cr-font);
+  flex:0 0 auto;
+}
+.s-45   { --s-w:1080px; --s-h:1350px; }                                  /* feed 4:5 */
+.s-11   { --s-w:1080px; --s-h:1080px; }                                  /* feed 1:1 */
+.s-916  { --s-w:1080px; --s-h:1920px; --s-mt:14%; --s-mb:20%; --s-ancora:16%; } /* story / reels */
+.s-og   { --s-w:1200px; --s-h:630px;  --s-ancora:9%; }                   /* og:image, link preview */
+.s-x    { --s-w:1500px; --s-h:500px;  --s-ancora:9%; }                   /* header X */
+
+/* ---------- fundal ---------- */
+.s-plum{ background:var(--cr-plum);     color:var(--cr-cream); }
+.s-coral{ background:var(--cr-coral);   color:var(--cr-cream); }
+.s-mint{ background:var(--cr-mint);     color:var(--cr-plum);  }
+.s-sun{ background:var(--cr-sunshine);  color:var(--cr-plum);  }
+.s-cream{ background:var(--cr-cream);   color:var(--cr-plum);  }
+
+/* ---------- straturi de text: cap și talpă ---------- */
+.s-strat{ position:absolute; left:var(--s-ms); right:var(--s-ms); z-index:3; }
+.s-cap  { top:var(--s-ancora); }
+.s-talpa{ bottom:var(--s-ancora); }
+
+/* tipografie de social — o singură dimensiune pe cadru, plus secundara */
+.s-afirmatie{ font-size:78px; line-height:1.1; font-weight:700; letter-spacing:-.015em; max-width:86%; }
+.s-afirmatie--mic{ font-size:68px; }        /* când textul cere trei rânduri */
+.s-secundar{ font-size:34px; line-height:1.2; font-weight:400; margin-top:16px; opacity:.85; }
+.s-og .s-afirmatie{ font-size:64px; }
+.s-x  .s-afirmatie{ font-size:56px; }
+
+/* ---------- pastila la scara de social (familia C) ---------- */
+.s-pastila{
+  display:inline-block; padding:20px 34px; border-radius:var(--cr-r-pill);
+  font-size:58px; font-weight:700; line-height:1.05; letter-spacing:-.015em;
+}
+.s-pastila--coral{ background:var(--cr-coral);    color:var(--cr-cream); }
+.s-pastila--mint { background:var(--cr-mint);     color:var(--cr-plum);  }
+.s-pastila--sun  { background:var(--cr-sunshine); color:var(--cr-plum);  }
+.s-pastila--cream{ background:var(--cr-cream);    color:var(--cr-plum);  }
+.s-pastila--plum { background:var(--cr-plum);     color:var(--cr-cream); }
+.s-inclinat{ transform:rotate(-2deg); }
+
+/* ---------- slot de fotografie (A, B, E) ---------- */
+/* fotografia vine de la Nano Banana și se pune ca background-image.
+   modelul nu randează text — textul rămâne în straturile de mai sus. */
+.s-foto{ position:absolute; inset:0; z-index:1; background-size:cover; background-position:center; }
+/* gradient doar dacă lipsește contrastul. max 40%, min 35% înălțime, de la marginea de ancorare */
+.s-foto--grad-jos::after{ content:""; position:absolute; inset:auto 0 0 0; height:38%;
+  background:linear-gradient(to top, rgba(0,0,0,.40), rgba(0,0,0,0)); }
+.s-foto--gol{ background:repeating-linear-gradient(45deg,rgba(43,38,64,.06) 0 18px,transparent 18px 36px); }
+.s-foto__nota{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  font-size:26px; color:var(--cr-ink-mut); letter-spacing:.06em; text-transform:lowercase; }
+
+/* text liber pe fotografie: doar cream pe imagine închisă, plum pe imagine deschisă */
+.s-text-cream{ color:var(--cr-cream); }
+.s-text-plum { color:var(--cr-plum);  }
+
+/* ---------- cip de UI (familia D) ---------- */
+.s-cip{
+  display:inline-flex; align-items:center; justify-content:space-between; gap:40px;
+  padding:26px 40px; border-radius:var(--cr-r-pill);
+  background:#fff; box-shadow:0 2px 24px rgba(43,38,64,.10);
+  font-size:32px; min-width:520px;
+}
+.s-cip__eticheta{ color:var(--cr-ink-mut); }
+.s-cip__val{ font-weight:700; font-variant-numeric:tabular-nums; }
+/* albastru: o singură dată în tot gridul de nouă plăci */
+.s-cip--confirmat .s-cip__val{ color:var(--cr-signal); }
+
+/* ---------- coada de oferte, la scara de social ---------- */
+.s-coada{ display:flex; flex-direction:column; gap:14px; }
+.s-rand{ display:flex; justify-content:space-between; gap:32px;
+  padding:22px 34px; border-radius:var(--cr-r-pill); background:#fff;
+  box-shadow:inset 0 0 0 1px var(--cr-linie); font-size:30px;
+  color:var(--cr-ink); }                       /* nu moștenește cream de la pânza închisă */
+.s-rand__nume{ color:var(--cr-ink-mut); }
+.s-rand--prima { background:transparent; box-shadow:inset 0 0 0 3px var(--cr-coral); }
+/* coada stă întotdeauna pe o suprafață deschisă. pe pânză închisă, pune-o într-un panou cream */
+.s-rand--pe-inchis{ color:var(--cr-cream); }
+.s-rand--pe-inchis .s-rand__nume{ color:rgba(255,248,240,.7); }
+.s-rand--gasita{ background:var(--cr-mint); box-shadow:none; color:var(--cr-plum); }
+.s-rand--gasita .s-rand__nume{ color:rgba(43,38,64,.72); }
+.s-rand__val{ font-weight:700; font-variant-numeric:tabular-nums; }
+
+/* ---------- wordmark de colț ---------- */
+.s-marca{ position:absolute; left:var(--s-ms); bottom:calc(var(--s-mb) / 2); z-index:4;
+  font-size:28px; font-weight:700; letter-spacing:-.02em; opacity:.75; }
+.s-marca .pct{ color:var(--cr-coral); }
+
+/* ---------- grilă de QA, comutabilă ---------- */
+/* pune clasa .s-grila pe pânză ca să vezi marjele și benzile */
+.s-grila::before{
+  content:""; position:absolute; z-index:9; pointer-events:none;
+  left:var(--s-ms); right:var(--s-ms); top:var(--s-mt); bottom:var(--s-mb);
+  box-shadow:inset 0 0 0 3px var(--cr-coral);
+  background:
+    linear-gradient(to right, transparent calc(100%/3 - 1px), rgba(255,248,240,.55) calc(100%/3 - 1px) calc(100%/3 + 1px), transparent calc(100%/3 + 1px)),
+    linear-gradient(to right, transparent calc(200%/3 - 1px), rgba(255,248,240,.55) calc(200%/3 - 1px) calc(200%/3 + 1px), transparent calc(200%/3 + 1px)),
+    linear-gradient(to bottom, transparent 0 28%, rgba(6,214,160,.85) 28% 28.4%, transparent 28.4% 72%, rgba(6,214,160,.85) 72% 72.4%, transparent 72.4%);
+}
+
+/* ---------- previzualizare: scalare pentru inspecție ---------- */
+.s-scala{ transform-origin:top left; }
+.s-scala--25{ transform:scale(.25); }
+.s-scala--33{ transform:scale(.333); }
+.s-scala--50{ transform:scale(.5); }

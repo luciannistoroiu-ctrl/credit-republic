@@ -1,0 +1,120 @@
+/* credit republic — stratul de pagină.
+   sursa: exemplu-landing.html (pachetul reîncărcat 2026-08-28), verbatim.
+   fișa de componente dă vocabularul; astea dau gramatica — ritmul secțiunilor,
+   ierarhia, proporțiile, ordinea argumentelor. */
+
+/* eyebrow — eticheta de secțiune, în coral, mereu deasupra titlului */
+.ochi{font-size:var(--cr-t-eticheta);font-weight:var(--cr-greutate-tare);color:var(--cr-coral);margin:0 0 var(--cr-sp-3)}
+.titlu-sectiune{font-size:var(--cr-t-titlu);font-weight:var(--cr-greutate-tare);line-height:var(--cr-lh-strans);letter-spacing:var(--cr-ls-strans);margin:0 0 var(--cr-sp-5);max-width:20ch}
+
+/* --- antet --- */
+.antet{position:sticky;top:0;z-index:10;background:var(--cr-fundal);border-bottom:var(--cr-bordura)}
+.antet__rand{display:flex;align-items:center;justify-content:space-between;gap:var(--cr-sp-4);padding-block:var(--cr-sp-3)}
+.marca{font-weight:var(--cr-greutate-tare);letter-spacing:var(--cr-ls-strans)}
+.nav{display:none;gap:var(--cr-sp-4)}
+@media(min-width:900px){.nav{display:flex}}
+.nav a{color:var(--cr-text-secundar);text-decoration:none;font-size:var(--cr-t-mic)}
+.nav a:hover{color:var(--cr-text)}
+
+/* --- erou --- */
+.erou{padding-block:var(--cr-sp-7) var(--cr-sp-6)}
+.erou__grila{display:grid;gap:var(--cr-sp-6);grid-template-columns:1fr}
+@media(min-width:900px){.erou__grila{grid-template-columns:1.1fr .9fr;align-items:center}}
+.erou__h1{font-size:var(--cr-t-afirmatie);font-weight:var(--cr-greutate-tare);line-height:var(--cr-lh-strans);letter-spacing:var(--cr-ls-strans);margin:0;max-width:16ch}
+.erou__sub{color:var(--cr-text-secundar);max-width:48ch;margin:var(--cr-sp-4) 0 var(--cr-sp-5)}
+.erou__actiuni{display:flex;flex-wrap:wrap;gap:var(--cr-sp-3);align-items:center}
+.erou__conditii{font-size:var(--cr-t-mic);color:var(--cr-text-secundar);margin:var(--cr-sp-5) 0 0}
+
+/* placa cu coada de oferte */
+.placa{background:var(--cr-plum);color:var(--cr-text-invers);border-radius:var(--cr-raza-medie);padding:var(--cr-sp-5)}
+.placa__legenda{display:flex;justify-content:space-between;font-size:var(--cr-t-eticheta);opacity:.7;margin:0 0 var(--cr-sp-4)}
+.cr-coada{display:flex;flex-direction:column;gap:var(--cr-sp-2)}
+.cr-coada__rand{height:20px;border-radius:var(--cr-raza-pastila);background:rgba(255,248,240,.16)}
+.cr-coada__rand--prima{background:transparent;box-shadow:inset 0 0 0 2px var(--cr-coral)}
+.cr-coada__rand--aleasa{background:var(--cr-mint)}
+.cr-coada__rand:nth-child(1){width:100%}.cr-coada__rand:nth-child(2){width:92%}
+.cr-coada__rand:nth-child(3){width:86%}.cr-coada__rand:nth-child(4){width:78%}
+.cr-coada__rand:nth-child(5){width:71%}.cr-coada__rand:nth-child(6){width:64%}
+.placa__nota{font-size:var(--cr-t-mic);opacity:.75;margin:var(--cr-sp-4) 0 0}
+
+/* alegerea segmentului — trei uși, nu un formular */
+.usi{display:flex;flex-wrap:wrap;gap:var(--cr-sp-2);margin-top:var(--cr-sp-5)}
+.usa{display:inline-flex;align-items:center;gap:var(--cr-sp-2);padding:var(--cr-sp-2) var(--cr-sp-4);border-radius:var(--cr-raza-pastila);background:var(--cr-suprafata);border:var(--cr-bordura);text-decoration:none;color:var(--cr-text);font-size:var(--cr-t-mic)}
+.usa:hover{border-color:var(--cr-plum)}
+
+/* --- banda de dovadă externă --- */
+.dovada{border-block:var(--cr-bordura);padding-block:var(--cr-sp-5)}
+.dovada__grila{display:grid;gap:var(--cr-sp-4);grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.dovada__valoare{font-weight:var(--cr-greutate-tare);display:block;margin-top:var(--cr-sp-1);font-size:var(--cr-t-mic)}
+
+/* --- cifre --- */
+.cifre{padding-block:var(--cr-sp-6)}
+.cifre__grila{display:grid;gap:var(--cr-sp-5);grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.cifra__mare{font-size:var(--cr-t-titlu);font-weight:var(--cr-greutate-tare);line-height:1;letter-spacing:var(--cr-ls-strans);display:block}
+.cifra__text{color:var(--cr-text-secundar);font-size:var(--cr-t-mic);margin:var(--cr-sp-2) 0 0}
+
+/* --- linia master, placă tipografică --- */
+.master{padding-block:var(--cr-sp-7)}
+.master__placa{background:var(--cr-plum);border-radius:var(--cr-raza-medie);padding:var(--cr-sp-7) var(--cr-sp-6)}
+.master__rand{display:flex;flex-wrap:wrap;gap:var(--cr-sp-2);align-items:center;font-size:var(--cr-t-titlu)}
+.master__nota{color:rgba(255,248,240,.7);margin:var(--cr-sp-5) 0 0;max-width:52ch}
+
+/* --- marchiză de piață --- */
+.piata{padding-block:var(--cr-sp-7)}
+.piata__banda{overflow:hidden;border-block:var(--cr-bordura);padding-block:var(--cr-sp-4);margin-top:var(--cr-sp-5)}
+.piata__sir{display:flex;gap:var(--cr-sp-5);white-space:nowrap;color:var(--cr-text-secundar);font-size:var(--cr-t-mic);animation:defilare 40s linear infinite}
+@keyframes defilare{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.piata__sir{animation:none}}
+
+/* --- proces --- */
+.proces{padding-block:var(--cr-sp-7)}
+.proces__lista{display:grid;gap:var(--cr-sp-6);grid-template-columns:repeat(auto-fit,minmax(250px,1fr));list-style:none;padding:0;margin:0}
+.proces__eticheta{font-size:var(--cr-t-eticheta);font-weight:var(--cr-greutate-tare);color:var(--cr-coral);margin:0 0 var(--cr-sp-2)}
+.proces__nume{font-size:var(--cr-t-subtitlu);font-weight:var(--cr-greutate-tare);letter-spacing:var(--cr-ls-strans);margin:0 0 var(--cr-sp-2)}
+.proces__text{color:var(--cr-text-secundar);margin:0}
+
+/* --- produse --- */
+.produse{padding-block:var(--cr-sp-7);background:var(--cr-suprafata);border-block:var(--cr-bordura)}
+.produse__grila{display:grid;gap:var(--cr-sp-4);grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.produs{border:var(--cr-bordura);border-radius:var(--cr-raza-medie);padding:var(--cr-sp-5);display:flex;flex-direction:column;gap:var(--cr-sp-3);background:var(--cr-fundal)}
+.produs__nume{font-size:var(--cr-t-subtitlu);font-weight:var(--cr-greutate-tare);letter-spacing:var(--cr-ls-strans);margin:0}
+.produs__text{color:var(--cr-text-secundar);margin:0;flex:1}
+.produs__link{color:var(--cr-text);font-weight:var(--cr-greutate-tare);text-decoration:none;font-size:var(--cr-t-mic)}
+.produs__link:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* --- poziția ta: SINGURUL loc cu albastru --- */
+.pozitie{padding-block:var(--cr-sp-7)}
+.pozitie__card{background:var(--cr-suprafata);border:var(--cr-bordura);border-radius:var(--cr-raza-medie);padding:var(--cr-sp-6)}
+.scala{margin:var(--cr-sp-5) 0;position:relative;height:8px;border-radius:var(--cr-raza-pastila);background:linear-gradient(90deg,var(--cr-mint),var(--cr-linie) 55%,var(--cr-coral))}
+.scala__reper{position:absolute;top:-6px;width:3px;height:20px;border-radius:2px;background:var(--cr-plum)}
+.scala__etichete{display:flex;justify-content:space-between;font-size:var(--cr-t-eticheta);color:var(--cr-text-secundar);margin-top:var(--cr-sp-3)}
+.rezultat{display:flex;flex-wrap:wrap;gap:var(--cr-sp-5);align-items:flex-end;margin-top:var(--cr-sp-5);padding-top:var(--cr-sp-5);border-top:var(--cr-bordura)}
+.rezultat__eticheta{font-size:var(--cr-t-eticheta);color:var(--cr-text-secundar);margin:0 0 var(--cr-sp-1)}
+.rezultat__cifra{font-size:var(--cr-t-titlu);font-weight:var(--cr-greutate-tare);line-height:1;letter-spacing:var(--cr-ls-strans);color:var(--cr-rezultat-pozitiv);margin:0}
+.pozitie__limita{font-size:var(--cr-t-mic);color:var(--cr-text-secundar);margin:var(--cr-sp-4) 0 0;max-width:56ch}
+
+/* --- comparație --- */
+.compara{padding-block:var(--cr-sp-7)}
+.tabel{width:100%;border-collapse:collapse;font-size:var(--cr-t-mic)}
+.tabel th,.tabel td{text-align:left;padding:var(--cr-sp-3);border-bottom:var(--cr-bordura);vertical-align:top}
+.tabel thead th{font-size:var(--cr-t-eticheta);color:var(--cr-text-secundar);font-weight:var(--cr-greutate-corp)}
+.tabel thead th:first-child{color:var(--cr-text);font-weight:var(--cr-greutate-tare)}
+.tabel tbody th{font-weight:var(--cr-greutate-corp);color:var(--cr-text-secundar)}
+.tabel td:first-of-type{font-weight:var(--cr-greutate-tare)}
+
+/* --- broker --- */
+.broker{padding-block:var(--cr-sp-7);background:var(--cr-suprafata);border-block:var(--cr-bordura)}
+.broker__grila{display:grid;gap:var(--cr-sp-6);grid-template-columns:1fr}
+@media(min-width:860px){.broker__grila{grid-template-columns:.8fr 1.2fr;align-items:center}}
+.broker__foto{aspect-ratio:4/5;border-radius:var(--cr-raza-medie);background:var(--cr-linie);display:flex;align-items:flex-end;padding:var(--cr-sp-4);color:var(--cr-text-secundar);font-size:var(--cr-t-eticheta)}
+.broker__citat{font-size:var(--cr-t-subtitlu);font-weight:var(--cr-greutate-tare);letter-spacing:var(--cr-ls-strans);margin:var(--cr-sp-5) 0 var(--cr-sp-3)}
+
+/* --- final --- */
+.final{padding-block:var(--cr-sp-8)}
+.final__afirmatie{font-size:var(--cr-t-afirmatie);font-weight:var(--cr-greutate-tare);line-height:var(--cr-lh-strans);letter-spacing:var(--cr-ls-strans);margin:0;max-width:14ch}
+.final__sub{color:var(--cr-text-secundar);margin:var(--cr-sp-4) 0 var(--cr-sp-5)}
+.final__dupa{font-size:var(--cr-t-mic);color:var(--cr-text-secundar);margin:var(--cr-sp-5) 0 0;max-width:56ch}
+
+/* --- subsol --- */
+.subsol{border-top:var(--cr-bordura);padding-block:var(--cr-sp-6);color:var(--cr-text-secundar);font-size:var(--cr-t-mic)}
+.subsol__linie{margin:0 0 var(--cr-sp-2)}

@@ -12,16 +12,16 @@
   --border-ui: rgba(255, 248, 240, 0.08);
   --border-ui-focus: rgba(255, 107, 74, 0.4);
   
-  --text-main: #FFF8F0;
+  --text-main: var(--cream);
   --text-muted: rgba(255, 248, 240, 0.6);
   --text-dim: rgba(255, 248, 240, 0.35);
 
-  --brand-coral: #FF6B4A;
-  --brand-plum: #2B2640;
-  --brand-cream: #FFF8F0;
-  --brand-sunshine: #FFD166;
-  --brand-mint: #06D6A0;
-  --brand-semnal: #2C86F6;
+  --brand-coral: var(--coral);
+  --brand-plum: var(--plum);
+  --brand-cream: var(--cream);
+  --brand-sunshine: var(--sunshine);
+  --brand-mint: var(--mint);
+  --brand-semnal: var(--semnal);
   
   --shadow-panel: 0 10px 40px rgba(0, 0, 0, 0.45);
 }
@@ -161,7 +161,7 @@ body {
 
 .btn-studio-primary {
   background: var(--brand-coral);
-  color: #FFF8F0;
+  color: var(--brand-cream);
   box-shadow: 0 4px 14px rgba(255, 107, 74, 0.35);
 }
 
@@ -171,7 +171,7 @@ body {
 }
 
 .btn-studio-export {
-  background: #2C86F6;
+  background: var(--brand-semnal);
   color: #FFFFFF;
   box-shadow: 0 4px 14px rgba(44, 134, 246, 0.35);
 }
@@ -398,11 +398,11 @@ body {
   transform: scale(1.05);
 }
 
-.swatch-plum { background: #2B2640; }
-.swatch-cream { background: #FFF8F0; }
-.swatch-coral { background: #FF6B4A; }
-.swatch-sunshine { background: #FFD166; }
-.swatch-mint { background: #06D6A0; }
+.swatch-plum { background: var(--brand-plum); }
+.swatch-cream { background: var(--brand-cream); }
+.swatch-coral { background: var(--brand-coral); }
+.swatch-sunshine { background: var(--brand-sunshine); }
+.swatch-mint { background: var(--brand-mint); }
 
 /* Format Buttons */
 .format-buttons {
@@ -553,7 +553,7 @@ body {
 .insta-name {
   font-size: 0.82rem;
   font-weight: 700;
-  color: #FFF8F0;
+  color: var(--brand-cream);
 }
 
 .insta-dots { color: #888; }
@@ -567,7 +567,7 @@ body {
 .insta-icons-left {
   display: flex;
   gap: 14px;
-  color: #FFF8F0;
+  color: var(--brand-cream);
 }
 
 .insta-caption-preview {
@@ -648,7 +648,7 @@ body {
 .issue-title {
   font-size: 0.76rem;
   font-weight: 700;
-  color: #FFF8F0;
+  color: var(--brand-cream);
 }
 
 .issue-match {
@@ -878,7 +878,7 @@ body {
 
 .step-tab.active .step-badge {
   background: var(--brand-coral);
-  color: #FFF8F0;
+  color: var(--brand-cream);
 }
 
 .post-types-grid {
@@ -933,7 +933,7 @@ body {
   font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: -0.01em;
-  color: #FFF8F0;
+  color: var(--brand-cream);
 }
 
 .post-type-desc {
@@ -965,7 +965,7 @@ body {
 .ai-prompt-dynamic-text {
   font-size: 0.76rem;
   line-height: 1.45;
-  color: #FFF8F0;
+  color: var(--brand-cream);
   font-family: 'Plus Jakarta Sans', monospace;
   background: rgba(0, 0, 0, 0.25);
   padding: 10px;

@@ -49,6 +49,12 @@ const BrandValidator = (function () {
       severity: 'warning',
       title: 'Fără DAE sau exemplu reprezentativ neautorizat',
       desc: 'Fără mențiuni generice de DAE dacă nu există cifre oficiale verificate legal.'
+    },
+    PILL_ON_PHOTO: {
+      id: 'rule_pill_on_photo',
+      severity: 'error',
+      title: 'Nicio pastilă peste fotografie',
+      desc: 'Peste o fotografie textul rulează liber (cream pe imagine închisă, plum pe imagine deschisă) — fără cutie, fără umbră, fără contur. Verifică faptul că postarea are fotografie de fundal (bgImage) și mod „text liber” activ (on-photo), nu pastile pline.'
     }
   };
 
@@ -190,21 +196,44 @@ const BrandValidator = (function () {
       }
     });
 
-    // Check Signal Blue Count rule
+    // Check Signal Blue Count rule — reflectă câmpurile reale folosite de
+    // app.js/templates.js (postData.hasSignalBlue), nu nume vechi neutilizate.
+    // calc_impact randează mereu albastrul pe rezultatul confirmat și forțează
+    // butonul CTA la plum (templates.js renderCalcImpact); toate celelalte
+    // template-uri pun albastrul doar pe butonul CTA. Cele două nu pot coexista
+    // per postare — verificarea de mai jos e o gardă de regresie, nu o
+    // corecție a unui bug curent cunoscut.
     let signalBlueCount = 0;
-    if (postData.useSignalBlueBadge) signalBlueCount++;
-    if (postData.useSignalBlueButton) signalBlueCount++;
-    if (postData.signalBlueElementsCount) signalBlueCount += postData.signalBlueElementsCount;
+    if (postData.hasSignalBlue) signalBlueCount++;
+    if (postData.templateType === 'calc_impact' && postData.hasSignalBlue && postData.ctaText && postData.forceSignalBlueCta) {
+      signalBlueCount++;
+    }
 
     if (signalBlueCount > 1) {
       issues.push({
         rule: RULES.SIGNAL_BLUE_LIMIT,
         field: 'Elemente Vizuale',
         match: `${signalBlueCount} elemente albastre semnal (#2C86F6)`,
-        suggestion: 'Păstrează albastrul semnal o singură dată pe ecran, exclusiv pe rezultatul confirmat.',
+        suggestion: 'Păstrează albastrul semnal o singură dată pe ecran, exclusiv pe rezultatul confirmat. Pe calc_impact, figura confirmată câștigă albastrul — butonul CTA rămâne plum.',
         autoFix: (data) => {
-          data.useSignalBlueBadge = true;
-          data.useSignalBlueButton = false;
+          data.forceSignalBlueCta = false;
+          return data;
+        }
+      });
+    }
+
+    // Check pill-on-photo rule. templates.js/app.js aplică automat clasa
+    // .on-photo (text liber, fără pastilă) când bgImage e setat — verificarea
+    // de aici e o gardă: dacă cineva randează manual eyebrow/CTA ca pastilă
+    // plină peste o fotografie, semnalează.
+    if (postData.bgImage && postData.forcePillOverPhoto) {
+      issues.push({
+        rule: RULES.PILL_ON_PHOTO,
+        field: 'Fundal fotografie',
+        match: 'pastilă forțată peste fotografie',
+        suggestion: 'Lasă modul „text liber” (on-photo) activ — nu forța stilul de pastilă peste bgImage.',
+        autoFix: (data) => {
+          data.forcePillOverPhoto = false;
           return data;
         }
       });

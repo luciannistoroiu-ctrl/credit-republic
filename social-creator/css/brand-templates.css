@@ -3,29 +3,27 @@
  * Pure implementation of the brand guidelines (colors, pill motifs, typography, asymmetry)
  */
 
+/* culorile de bază (--cream, --plum, --coral, --sunshine, --mint, --semnal)
+   vin din design-system/tokens/tokens.css + tokens/legacy-aliases.css,
+   încărcate înaintea acestui fișier. Opacitățile derivate de mai jos sunt
+   calculate din acele culori canonice (color-mix), nu redefinite ca hex —
+   evită duplicarea valorilor din tokens.css. */
 :root {
-  --cream: #FFF8F0;
-  --plum: #2B2640;
-  --coral: #FF6B4A;
-  --sunshine: #FFD166;
-  --mint: #06D6A0;
-  --semnal: #2C86F6; /* rezervat: rezultat confirmat / buton activ */
-  
-  --plum-90: rgba(43, 38, 64, 0.90);
-  --plum-70: rgba(43, 38, 64, 0.70);
-  --plum-45: rgba(43, 38, 64, 0.45);
-  --plum-20: rgba(43, 38, 64, 0.20);
-  --plum-10: rgba(43, 38, 64, 0.10);
-  
-  --cream-90: rgba(255, 248, 240, 0.90);
-  --cream-70: rgba(255, 248, 240, 0.70);
-  --cream-45: rgba(255, 248, 240, 0.45);
-  --cream-25: rgba(255, 248, 240, 0.25);
-  --cream-15: rgba(255, 248, 240, 0.15);
+  --plum-90: color-mix(in srgb, var(--plum) 90%, transparent);
+  --plum-70: color-mix(in srgb, var(--plum) 70%, transparent);
+  --plum-45: color-mix(in srgb, var(--plum) 45%, transparent);
+  --plum-20: color-mix(in srgb, var(--plum) 20%, transparent);
+  --plum-10: color-mix(in srgb, var(--plum) 10%, transparent);
 
-  --font-display: 'Omnes', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Helvetica Neue', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-  --font-util: 'Plus Jakarta Sans', 'Helvetica Neue', sans-serif;
+  --cream-90: color-mix(in srgb, var(--cream) 90%, transparent);
+  --cream-70: color-mix(in srgb, var(--cream) 70%, transparent);
+  --cream-45: color-mix(in srgb, var(--cream) 45%, transparent);
+  --cream-25: color-mix(in srgb, var(--cream) 25%, transparent);
+  --cream-15: color-mix(in srgb, var(--cream) 15%, transparent);
+
+  --font-display: var(--cr-font);
+  --font-body: var(--cr-font);
+  --font-util: var(--cr-font);
 }
 
 /* ==========================================================================
@@ -183,6 +181,38 @@
 .eyebrow.on-dark {
   background: var(--cream-25);
   color: var(--cream);
+}
+
+/* ==========================================================================
+   TEXT LIBER PE FOTOGRAFIE
+   regula: niciodată pastilă peste o fotografie. acolo textul rulează liber —
+   cream pe imagine închisă, plum pe imagine deschisă. fără cutie, fără umbră,
+   fără contur. .on-photo se pune pe .post-canvas-wrapper când bgImage e activ;
+   .on-photo--plum se adaugă doar dacă fotografia e deschisă la culoare.
+   ========================================================================== */
+.post-canvas-wrapper.on-photo .eyebrow,
+.post-canvas-wrapper.on-photo .footer-cta-pill,
+.post-canvas-wrapper.on-photo .carousel-counter-pill {
+  background: none;
+  box-shadow: none;
+  border: 0;
+  padding-left: 0;
+  padding-right: 0;
+  color: var(--cream);
+}
+
+.post-canvas-wrapper.on-photo.on-photo--plum .eyebrow,
+.post-canvas-wrapper.on-photo.on-photo--plum .footer-cta-pill,
+.post-canvas-wrapper.on-photo.on-photo--plum .carousel-counter-pill {
+  color: var(--plum);
+}
+
+/* semnalul rămâne singura culoare care poate păstra fundal plin peste
+   fotografie — e mereu pe un rezultat confirmat / butonul activ, nu decorativ */
+.post-canvas-wrapper.on-photo .cta-signal-blue {
+  background: var(--semnal);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(44, 134, 246, 0.35);
 }
 
 .carousel-counter-pill {
@@ -513,11 +543,18 @@
   font-weight: 700;
 }
 
+/* albastrul semnal e rezervat unui rezultat confirmat sau butonului activ —
+   niciodată decorativ pe o etichetă. „AI compară piața” e informativ, deci
+   plum (ca eticheta „Omul negociază”), nu semnal. */
 .tag-ai {
   padding: 3px 9px;
   border-radius: 999px;
-  background: rgba(44, 134, 246, 0.15);
-  color: var(--semnal);
+  background: rgba(43, 38, 64, 0.12);
+  color: var(--plum);
+}
+.theme-plum .tag-ai {
+  background: rgba(255, 248, 240, 0.18);
+  color: var(--cream);
 }
 
 .tag-human {

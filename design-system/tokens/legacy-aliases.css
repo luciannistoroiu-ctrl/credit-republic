@@ -1,0 +1,49 @@
+/* credit republic — punte de compatibilitate.
+   Canonicele sunt în tokens/tokens.css. Numele de aici sunt cele folosite de
+   componentele React din /components, de stratul .s-* din social.css și de fișele
+   mai vechi din /guidelines. De scos când toate trec pe --cr-* din tokens.css.
+   Nu adăuga nume noi aici. */
+:root{
+/* --- nume v5.0, scurte --- */
+--cr-signal:var(--cr-semnal); --cr-signal-hover:#1B72E0;
+--cr-bg:var(--cr-fundal); --cr-bg-invers:var(--cr-fundal-invers);
+--cr-surface:var(--cr-suprafata); --cr-ink:var(--cr-text); --cr-ink-invers:var(--cr-text-invers);
+--cr-ink-mut:var(--cr-text-secundar); --cr-linie-tare:var(--cr-plum-40);
+--cr-s1:var(--cr-sp-1); --cr-s2:var(--cr-sp-2); --cr-s3:var(--cr-sp-3); --cr-s4:var(--cr-sp-3);
+--cr-s5:var(--cr-sp-4); --cr-s6:var(--cr-sp-5); --cr-s7:var(--cr-sp-6); --cr-s8:var(--cr-sp-7);
+--cr-s9:var(--cr-sp-8); --cr-s10:var(--cr-sp-8);
+--cr-r-sm:var(--cr-raza-mica); --cr-r-md:var(--cr-raza-medie); --cr-r-lg:var(--cr-raza-medie);
+--cr-r-pill:var(--cr-raza-pastila);
+--cr-elev:var(--cr-umbra);
+--cr-ease:cubic-bezier(0.2,0,0.2,1); /* @kind other */ --cr-dur:160ms; /* @kind other */
+--cr-container:var(--cr-latime-max); --cr-gutter:var(--cr-sp-4); --cr-masura:var(--cr-latime-text);
+--cr-sectiune:var(--cr-sp-7);
+--cr-display:var(--cr-t-afirmatie); --cr-h1:var(--cr-t-titlu); --cr-h2:var(--cr-t-titlu);
+--cr-h3:var(--cr-t-subtitlu); --cr-body-lg:var(--cr-t-subtitlu); --cr-body:var(--cr-t-corp);
+--cr-small:var(--cr-t-mic); --cr-caption:var(--cr-t-eticheta);
+--cr-w-bold:700; /* @kind font */ --cr-w-regular:400; /* @kind font */
+
+/* --- nume v4, engleze --- */
+--cream:var(--cr-cream); --plum:var(--cr-plum); --coral:var(--cr-coral);
+--sunshine:var(--cr-sunshine); --mint:var(--cr-mint); --signal-blue:var(--cr-semnal);
+--surface-page:var(--cr-fundal); --surface-card:var(--cr-suprafata);
+--text-primary:var(--cr-text); --text-muted:var(--cr-text-secundar);
+--border-subtle:var(--cr-linie); --border-strong:var(--cr-plum-40);
+--accent-warm:var(--cr-coral);
+--font-sans:var(--cr-font);
+--font-weight-regular:400; /* @kind font */ --font-weight-medium:500; /* @kind font */
+--font-weight-bold:700; /* @kind font */ --font-weight-black:700; /* @kind font */
+--text-xs:var(--cr-t-eticheta); --text-sm:var(--cr-t-mic); --text-body:var(--cr-t-corp);
+--text-lg:var(--cr-t-subtitlu); --text-xl:var(--cr-t-subtitlu); --text-2xl:var(--cr-t-titlu);
+--text-3xl:var(--cr-t-titlu); --text-display:var(--cr-t-afirmatie); --text-hero:var(--cr-t-afirmatie);
+--leading-tight:1.08; /* @kind other */ --leading-snug:1.25; /* @kind other */ --leading-body:1.5; /* @kind other */
+--tracking-tight:-0.015em; /* @kind other */ --tracking-normal:0em; /* @kind other */
+--space-1:var(--cr-sp-1); --space-2:var(--cr-sp-2); --space-3:var(--cr-sp-3);
+--space-4:var(--cr-sp-4); --space-5:var(--cr-sp-5); --space-6:var(--cr-sp-6);
+--space-7:var(--cr-sp-7); --space-8:var(--cr-sp-8);
+--radius-sm:var(--cr-raza-mica); --radius-md:var(--cr-raza-medie);
+--radius-lg:var(--cr-raza-medie); --radius-pill:var(--cr-raza-pastila);
+--shadow-sm:var(--cr-umbra); --shadow-md:var(--cr-umbra);
+--ease-standard:cubic-bezier(0.2,0,0.2,1); /* @kind other */
+--duration-fast:120ms; /* @kind other */ --duration-base:160ms; /* @kind other */ --duration-slow:320ms; /* @kind other */
+}

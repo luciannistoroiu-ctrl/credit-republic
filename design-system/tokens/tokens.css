@@ -1,0 +1,104 @@
+/* credit republic — tokens
+   sursa unică de adevăr pentru culoare, tipografie, spațiere, formă.
+   regulile de folosire sunt în design-system.md. nicio valoare nu se scrie
+   direct într-o componentă: totul trece prin variabilele de aici. */
+
+:root {
+
+  /* ---------- culoare ---------- */
+
+  --cr-cream:      #FFF8F0;
+  --cr-plum:       #2B2640;
+  --cr-coral:      #FF6B4A;
+  --cr-sunshine:   #FFD166;
+  --cr-mint:       #06D6A0;
+
+  /* semnalul. o singură dată pe ecran. vezi design-system.md §2 */
+  --cr-semnal:     #2C86F6;
+
+  /* derivate — doar pentru text secundar, linii și stări de repaus.
+     nu sunt culori de brand și nu se folosesc pe suprafețe mari */
+  --cr-plum-70:    #6B6480;
+  --cr-plum-40:    #A8A2B8;
+  --cr-linie:      #E4DED6;
+  --cr-suprafata:  #FFFFFF;
+
+  /* roluri semantice — componentele referă rolul, nu culoarea */
+  --cr-fundal:            var(--cr-cream);
+  --cr-fundal-invers:     var(--cr-plum);
+  --cr-text:              var(--cr-plum);
+  --cr-text-invers:       var(--cr-cream);
+  --cr-text-secundar:     var(--cr-plum-70);
+  --cr-rezultat-pozitiv:  var(--cr-semnal);
+
+  /* ---------- tipografie ---------- */
+
+  /* Helvetica Neue pe Apple, Arial ca substitut metric pe restul.
+     nu se încarcă niciun webfont: stiva e intenționat de sistem.
+     în randarea din container, substitutul e TeX Gyre Heros — vezi 04, nu aici */
+  --cr-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* scară: raport 1.25, ancorată pe 17px corp.
+     afirmația e singura care sare — un brand cu o singură voce pe ecran */
+  --cr-t-afirmatie:  clamp(2.25rem, 5.2vw, 4rem); /* @kind font */
+  --cr-t-titlu:      clamp(1.75rem, 3.2vw, 2.5rem); /* @kind font */
+  --cr-t-subtitlu:   1.375rem;
+  --cr-t-corp:       1.0625rem;
+  --cr-t-mic:        0.9375rem;
+  --cr-t-eticheta:   0.8125rem;
+
+  --cr-greutate-tare:  700; /* @kind font */
+  --cr-greutate-corp:  400; /* @kind font */
+
+  --cr-lh-strans:  1.08; /* @kind other */ /* afirmații și titluri */
+  --cr-lh-normal:  1.5; /* @kind other */ /* corp */
+  --cr-ls-strans:  -0.015em;
+
+  /* ---------- spațiere ---------- */
+  /* scară de 4px. nu se folosesc valori intermediare */
+
+  --cr-sp-1:  4px;
+  --cr-sp-2:  8px;
+  --cr-sp-3:  16px;
+  --cr-sp-4:  24px;
+  --cr-sp-5:  32px;
+  --cr-sp-6:  48px;
+  --cr-sp-7:  72px;
+  --cr-sp-8:  112px;
+
+  --cr-latime-max:   1120px;
+  --cr-latime-text:  62ch;
+
+  /* ---------- formă ---------- */
+
+  --cr-raza-mica:   8px;
+  --cr-raza-medie:  16px;
+  --cr-raza-pastila: 999px;
+
+  --cr-bordura: 1px solid var(--cr-linie);
+
+  /* umbra e rezervată suprafețelor care plutesc peste altceva.
+     niciodată pe pastile, niciodată pe text */
+  --cr-umbra: 0 2px 8px rgba(43, 38, 64, 0.08);
+
+  /* ---------- mișcare ---------- */
+
+  --cr-durata: 160ms; /* @kind other */
+  --cr-curba: cubic-bezier(0.2, 0, 0.2, 1); /* @kind other */
+  --cr-tranzitie: var(--cr-durata) var(--cr-curba); /* @kind other */
+}
+
+/* grila de ancore, pentru cadrele vizuale 4:5 · vezi 02 §6.
+   benzi: cap 28% · corp 44% · talpă 28% din aria vie */
+:root {
+  --cr-marja-cadru:  8%;
+  --cr-banda-cap:    28%;
+  --cr-banda-corp:   44%;
+  --cr-banda-talpa:  28%;
+}
+
+/* mișcarea redusă schimbă doar durata. --cr-tranzitie se declară o singură dată,
+   mai sus, și se recompune automat din --cr-durata */
+@media (prefers-reduced-motion: reduce) {
+  :root { --cr-durata: 0ms; /* @kind other */ }
+}

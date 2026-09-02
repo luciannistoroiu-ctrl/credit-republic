@@ -134,11 +134,11 @@ const TemplatesEngine = (function () {
           <h2 class="post-main-title">${escapeHtml(postData.title)}</h2>
           <div class="myth-reality-cards">
             <div class="mr-card card-myth">
-              <div class="mr-badge badge-myth">MITUL DIN PIAȚĂ</div>
+              <div class="mr-badge badge-myth">mitul din piață</div>
               <div class="mr-text">${escapeHtml(postData.point1 || 'Merg la banca mea pentru că primesc salariul acolo.')}</div>
             </div>
             <div class="mr-card card-reality">
-              <div class="mr-badge badge-reality">REALITATEA</div>
+              <div class="mr-badge badge-reality">realitatea</div>
               <div class="mr-text">${escapeHtml(postData.point2 || 'Fidelitatea bancară este rareori răsplătită cu cel mai mic cost total.')}</div>
             </div>
           </div>
@@ -188,7 +188,7 @@ const TemplatesEngine = (function () {
             </div>
           </div>
         </div>
-        ${renderFooter(postData)}
+        ${renderFooter({ ...postData, hasSignalBlue: false })}
       </div>
     `;
   }
@@ -322,13 +322,13 @@ const TemplatesEngine = (function () {
           
           <div class="comp-table">
             <div class="comp-col col-old">
-              <div class="comp-col-header">PE CONT PROPRIU</div>
+              <div class="comp-col-header">pe cont propriu</div>
               <div class="comp-item"><span class="comp-cross">✕</span> 5 drumuri la 5 sucursale</div>
               <div class="comp-item"><span class="comp-cross">✕</span> Formulare repetate de 5 ori</div>
               <div class="comp-item"><span class="comp-cross">✕</span> Fără pârghie de negociere</div>
             </div>
             <div class="comp-col col-cr">
-              <div class="comp-col-header">CREDIT REPUBLIC</div>
+              <div class="comp-col-header">credit republic</div>
               <div class="comp-item"><span class="comp-check">✓</span> 1 singură aplicare online</div>
               <div class="comp-item"><span class="comp-check">✓</span> Toate băncile comparate</div>
               <div class="comp-item"><span class="comp-check">✓</span> Broker autorizat AVBS dedicat</div>
@@ -422,11 +422,13 @@ const TemplatesEngine = (function () {
     const formatClass = `format-${(postData.format || '1:1').replace(':', '-')}`;
     const bgFilterStyle = postData.imageFilter ? `filter: ${postData.imageFilter};` : '';
     const bgImageStyle = postData.bgImage ? `background-image: url('${postData.bgImage}'); background-size: cover; background-position: center; ${bgFilterStyle}` : '';
+    // regula: nicio pastilă peste fotografie — text liber în loc. vezi brand-templates.css
+    const onPhotoClass = postData.bgImage ? `on-photo${postData.photoIsLight ? ' on-photo--plum' : ''}` : '';
 
     const showStoryProgress = postData.format === '9:16' || postData.showProgressBar;
 
     return `
-      <div id="social-post-canvas" class="post-canvas-wrapper ${themeClass} ${formatClass}" style="${bgImageStyle}">
+      <div id="social-post-canvas" class="post-canvas-wrapper ${themeClass} ${formatClass} ${onPhotoClass}" style="${bgImageStyle}">
         ${showStoryProgress ? `
           <div class="story-progress-container">
             <div class="story-progress-bar"><div class="story-progress-fill"></div></div>
