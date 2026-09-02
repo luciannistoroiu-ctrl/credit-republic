@@ -109,6 +109,18 @@
       "skillPath": "skills/calculator-design/SKILL.md",
       "computedHash": "f1596565dd9f152b0b1bfcf5be26414101aa11488aa307cd7010eae4767bbd0b"
     },
+    "captions-overlay": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/captions-overlay/SKILL.md",
+      "computedHash": "3a3a1d936a1d8a11708a7765ec784831d4819fb8ede33736c3321367f94a850b"
+    },
+    "changelog-video": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/changelog-video/SKILL.md",
+      "computedHash": "3c9964ce84c763864391e0a158e695e14f0b1a4393c0f849d1103724ef828ff2"
+    },
     "chatbot-flow-design": {
       "source": "rampstackco/claude-skills",
       "sourceType": "github",
@@ -205,6 +217,12 @@
       "skillPath": "skills/cro-optimization/SKILL.md",
       "computedHash": "d5f370ef9eb9e3d1142d794b4cfcd1b1ee73668b9123fa7a04d5098252b4e87d"
     },
+    "cut-the-curve": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/cut-the-curve/SKILL.md",
+      "computedHash": "0dc00f155130d001cfe6f9bfcc2da2452ad92c13275564178595ec7948414154"
+    },
     "data-warehouse-experimentation": {
       "source": "rampstackco/claude-skills",
       "sourceType": "github",
@@ -265,6 +283,12 @@
       "skillPath": "skills/email-sequences/SKILL.md",
       "computedHash": "6e827a5f900fadad70326b44bb6dd3305f2a99acbf6850e63a41674808523dd4"
     },
+    "embedded-captions": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/embedded-captions/SKILL.md",
+      "computedHash": "d0f86a829c3687376943db94a44375aa3dc98928ee534f662f1130a3a4974c3e"
+    },
     "evidence-based-reviews": {
       "source": "rampstackco/claude-skills",
       "sourceType": "github",
@@ -295,6 +319,12 @@
       "skillPath": "skills/extract-design-system/SKILL.md",
       "computedHash": "c66852c6bc6e0267dbcc9651fa698701387fc11c5058104bc33e67f495936f7e"
     },
+    "faceless-explainer": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/faceless-explainer/SKILL.md",
+      "computedHash": "7447b464b3268046aaf58899e1b33d5f8be7a5f51a83949e2f8db1651ae0f351"
+    },
     "feature-flagging": {
       "source": "rampstackco/claude-skills",
       "sourceType": "github",
@@ -306,6 +336,12 @@
       "sourceType": "github",
       "skillPath": "skills/feature-launch-playbook/SKILL.md",
       "computedHash": "cc558752aa6781cf4e706c7d6ea5b9f21c054feab324eb1db448e3a7896b303c"
+    },
+    "figma": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/figma/SKILL.md",
+      "computedHash": "036ab209910487e3bfeba7423318d1c7576f3179fe4d69551621ac95c72216d3"
     },
     "form-strategy": {
       "source": "rampstackco/claude-skills",
@@ -324,6 +360,60 @@
       "sourceType": "github",
       "skillPath": "skills/funnel-flow-architecture/SKILL.md",
       "computedHash": "bc79b6c39382bda3292bcc40246ff78baee83e16b4241f67ee67128a2f44c91f"
+    },
+    "general-video": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/general-video/SKILL.md",
+      "computedHash": "7647983e29041ea5d6588dadec8d0e0ab32d96c2181fb384d1a496a3b7697b67"
+    },
+    "hyperframes": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/hyperframes/SKILL.md",
+      "computedHash": "3d93b129678da8b3e6d55a6cf44679786e7ed937f622aecfae6e08b4d7e99577"
+    },
+    "hyperframes-animation": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/hyperframes-animation/SKILL.md",
+      "computedHash": "da8be0122570e95dfd1beba95a459a516324e6b3c1bc4158c0587aff54cfe85b"
+    },
+    "hyperframes-audio": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/hyperframes-audio/SKILL.md",
+      "computedHash": "c0f7619c2a1f8d3c365d01eacc0998b6eade52e1ee9a5fceeef7c508ec9f9642"
+    },
+    "hyperframes-cli": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/hyperframes-cli/SKILL.md",
+      "computedHash": "2197e685d1fcbd43dc446acfa8dc2a15490b839298098f297f3c1660773276cf"
+    },
+    "hyperframes-core": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/hyperframes-core/SKILL.md",
+      "computedHash": "5df44a1f1d60661f74118a1741f06dfda2de4175444da0ce9b3f7cc8b0820ea2"
+    },
+    "hyperframes-creative": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/hyperframes-creative/SKILL.md",
+      "computedHash": "956fdaedc4619bb047b6fa84f2aa7530548dcc506d795a5e70b41f3626a171a4"
+    },
+    "hyperframes-keyframes": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/hyperframes-keyframes/SKILL.md",
+      "computedHash": "fc5657f4f5cbbeeab23f951ed739e0fe9e29a9865cdabb80d9e87840628a2a46"
+    },
+    "hyperframes-registry": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/hyperframes-registry/SKILL.md",
+      "computedHash": "ac8a17b31cb3dcbd025e17be617a531b2be6905cb764d4b1339bca54d7bc8f33"
     },
     "incident-response": {
       "source": "rampstackco/claude-skills",
@@ -403,17 +493,41 @@
       "skillPath": "skills/media-asset-management/SKILL.md",
       "computedHash": "599306252507eba6b2033be4fb9f2c50b46bd998e703e51a98326f41cda07456"
     },
+    "media-use": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/media-use/SKILL.md",
+      "computedHash": "c5b802f1768a18b19afe24ae3e487f4f45577443c5c8c275129223d8e7d2dc43"
+    },
     "monitoring-and-alerting": {
       "source": "rampstackco/claude-skills",
       "sourceType": "github",
       "skillPath": "skills/monitoring-and-alerting/SKILL.md",
       "computedHash": "7d6d87ae8464db31cb0f7b4c13cdecda6995a1456ffaabe8204e1716bacfccd2"
     },
+    "motion-doctrine": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/motion-doctrine/SKILL.md",
+      "computedHash": "cf96f61cfa3e779744a8d8cbe04aef8f01503c8115cbf4316dcba419da5ca3c4"
+    },
+    "motion-graphics": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/motion-graphics/SKILL.md",
+      "computedHash": "ae6eb79b48f1f4d3c2d1e5a5cf884432e8dacc092f0db4e4f5fce258fc8b1a2a"
+    },
     "multi-step-form-design": {
       "source": "rampstackco/claude-skills",
       "sourceType": "github",
       "skillPath": "skills/multi-step-form-design/SKILL.md",
       "computedHash": "48367e165f05193e63455094ac6997af1f88d757b4c6bdcd50d20d69fd300454"
+    },
+    "music-to-video": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/music-to-video/SKILL.md",
+      "computedHash": "eb78d1948d30018dcbe397c3fa110518cd5d98de63081b6741cd9e799f00ac07"
     },
     "okr-design": {
       "source": "rampstackco/claude-skills",
@@ -426,6 +540,12 @@
       "sourceType": "github",
       "skillPath": "skills/onboarding-wizard-design/SKILL.md",
       "computedHash": "df03bbde5ede735ce7e2b5d4a3413a0fffea8ad3771acefff9fea7f7f7e9c93a"
+    },
+    "oversized-cursor": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/oversized-cursor/SKILL.md",
+      "computedHash": "449de00b2b6f40ba60e8626d9a8802e5481018f0a64eae3ecd3fb8ad8f4b230b"
     },
     "paid-media-strategy": {
       "source": "rampstackco/claude-skills",
@@ -451,6 +571,12 @@
       "skillPath": "skills/pm-spec-writing/SKILL.md",
       "computedHash": "83fdb9fcff6d5a1e3cf0b4616fcea83fa2090de8e74d771516098ff150bd9d68"
     },
+    "pr-to-video": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/pr-to-video/SKILL.md",
+      "computedHash": "74de3063a440343b2d69a3ba27e8a75a01e06b4e36e823e21b7736df23b5035f"
+    },
     "product-analytics-setup": {
       "source": "rampstackco/claude-skills",
       "sourceType": "github",
@@ -462,6 +588,12 @@
       "sourceType": "github",
       "skillPath": "skills/product-configurator-design/SKILL.md",
       "computedHash": "510315718bcf6c4afa21009ec35b024604bce4f4b72f3b7920e2576c24d5103e"
+    },
+    "product-launch-video": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/product-launch-video/SKILL.md",
+      "computedHash": "a6c5ac4fcc566b033f71dc8a3a956892fd2073e6a31722349d81732c30f81c30"
     },
     "programmatic-seo": {
       "source": "rampstackco/claude-skills",
@@ -481,6 +613,12 @@
       "skillPath": "skills/quiz-and-assessment-design/SKILL.md",
       "computedHash": "5efd82099650d1f9ee8113d72d82834727dfae5ed326f79b9e653c5f08b15c13"
     },
+    "remotion-to-hyperframes": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/remotion-to-hyperframes/SKILL.md",
+      "computedHash": "34c4a5a6ec70ab072f346684664f87e9e2697c0413e94280a1e425804499a417"
+    },
     "roadmap-planning": {
       "source": "rampstackco/claude-skills",
       "sourceType": "github",
@@ -492,6 +630,12 @@
       "sourceType": "github",
       "skillPath": "skills/scheduler-and-booking-design/SKILL.md",
       "computedHash": "5ee53a94ac77b89c78ef53a80077306c72adb4cbac8f1220d2964a465465f9d1"
+    },
+    "seam-craft": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/seam-craft/SKILL.md",
+      "computedHash": "7469e9113cec2fbf345c22a23145a686797bcdd3fd7ba267910c8bb66d60a96a"
     },
     "security-baseline": {
       "source": "rampstackco/claude-skills",
@@ -589,11 +733,23 @@
       "skillPath": "skills/skill-creation-walkthrough/SKILL.md",
       "computedHash": "1fa07cc0f513ace021c9162489281734894cf426a82cdc7741224b951c598659"
     },
+    "slideshow": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/slideshow/SKILL.md",
+      "computedHash": "ac65a7ae7d5695a1d1e29f4e7295dc892e42dd4bd1222b9408cbd9f9179176cc"
+    },
     "stakeholder-communication": {
       "source": "rampstackco/claude-skills",
       "sourceType": "github",
       "skillPath": "skills/stakeholder-communication/SKILL.md",
       "computedHash": "24fade30ddbb4d1856284b1263bfcdb40cb9c1d0d1f500e91477328c7af2068a"
+    },
+    "talking-head-recut": {
+      "source": "heygen-com/hyperframes",
+      "sourceType": "github",
+      "skillPath": "skills/talking-head-recut/SKILL.md",
+      "computedHash": "414bcbebc52eba6455b76a2e78bebcd8dd6929abc76fcdeb1ad8a70043d96186"
     },
     "team-onboarding-playbook": {
       "source": "rampstackco/claude-skills",

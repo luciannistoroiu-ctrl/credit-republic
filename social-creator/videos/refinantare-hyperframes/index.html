@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>credit republic — refinanțarea amânată</title>
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #2b2640;
+      }
+      /* credit republic — stivă de sistem, fără webfont încărcat */
+      body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #fff8f0;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+      }
+      .clip {
+        position: absolute;
+        inset: 0;
+      }
+
+      /* --- wordmark, colț sus --- */
+      #wordmark {
+        position: absolute;
+        top: 96px;
+        right: 72px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        font-size: 34px;
+        letter-spacing: -0.02em;
+      }
+      #wordmark .dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 999px;
+        background: #ff6b4a;
+        display: inline-block;
+      }
+
+      /* --- titlu, kinetic --- */
+      #headline {
+        position: absolute;
+        left: 72px;
+        right: 72px;
+        top: 46%;
+        transform: translateY(-50%);
+        font-size: 108px;
+        font-weight: 700;
+        line-height: 1.06;
+        letter-spacing: -0.03em;
+      }
+      #headline .word {
+        display: inline-block;
+        opacity: 0;
+      }
+
+      /* --- subtitlu --- */
+      #subtitle {
+        position: absolute;
+        left: 72px;
+        right: 130px;
+        top: 46%;
+        margin-top: 240px;
+        font-size: 44px;
+        line-height: 1.4;
+        font-weight: 400;
+        color: rgba(255, 248, 240, 0.72);
+        opacity: 0;
+      }
+
+      /* --- CTA, jos --- */
+      #cta {
+        position: absolute;
+        left: 72px;
+        bottom: 120px;
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+        padding: 28px 44px;
+        border-radius: 999px;
+        background: #fff8f0;
+        color: #2b2640;
+        font-size: 40px;
+        font-weight: 700;
+        opacity: 0;
+      }
+      #cta svg {
+        width: 34px;
+        height: 34px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="6"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div id="scene" class="clip" data-start="0" data-duration="6" data-track-index="1">
+        <div id="wordmark"><span class="dot"></span>credit republic</div>
+
+        <h1 id="headline">
+          <span class="word">fiecare</span>
+          <span class="word">lună</span>
+          <span class="word">de</span>
+          <span class="word">amânare</span>
+          <span class="word">are</span>
+          <span class="word">un</span>
+          <span class="word">preț.</span>
+        </h1>
+
+        <p id="subtitle">verifică dacă dobânda ta mai reflectă piața de azi.</p>
+
+        <div id="cta">
+          <span>verifică poziția ta</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // logo, imediat
+      tl.from("#wordmark", { opacity: 0, y: -16, duration: 0.5, ease: "power2.out" }, 0.1);
+
+      // titlu, cuvânt cu cuvânt
+      const words = gsap.utils.toArray("#headline .word");
+      words.forEach((w, i) => {
+        tl.to(w, { opacity: 1, duration: 0.42, ease: "power2.out" }, 0.35 + i * 0.14);
+      });
+
+      // subtitlu
+      tl.to("#subtitle", { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 1.9);
+
+      // CTA
+      tl.to("#cta", { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 2.5);
+
+      // hold pe cadrul final până la 6s
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
