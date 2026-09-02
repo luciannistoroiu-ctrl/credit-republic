@@ -431,7 +431,11 @@ const TemplatesEngine = (function () {
     const bgFilterStyle = postData.imageFilter ? `filter: ${postData.imageFilter};` : '';
     const bgImageStyle = postData.bgImage ? `background-image: url('${postData.bgImage}'); background-size: cover; background-position: center; ${bgFilterStyle}` : '';
     // regula: nicio pastilă peste fotografie — text liber în loc. vezi brand-templates.css
-    const onPhotoClass = postData.bgImage ? `on-photo${postData.photoIsLight ? ' on-photo--plum' : ''}` : '';
+    // textPosition alege banda liberă de subiect a fotografiei ('cap' implicit, 'talpa' când
+    // subiectul fotografiei ocupă partea de sus a cadrului)
+    const onPhotoClass = postData.bgImage
+      ? `on-photo${postData.photoIsLight ? ' on-photo--plum' : ''}${postData.textPosition === 'talpa' ? ' on-photo--talpa' : ''}`
+      : '';
 
     const showStoryProgress = postData.format === '9:16' || postData.showProgressBar;
 

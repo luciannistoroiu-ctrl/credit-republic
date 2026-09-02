@@ -200,6 +200,34 @@
   color: var(--plum);
 }
 
+/* gradient doar dacă lipsește contrastul, ca în social.css .s-foto--grad-jos:
+   max 40% înălțime, de la marginea de ancorare a textului (cap sau talpă) */
+.post-canvas-wrapper.on-photo::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  inset: auto 0 0 0;
+  height: 38%;
+  background: linear-gradient(to top, rgba(43, 38, 64, 0.55), rgba(43, 38, 64, 0));
+}
+.post-canvas-wrapper.on-photo:not(.on-photo--talpa)::before {
+  inset: 0 0 auto 0;
+  background: linear-gradient(to bottom, rgba(43, 38, 64, 0.55), rgba(43, 38, 64, 0));
+}
+.post-canvas-wrapper.on-photo.on-photo--plum::before {
+  background: linear-gradient(to top, rgba(255, 248, 240, 0.6), rgba(255, 248, 240, 0));
+}
+.post-canvas-wrapper.on-photo.on-photo--plum:not(.on-photo--talpa)::before {
+  background: linear-gradient(to bottom, rgba(255, 248, 240, 0.6), rgba(255, 248, 240, 0));
+}
+.post-canvas-wrapper.on-photo .post-header,
+.post-canvas-wrapper.on-photo .post-body,
+.post-canvas-wrapper.on-photo .post-footer {
+  position: relative;
+  z-index: 3;
+}
+
 .post-canvas-wrapper.on-photo .eyebrow,
 .post-canvas-wrapper.on-photo .footer-cta-pill,
 .post-canvas-wrapper.on-photo .carousel-counter-pill {
@@ -239,6 +267,21 @@
   flex-direction: column;
   justify-content: center;
   text-align: left;
+}
+
+/* pe fotografie, subiectul (foto) ocupă banda de corp — textul liber nu are
+   voie să stea centrat peste el. implicit îl ancorăm în capul benzii, ca în
+   social.css (.s-cap); .on-photo--talpa mută-l în banda de talpă pentru
+   fotografiile unde subiectul urcă spre partea de sus a cadrului.
+   „subject in the body band, text in the head or the foot” */
+.post-canvas-wrapper.on-photo .post-body {
+  justify-content: flex-start;
+  padding-top: 6%;
+}
+.post-canvas-wrapper.on-photo.on-photo--talpa .post-body {
+  justify-content: flex-end;
+  padding-top: 0;
+  padding-bottom: 10%;
 }
 
 /* Post Footer */
@@ -308,11 +351,20 @@
 /* 1. Statement Layout */
 .statement-headline {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(1.6rem, 5.2vw, 2.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.025em;
+  font-weight: 700;
+  font-size: clamp(2rem, 7.4vw, 3.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   margin: 0 0 16px 0;
+}
+
+/* pe fotografie, titlul nu se întinde pe toată lățimea (rămâne în banda
+   liberă de subiect) și păstrează dimensiunea mai mică de dinainte — banda
+   e mai scurtă decât un cadru plat, un titlu uriaș aici acoperă subiectul */
+.post-canvas-wrapper.on-photo .statement-headline {
+  max-width: 80%;
+  font-size: clamp(1.5rem, 4.6vw, 2.2rem);
+  line-height: 1.15;
 }
 
 .statement-lead {
