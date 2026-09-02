@@ -231,3 +231,28 @@ Copy-ul din iterația 1 a rezistat la o a doua citire critică (nimic de rescris
 - Acum toată suprafața de copy a sistemului de unghiuri — `ANGLES`, `PRESETS`,
   `MicroPersonas`, briefurile generate de `ScriptEngine` — trece prin `BrandValidator`
   automat. 48 → **55 teste, toate verzi.**
+
+---
+
+## Iterația 4 — verificare vizuală în aplicația reală (nu doar teste de logică)
+
+Iterațiile 1-3 au verificat totul prin Node (`test-suite.js` + scriptul de scor) — corect
+pentru compliance/scor, dar niciodată deschis efectiv în browser. Am pornit tool-ul local
+(`http-server` pe `social-creator/`) și l-am condus cu Playwright/Chromium prin fluxul real:
+
+- Am selectat unghiurile 01, 02, 03, 06, 07 din UI și am citit valorile efective din câmpurile
+  `#input-title` / `#input-subtitle` / `#input-cta` / `#input-caption` — toate corespund exact
+  cu ce e în `copy-engine.js`. Niciun script/render nu a stricat ce am scris.
+- Dropdown-ul „Selectează Micro-Persona" din CSOS Script Grader arată corect toate cele 7
+  persoane, inclusiv cea nouă („40+ / decizia prea mare pentru o aplicație").
+- Am generat un brief modular pentru persoana nouă direct din UI (butonul „Generează Brief
+  Modular") și l-am evaluat cu „Evaluează Script" — **100/100**, toate cele 7 criterii D2C
+  bifate, badge-ul „Brand Linter" arată 100% conform. Confirmă end-to-end, nu doar la nivel
+  de funcție izolată, că persoana nouă funcționează în produsul real.
+- Zero erori de consolă/JS reale (singurele erori de rețea sunt Google Fonts + cdnjs blocate
+  de proxy-ul sandboxului în care am rulat verificarea, nu de cod).
+- Captură de ecran pe unghiul 03: previzualizarea „Text postare & hashtags" arată exact
+  fix-ul din iterația 3 — caption-ul pornește cu „o bancă ți-a spus nu..." (nu mai cu vechea
+  întrebare generică de la început).
+
+Nicio schimbare de cod din această verificare — era o verificare, nu o rescriere.
