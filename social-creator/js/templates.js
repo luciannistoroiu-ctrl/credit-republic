@@ -80,7 +80,9 @@ const TemplatesEngine = (function () {
    * Render Footer (Broker / Legal / Queue Signature / CTA)
    */
   function renderFooter(postData) {
-    const isDark = postData.theme === 'plum';
+    // pe fotografie, culoarea textului liber urmează fotografia (photoIsLight),
+    // nu tema de fundal — regula „cream pe imagine închisă, plum pe imagine deschisă”
+    const isDark = postData.bgImage ? !postData.photoIsLight : postData.theme === 'plum';
     const signalBlueBtn = postData.hasSignalBlue && postData.ctaText;
 
     return `
@@ -110,7 +112,9 @@ const TemplatesEngine = (function () {
    * Render Template 1: Statement / Axiom
    */
   function renderStatement(postData) {
-    const isDark = postData.theme === 'plum';
+    // pe fotografie, culoarea textului liber urmează fotografia (photoIsLight),
+    // nu tema de fundal — regula „cream pe imagine închisă, plum pe imagine deschisă”
+    const isDark = postData.bgImage ? !postData.photoIsLight : postData.theme === 'plum';
     return `
       <div class="post-layout layout-statement">
         ${renderHeader(postData)}
@@ -197,7 +201,9 @@ const TemplatesEngine = (function () {
    * Render Template 4: Broker AVBS + AI
    */
   function renderBrokerAI(postData) {
-    const isDark = postData.theme === 'plum';
+    // pe fotografie, culoarea textului liber urmează fotografia (photoIsLight),
+    // nu tema de fundal — regula „cream pe imagine închisă, plum pe imagine deschisă”
+    const isDark = postData.bgImage ? !postData.photoIsLight : postData.theme === 'plum';
     return `
       <div class="post-layout layout-broker-ai">
         ${renderHeader(postData)}
@@ -242,7 +248,9 @@ const TemplatesEngine = (function () {
    * Render Template 5: Steps / Process
    */
   function renderSteps(postData) {
-    const isDark = postData.theme === 'plum';
+    // pe fotografie, culoarea textului liber urmează fotografia (photoIsLight),
+    // nu tema de fundal — regula „cream pe imagine închisă, plum pe imagine deschisă”
+    const isDark = postData.bgImage ? !postData.photoIsLight : postData.theme === 'plum';
     return `
       <div class="post-layout layout-steps">
         ${renderHeader(postData)}

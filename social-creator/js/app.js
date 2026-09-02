@@ -718,7 +718,8 @@
       showSigQueue: false,
       showProgressBar: false,
       markType: 'auto',
-      bgImage: '',
+      bgImage: preset.bgImage || '',
+      photoIsLight: preset.photoIsLight || false,
       imageFilter: '',
       caption: preset.caption || '',
       slides: preset.slides ? JSON.parse(JSON.stringify(preset.slides)) : []

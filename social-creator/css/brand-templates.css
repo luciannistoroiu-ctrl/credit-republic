@@ -190,6 +190,16 @@
    fără contur. .on-photo se pune pe .post-canvas-wrapper când bgImage e activ;
    .on-photo--plum se adaugă doar dacă fotografia e deschisă la culoare.
    ========================================================================== */
+/* culoarea de bază a întregului cadru urmează fotografia, nu tema de fundal
+   (theme-plum/theme-cream/...) — altfel titlul/textul liber ies în culoarea
+   temei în loc de cream/plum conform imaginii */
+.post-canvas-wrapper.on-photo {
+  color: var(--cream);
+}
+.post-canvas-wrapper.on-photo.on-photo--plum {
+  color: var(--plum);
+}
+
 .post-canvas-wrapper.on-photo .eyebrow,
 .post-canvas-wrapper.on-photo .footer-cta-pill,
 .post-canvas-wrapper.on-photo .carousel-counter-pill {
@@ -198,13 +208,7 @@
   border: 0;
   padding-left: 0;
   padding-right: 0;
-  color: var(--cream);
-}
-
-.post-canvas-wrapper.on-photo.on-photo--plum .eyebrow,
-.post-canvas-wrapper.on-photo.on-photo--plum .footer-cta-pill,
-.post-canvas-wrapper.on-photo.on-photo--plum .carousel-counter-pill {
-  color: var(--plum);
+  color: inherit;
 }
 
 /* semnalul rămâne singura culoare care poate păstra fundal plin peste

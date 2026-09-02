@@ -172,7 +172,7 @@ const CopyEngine = (function () {
       point2: 'dobândă negociată: 5.75% · rată nouă: ~2.200 lei',
       point3: 'economie ratată în 6 luni de amânare: 2.880 lei',
       footerNote: 'calcul estimativ orientativ · credit republic',
-      ctaText: 'calculează refinanțarea',
+      ctaText: 'verifică poziția ta',
       hasSignalBlue: true,
       caption: `cât costă să amâni refinanțarea unui credit ipotecar?\n\nDacă ai un credit semnat în perioada dobânzilor ridicate, o scădere de doar 1.5 - 2% la marjă înseamnă o economie lunară de aproape 500 lei.\n\nAmânarea refinanțării cu 6 luni înseamnă aproape 3.000 lei lăsați băncii din simplă inerție.\n\nVerifică acum dacă te califici pentru refinanțare la toate băncile.\n\n#refinantare #creditipotecar #economii #bugetpersonal #creditrepublic`,
       slides: [
@@ -209,7 +209,7 @@ const CopyEngine = (function () {
       point2: 'vechimea minimă pe PFA variază între 1 an și 2 ani fiscali încheiați',
       point3: 'norma de venit și contractele B2B au încadrări speciale',
       footerNote: 'analiză personalizată · broker autorizat AVBS',
-      ctaText: 'vezi unde te califici',
+      ctaText: 'verifică poziția ta',
       hasSignalBlue: false,
       caption: `ai venituri din dividende, PFA sau contracte din IT?\n\nFiecare bancă din România are propriul algoritm intern de calcul pentru gradul de îndatorare al veniturilor non-salariale.\n\nO bancă poate lua în considerare 100% din dividendele distribuite, în timp ce alta acceptă doar 50% sau cere 2 ani fiscali consecutivi.\n\nÎn loc să depui dosare pe rând și să riști respingeri, la credit republic comparăm direct cerințele de eligibilitate la toate băncile.\n\n#pfa #dividende #antreprenoriat #creditipotecar #creditrepublic #avbs`,
       slides: [
@@ -317,7 +317,7 @@ const CopyEngine = (function () {
       point2: 'Florența Nistoroiu verifică dosarul, explică nuanțele și optimizează marjele',
       point3: 'comisionul tău: 0 lei (plătit integral de bancă la semnare)',
       footerNote: 'Florența Nistoroiu · Broker autorizat AVBS · credit republic',
-      ctaText: 'începe precalificarea',
+      ctaText: 'verifică poziția ta',
       hasSignalBlue: true,
       caption: `algoritm + om: de ce această combinație funcționează cel mai bine pentru creditul tău:\n\nTehnologia compară zeci de condiții de eligibilitate de la toate băncile în doar câteva minute.\n\nÎnsă un dosar de credit ipotecar are nuanțe umane: evaluarea imobilului, derogări de marjă, structura veniturilor și comunicarea directă cu ofițerul bancar.\n\nAici intervine Florența Nistoroiu, broker autorizat AVBS, care preia tot efortul de negociere.\n\nServiciul este 100% gratuit pentru tine.\n\n#brokercredite #avbs #florentanistoroiu #creditrepublic #ipotecar`,
       slides: [
@@ -354,7 +354,7 @@ const CopyEngine = (function () {
       point2: 'prin credit republic: o singură aplicare digitală, toate băncile comparate',
       point3: 'asistență pas cu pas până la primirea banilor sau semnarea contractului',
       footerNote: 'simplu · digital · gratuit',
-      ctaText: 'aplică acum',
+      ctaText: 'verifică poziția ta',
       hasSignalBlue: true,
       caption: `cât timp pierzi dacă mergi pe cont propriu la bănci vs o singură aplicare online prin credit republic:\n\nPe cont propriu:\n- 4-5 drumuri la sucursale diferite\n- formulare re-completate de la zero\n- săptămâni de așteptare pentru răspunsuri parțiale\n\nPrin credit republic:\n- o singură aplicare online de 4 minute\n- toate băncile comparate simultan\n- broker autorizat AVBS care se ocupă de acte\n- 0 lei comision\n\n#birocratie #creditipotecar #economisestetimp #neobroker #creditrepublic`,
       slides: [
@@ -372,6 +372,148 @@ const CopyEngine = (function () {
           eyebrow: 'pasul următor',
           title: 'economisește timp și bani',
           body: 'Florența Nistoroiu (broker AVBS) se ocupă de relația cu banca pentru tine.'
+        }
+      ]
+    },
+
+    // --- calendar 2 săptămâni: a doua rundă pe unghiurile 02–07,
+    // familia „obiect" (foto de fundal + Ken Burns) și un al doilea
+    // exemplu „uman candid" pe unghiul 06. text liber pe fotografie —
+    // fără pastilă (vezi css/brand-templates.css .on-photo). ---
+
+    // --- 05. CASA VS CREDITUL, ed. 2 ---
+    {
+      id: 'p_05_luni_vs_minute',
+      angleId: '05_casa_vs_creditul',
+      registerId: 'observational',
+      templateType: 'statement',
+      theme: 'plum',
+      format: '4:5',
+      bgImage: 'assets/photo_modern_interior.jpg',
+      photoIsLight: true,
+      eyebrow: '',
+      title: '3 luni la vizionări. 20 de minute la credit.',
+      subtitle: 'atenția se împarte inegal — apartamentul primește luni, creditul primește minute.',
+      footerNote: 'credit republic · neobroker de credite',
+      ctaText: '',
+      hasSignalBlue: false,
+      caption: `3 luni la vizionări. 20 de minute la credit.\n\nCumpărătorii caută compartimentarea potrivită, etajul, orientarea spre soare și cartierul — luni întregi.\n\nDar la credit, majoritatea acceptă prima ofertă care le iese în cale.\n\ncredit republic compară toate băncile în câteva minute, ca să nu mai fie nevoie de acest compromis.\n\n#creditrepublic #creditipotecar #educatiefinanciara #neobroker`,
+      slides: []
+    },
+
+    // --- 03. VENITUL VARIABIL, ed. 2 ---
+    {
+      id: 'p_03_calculat_altfel',
+      angleId: '03_venitul_variabil',
+      registerId: 'uman',
+      templateType: 'statement',
+      theme: 'plum',
+      format: '4:5',
+      bgImage: 'assets/photo_phone_desk.jpg',
+      photoIsLight: false,
+      eyebrow: '',
+      title: 'venitul variabil nu e un venit mai slab. e un venit calculat altfel.',
+      subtitle: 'PFA, dividende, bonusuri — fiecare bancă are propria formulă.',
+      footerNote: 'credit republic · neobroker de credite',
+      ctaText: 'verifică poziția ta',
+      hasSignalBlue: false,
+      caption: `venitul variabil nu e un venit mai slab. e un venit calculat altfel.\n\nPFA, dividende, bonusuri, venituri din IT pe proiect — fiecare bancă are propria formulă de calcul al gradului de îndatorare pentru venituri non-standard.\n\ncredit republic compară toate băncile și găsește formula care se potrivește profilului tău real de venit.\n\n#venitvariabil #pfa #creditipotecar #creditrepublic`,
+      slides: []
+    },
+
+    // --- 02. REFINANȚAREA AMÂNATĂ, ed. 2 ---
+    {
+      id: 'p_02_fiecare_luna',
+      angleId: '02_refinantarea_amanata',
+      registerId: 'exact',
+      templateType: 'statement',
+      theme: 'plum',
+      format: '4:5',
+      bgImage: 'assets/photo_phone_desk.jpg',
+      photoIsLight: false,
+      eyebrow: '',
+      title: 'fiecare lună de amânare are un preț.',
+      subtitle: 'verifică dacă dobânda ta mai reflectă piața de azi.',
+      footerNote: 'credit republic · neobroker de credite',
+      ctaText: 'verifică poziția ta',
+      hasSignalBlue: false,
+      caption: `fiecare lună de amânare are un preț.\n\nUn credit cu dobândă peste piața actuală, lăsat neverificat, înseamnă bani plătiți în plus din simplă obișnuință.\n\ncredit republic compară toate băncile și îți arată dacă o refinanțare chiar merită, în câteva minute.\n\n#refinantare #creditipotecar #creditrepublic`,
+      slides: []
+    },
+
+    // --- 07. BIROCRAȚIA, ed. 2 ---
+    {
+      id: 'p_07_un_dosar_nu_cinci',
+      angleId: '07_birocratia',
+      registerId: 'exact',
+      templateType: 'statement',
+      theme: 'plum',
+      format: '4:5',
+      bgImage: 'assets/photo_phone_desk.jpg',
+      photoIsLight: false,
+      eyebrow: '',
+      title: 'un dosar. nu cinci.',
+      subtitle: 'aplici o singură dată. comparația ajunge la toate băncile.',
+      footerNote: 'credit republic · neobroker de credite',
+      ctaText: 'verifică poziția ta',
+      hasSignalBlue: false,
+      caption: `un dosar. nu cinci.\n\nÎn loc de 5 drumuri la 5 sucursale și 5 formulare repetate, o singură aplicare online ajunge la toate băncile deodată.\n\ncredit republic · broker autorizat AVBS · 0 lei comision pentru tine.\n\n#birocratie #creditipotecar #neobroker #creditrepublic`,
+      slides: []
+    },
+
+    // --- 04. DESIGNUL OPAC, ed. 2 ---
+    {
+      id: 'p_04_ce_vezi_ce_platesti',
+      angleId: '04_designul_opac',
+      registerId: 'observational',
+      templateType: 'statement',
+      theme: 'plum',
+      format: '4:5',
+      bgImage: 'assets/photo_phone_desk.jpg',
+      photoIsLight: false,
+      eyebrow: '',
+      title: 'ce vezi în reclamă nu e ce plătești.',
+      subtitle: 'comisionul lunar și costul asigurării rămân în afara cadrului.',
+      footerNote: 'credit republic · neobroker de credite',
+      ctaText: '',
+      hasSignalBlue: false,
+      caption: `ce vezi în reclamă nu e ce plătești.\n\nDobânda afișată e doar o parte din cost. Comisionul lunar și asigurarea obligatorie rareori apar în același cadru.\n\ncredit republic compară costul total, nu doar cifra din titlu.\n\n#educatiefinanciara #creditipotecar #creditrepublic`,
+      slides: []
+    },
+
+    // --- 06. ALGORITM + OM, ed. 2 ---
+    {
+      id: 'p_06_un_singur_om',
+      angleId: '06_algoritm_om',
+      registerId: 'uman',
+      templateType: 'steps',
+      theme: 'plum',
+      format: '1:1',
+      eyebrow: 'un singur om de contact',
+      title: 'un algoritm rapid. o singură persoană care răspunde de tine.',
+      subtitle: 'Florența Nistoroiu îți explică fiecare clauză înainte de semnare.',
+      point1: '1. algoritmul compară toate băncile în câteva minute',
+      point2: '2. Florența Nistoroiu (broker AVBS) verifică actele și răspunde la întrebări reale',
+      point3: '3. rămâi cu un singur om de contact, nu cu un centru de suport',
+      footerNote: 'broker autorizat AVBS · credit republic',
+      ctaText: 'verifică poziția ta',
+      hasSignalBlue: false,
+      caption: `un algoritm rapid. o singură persoană care răspunde de tine.\n\nAlgoritmul filtrează ofertele de la toate băncile în câteva minute.\n\nFlorența Nistoroiu, broker autorizat AVBS, verifică actele și îți explică fiecare clauză înainte de semnare — nu un centru de suport, un singur om.\n\n#brokercredite #avbs #creditipotecar #creditrepublic`,
+      slides: [
+        {
+          eyebrow: 'rolul algoritmului',
+          title: 'toate băncile comparate în câteva minute',
+          body: 'Filtrare rapidă a ofertelor disponibile, fără drumuri la sucursale.'
+        },
+        {
+          eyebrow: 'rolul Florenței Nistoroiu',
+          title: 'un singur om care răspunde de dosarul tău',
+          body: 'Verifică actele, explică fiecare clauză și negociază direct cu banca.'
+        },
+        {
+          eyebrow: 'rezultatul',
+          title: 'un singur punct de contact, până la semnare',
+          body: 'Nu un centru de suport — un broker autorizat AVBS, cu nume și număr de telefon.'
         }
       ]
     }
@@ -415,13 +557,13 @@ const CopyEngine = (function () {
       id: 'anim_photo',
       name: 'Animație cu Foto',
       icon: '🌊',
-      desc: 'Fotografie de fundal cu mișcare continuă + carduri animate.',
+      desc: 'Fotografie de fundal cu mișcare continuă (Ken Burns) + text liber pe fotografie.',
       recommendedTheme: 'plum',
       recommendedFormat: '4:5',
       hasPhoto: true,
       defaultPhoto: 'assets/photo_modern_interior.jpg',
       hasMotion: true,
-      motionPreset: 'motion_rate_counter'
+      motionPreset: 'motion_foto_deriva'
     },
     {
       id: 'anim_video',

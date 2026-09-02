@@ -130,6 +130,28 @@
   }
 }
 
+/* ==========================================================================
+   FOTO CU MIȘCARE (KEN BURNS)
+   zoom + derivă lentă pe fotografia de fundal. animă doar background-size/
+   background-position pe .post-canvas-wrapper — nu transform, ca să nu
+   miște și straturile de text din copiii lui (eyebrow, titlu, CTA).
+   fără efect dacă postarea nu are bgImage (.on-photo nu e prezentă).
+   ========================================================================== */
+.post-canvas-wrapper.on-photo.motion-photo-active {
+  animation: fotoDeriva var(--motion-duration, 6s) ease-in-out infinite alternate;
+}
+
+@keyframes fotoDeriva {
+  0% { background-size: 110% auto; background-position: 50% 45%; }
+  100% { background-size: 122% auto; background-position: 50% 55%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-canvas-wrapper.on-photo.motion-photo-active {
+    animation: none;
+  }
+}
+
 /* Video Recording overlay */
 .recording-indicator {
   position: absolute;

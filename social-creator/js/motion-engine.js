@@ -36,6 +36,12 @@ const MotionEngine = (function () {
       name: 'Kinetic Typography (Cuvânt cu cuvânt)',
       desc: 'Apariție secvențială lentă a textului pe ecran.',
       class: 'motion-kinetic-active'
+    },
+    {
+      id: 'motion_foto_deriva',
+      name: 'Foto cu mișcare (Ken Burns)',
+      desc: 'Zoom și derivă lentă, continuă, pe fotografia de fundal (bgImage). Fără efect dacă postarea nu are fotografie.',
+      class: 'motion-photo-active'
     }
   ];
 
