@@ -315,7 +315,48 @@ copy scris independent (predată din cercetarea v4.1, nu din acest exercițiu).
 
 ---
 
-## Stare finală (după 6 iterații)
+## Iterația 7 — regula „minuscule" verificată pe tot repo-ul, nu doar pe unghiuri
+
+Extindere firească a fix-ului din iterația 1 (parteneri.html): am căutat „Credit Republic"/
+„CREDIT REPUBLIC" în tot codul live, nu doar în fișierele celor 7 unghiuri.
+
+**Reparat (customer-facing, în afara `copy-engine.js`):**
+- `verifica-dobanda-preview.html` — `<title>`, `alt`-ul logo-ului și fallback-ul text foloseau
+  „Verifică Dobânda — Credit Republic" / „Credit Republic" — aliniat la convenția din
+  `index.html`, care are `<title>` integral cu minuscule.
+- `admin-leads.html` — două șabloane de mesaj trimise efectiv către leaduri/afiliați pe
+  WhatsApp conțineau „Credit Republic" cu majusculă.
+- `parteneri.html` — eyebrow-ul hero-ului era „NOU: PROGRAM DE AFILIERE CREDIT REPUBLIC" (tot
+  cu MAJUSCULE, nu doar numele mărcii) și mesajul WhatsApp de înscriere afiliat la fel.
+  Am verificat întâi dacă e stil deliberat (`.eyebrow` din CSS nu are `text-transform:
+  uppercase`, iar eyebrow-urile din `index.html` sunt scrise cu minuscule direct în HTML) —
+  nu e, e doar netratat până acum. Am uniformizat toate cele 4 eyebrow-uri de pe pagină cu
+  minuscule, ca pagina de parteneri să respecte aceeași convenție ca pagina principală.
+
+**Verificat și lăsat neschimbat, cu motiv (nu e „brand voice", e altceva):**
+- Comentarii de cod (headere de fișier, ex. `copy-engine.js — Credit Republic 7 Brand
+  Angles...`) — documentație pentru dezvoltatori, nu copy citit de clienți.
+- Regex-urile și fixture-urile de test din `brand-validator.js`/`test-suite.js` care conțin
+  literal „Credit Republic" — sunt tocmai tiparul pe care unealta trebuie să-l recunoască,
+  nu o încălcare a lui.
+- `leads-dispatcher.js:83` (`title = 'LEAD NOU CREDIT REPUBLIC'`) — titlul unei notificări
+  Telegram către Florența când vine un lead nou. Destinatarul e omul din spate, nu clientul;
+  regula de brand voice nu se aplică comunicării interne operaționale.
+- `social-creator/index.html` și `app.js` — text din interfața internă a tool-ului de
+  generat conținut (etichetă de șablon, mesaj de validare) — vizibil doar pentru cine
+  operează tool-ul, nu pentru public.
+- `templates.js` — header-ul „CREDIT REPUBLIC" dintr-un tabel comparativ generat ca grafică
+  (`comp-col-header`) e cu majuscule pe ambele coloane („PE CONT PROPRIU" și „CREDIT
+  REPUBLIC" identic tratate) — convenție de tabel, nu o expunere unică a numelui mărcii; a
+  schimba doar o coloană ar fi creat o inconsistență vizuală nouă, mai vizibilă decât cea
+  veche.
+
+Toate cele 55 de teste rămân verzi — această iterație nu a atins nimic din `copy-engine.js`
+sau `micro-personas.js`.
+
+---
+
+## Stare finală (după 7 iterații)
 
 | iterație | ce a adus |
 |---|---|
@@ -325,10 +366,12 @@ copy scris independent (predată din cercetarea v4.1, nu din acest exercițiu).
 | 4 | verificare end-to-end în aplicația reală (Playwright) — persoana nouă generează+evaluează 100/100 din UI; 0 erori JS |
 | 5 | verificare vizuală pe canvas + mockup Instagram nativ — 0 overflow, fix-ul din iterația 3 confirmat în mockup-ul propriu al aplicației |
 | 6 | verificare de consistență cu `index.html` (site-ul live, neatins până acum) — hook-ul unghiului 02 confirmat independent live; elaborarea de acolo împrumutată în caption; poziționare competitivă validată de tabelul comparativ al site-ului |
+| 7 | regula „credit republic cu minuscule" verificată în tot repo-ul (nu doar în unghiuri) — 6 instanțe reale reparate pe 3 pagini/fișiere customer-facing (`verifica-dobanda-preview.html`, `admin-leads.html`, `parteneri.html`), restul (comentarii de cod, regex-uri de validator, UI internă) verificate și lăsate intenționat neatinse |
 
 Rezultat: 7 unghiuri, 7 persoane (una nouă), 55 teste automate toate verzi, scor mediu D2C
 95/100, 0 erori de compliance reale, verificat prin logică (Node), vizual (browser) și prin
-consistență cu site-ul live. Nu mai am schimbări de făcut fără date noi din trafic real —
+consistență cu site-ul live și cu restul paginilor customer-facing. Nu mai am schimbări de
+făcut fără date noi din trafic real —
 pasul următor onest e testarea A/B pe unghiurile 02 și 07 (unde schimbarea de CTA are
 mecanismul cauzal cel mai clar), nu o nouă rescriere de birou.
 
