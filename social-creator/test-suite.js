@@ -89,6 +89,11 @@ assert(dropAccentSuperlative.some(i => i.rule.id === 'rule_no_superlatives'), 'F
 const worksBestSuperlative = BrandValidator.validateText('combinația funcționează cel mai bine pentru creditul tău');
 assert(worksBestSuperlative.some(i => i.rule.id === 'rule_no_superlatives'), 'Flags adverbial superlative ("cel mai bine")');
 
+// Test 1.9: Regression - real proper-noun acronyms (a bank name, a legal regulation) found
+// live on index.html/parteneri.html were false-flagged as "ALL CAPS brand voice" violations.
+const legitAcronyms = BrandValidator.validateText('Garanti BBVA · date securizate conform GDPR');
+assert(!legitAcronyms.some(i => i.rule.id === 'rule_sentence_case'), 'Does not flag legitimate acronyms ("BBVA", "GDPR") as ALL CAPS violations');
+
 console.log('\n--- 1b. Testing ScriptGrader ---');
 
 // Test 1b.1: Regression - the mechanism check looked for the literal substring "compara",

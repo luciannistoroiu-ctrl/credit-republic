@@ -137,7 +137,7 @@ const BrandValidator = (function () {
     const allCapsRegex = /\b[A-ZĂÂÎȘȚ]{4,}\b/g;
     const allCapsMatches = text.match(allCapsRegex);
     if (allCapsMatches) {
-      const filtered = allCapsMatches.filter(w => !['AVBS', 'ANPC', 'ROBOR', 'IRCC', 'EUR', 'RON', 'USD'].includes(w));
+      const filtered = allCapsMatches.filter(w => !['AVBS', 'ANPC', 'ROBOR', 'IRCC', 'EUR', 'RON', 'USD', 'GDPR', 'BBVA'].includes(w));
       if (filtered.length > 0) {
         issues.push({
           rule: RULES.SENTENCE_CASE,

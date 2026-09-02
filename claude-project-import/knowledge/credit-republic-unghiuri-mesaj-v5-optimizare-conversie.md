@@ -356,7 +356,35 @@ sau `micro-personas.js`.
 
 ---
 
-## Stare finală (după 7 iterații)
+## Iterația 8 — scanare sistematică (nu doar grep manual) pe toate paginile live
+
+Iterațiile 1 și 7 au căutat manual tipare specifice (superlative, cifre de bănci, majuscula
+mărcii) cu grep. De data asta am extras tot textul vizibil din `index.html`, `parteneri.html`,
+`verifica-dobanda-preview.html` și `pozitia-ta-embed.html` și l-am trecut, linie cu linie,
+prin `BrandValidator.validateText` — ca să prind orice tipar la care nu m-aș fi gândit să-l
+caut manual, nu doar cele deja știute.
+
+- **Găsit un gol real în validator, nu în copy:** „Garanti BBVA" (din marquee-ul de bănci de
+  pe `index.html`) și „GDPR" (din `parteneri.html`) erau raportate ca violări „ALL CAPS" —
+  fals pozitiv, sunt nume proprii/acronime legale reale, nu o încălcare a vocii de brand.
+  Adăugate în lista albă a validatorului (alături de AVBS/ANPC/ROBOR/IRCC deja existente),
+  cu test de regresie. Nu schimbă nimic din copy — repară doar unealta, ca pe viitor cineva
+  care scrie despre o bancă anume sau despre conformitatea GDPR să nu fie indus în eroare de
+  un fals pozitiv.
+- **Verificat și confirmat corect, cu dovadă (nu presupunere):** tag-urile de card de pe
+  `parteneri.html` („AFILIERE PERSOANE FIZICE" etc.) sunt cu MAJUSCULE, dar spre deosebire de
+  eyebrow-urile reparate în iterația 7, aici `.card-partner .tag` chiar are
+  `text-transform:uppercase` în CSS — deci scrisul cu majuscule în sursă e stil deliberat,
+  nu un artefact netratat. Neatins, corect.
+- **Singurul rezultat rămas** e „cel mai bun credit." izolat — fals pozitiv al metodei mele
+  de extragere (linia master e împărțită în 3 `<span class="pill">` separate; verificarea
+  reală, pe fraza întreagă, a confirmat deja în iterația 1 că e excepția permisă).
+- **Rezultat final al scanării: 0 erori reale pe toate cele 5 pagini/fișiere customer-facing
+  verificate.** Teste: 55 → 56.
+
+---
+
+## Stare finală (după 8 iterații)
 
 | iterație | ce a adus |
 |---|---|
@@ -367,8 +395,9 @@ sau `micro-personas.js`.
 | 5 | verificare vizuală pe canvas + mockup Instagram nativ — 0 overflow, fix-ul din iterația 3 confirmat în mockup-ul propriu al aplicației |
 | 6 | verificare de consistență cu `index.html` (site-ul live, neatins până acum) — hook-ul unghiului 02 confirmat independent live; elaborarea de acolo împrumutată în caption; poziționare competitivă validată de tabelul comparativ al site-ului |
 | 7 | regula „credit republic cu minuscule" verificată în tot repo-ul (nu doar în unghiuri) — 6 instanțe reale reparate pe 3 pagini/fișiere customer-facing (`verifica-dobanda-preview.html`, `admin-leads.html`, `parteneri.html`), restul (comentarii de cod, regex-uri de validator, UI internă) verificate și lăsate intenționat neatinse |
+| 8 | scanare sistematică (nu grep manual) a tot textului vizibil de pe 4 pagini live prin `BrandValidator` — a găsit un gol real în validator (BBVA/GDPR fals-pozitive ca „ALL CAPS"), nu în copy; confirmă 0 erori reale rămase |
 
-Rezultat: 7 unghiuri, 7 persoane (una nouă), 55 teste automate toate verzi, scor mediu D2C
+Rezultat: 7 unghiuri, 7 persoane (una nouă), 56 teste automate toate verzi, scor mediu D2C
 95/100, 0 erori de compliance reale, verificat prin logică (Node), vizual (browser) și prin
 consistență cu site-ul live și cu restul paginilor customer-facing. Nu mai am schimbări de
 făcut fără date noi din trafic real —
