@@ -43,7 +43,7 @@ Not part of the AI-generation prompt itself, but binding once a generated clip i
 
 ## Identity anchor substitute
 
-Credit Republic has no single hero physical product, so Law 2 ("identity anchor") maps differently: use a persistent brand motif as the anchor instead of a product feature — most often the progress-pill/result-confirmation chip described in the beat sheet, or the credit republic mark itself (`social-creator/assets/cr_semn_light.svg` / `cr_semn_dark.svg` / `cr_semn_mono.svg`) as a small static corner bug. Name whichever one you use explicitly as "the identity anchor" in the CONSISTENCY block, same as the base skill requires.
+Credit Republic has no single hero physical product, so Law 2 ("identity anchor") maps differently: use a persistent brand motif as the anchor instead of a product feature — most often the progress-pill/result-confirmation chip described in the beat sheet, or the credit republic mark itself (`cr_semn_light.svg` / `cr_semn_dark.svg` / `cr_semn_mono.svg` at the repo root) as a small static corner bug. Name whichever one you use explicitly as "the identity anchor" in the CONSISTENCY block, same as the base skill requires.
 
 ## Non-IP block, adjusted
 

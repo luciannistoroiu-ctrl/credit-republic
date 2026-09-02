@@ -214,7 +214,7 @@ ________________
 
 
 calea 04 — film generat prin AI (text-to-video)
-pentru mecanisme cinematice pe care motion-engine.js (CSS determinist, în social-creator) nu le poate produce — morph continuu, parallax 3D, tranziții de lume, resurse care nu există ca footage real — promptul se scrie cu skill-ul Claude Code `minimax-n3-motion-design` (`.claude/skills/minimax-n3-motion-design/`), care încarcă automat referința de brand `references/credit-republic.md` (paletă v4, regula albastrului o singură dată — la rezultat confirmat, „toate băncile" fără cifră, fără DAE, fără avatar AI care vorbește).
+pentru mecanisme cinematice care nu se pot construi determinist din CSS/ffmpeg — morph continuu, parallax 3D, tranziții de lume, resurse care nu există ca footage real — promptul se scrie cu skill-ul Claude Code `minimax-n3-motion-design` (`.claude/skills/minimax-n3-motion-design/`), care încarcă automat referința de brand `references/credit-republic.md` (paletă v4, regula albastrului o singură dată — la rezultat confirmat, „toate băncile" fără cifră, fără DAE, fără avatar AI care vorbește).
 
 output-ul generat (MiniMax N3, Veo, sau alt model text-to-video) nu ocolește QA-ul doar pentru că a fost generat de AI — intră în calea 01 ca orice captură: tăiere, crop la format, overlay pastile, export. verifică separat, pe cadrele randate: #2C86F6 nu a apărut mai devreme decât beat-ul de confirmare, nicio cifră de bănci n-a apărut spontan într-un UI generat, wordmark-ul „credit republic" e minusculă — dacă modelul l-a randat cu majusculă sau deloc curat, îl suprapui tu în pastilă, nu-l lași pe al modelului.
 
