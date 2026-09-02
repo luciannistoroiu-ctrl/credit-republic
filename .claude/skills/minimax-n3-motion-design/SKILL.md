@@ -1,11 +1,15 @@
 ---
 name: minimax-n3-motion-design
-description: A system for writing motion-design / launch-video prompts targeting MiniMax N3 (and similar text-to-video models). Use WHENEVER the user asks for a launch video, motion design, product film, brand video, explainer, promo or ad video, or any video prompt in a named style (SaaS motion, Apple style, punk collage, claymation, 2D vector, Unreal Engine, hyper motion 3D, tilt-shift, Y2K chrome, anime, blueprint, liquid morph, pixel art, etc.), or drops a new product/style with a quick "go" — even if MiniMax is not mentioned by name. Also use when iterating on a previous prompt ("redo it", "now make it about X", "change the style/colors", "make it 9:16"). Do NOT use for Seedance shotlists (use seedance-shotlist-director) or single-image prompts.
+description: A system for writing motion-design / launch-video prompts targeting MiniMax N3 (and similar text-to-video models). Use WHENEVER the user asks for a launch video, motion design, product film, brand video, explainer, promo or ad video, or any video prompt in a named style (SaaS motion, Apple style, punk collage, claymation, 2D vector, Unreal Engine, hyper motion 3D, tilt-shift, Y2K chrome, anime, blueprint, liquid morph, pixel art, etc.), or drops a new product/style with a quick "go" — even if MiniMax is not mentioned by name. Also use when iterating on a previous prompt ("redo it", "now make it about X", "change the style/colors", "make it 9:16"). This is the video-prompt path for the credit republic social media design system — trigger it for any "credit republic" / "CR" video, launch clip, or promo ask, not just named styles. Do NOT use for Seedance shotlists (use seedance-shotlist-director) or single-image prompts.
 ---
 
 # MiniMax N3 Motion Design Prompts
 
 A locked production system for 15-second launch/motion-design video prompts. Written for professional cinematographers and AI content specialists — never explain basics, never soften the format. Deliver a complete, render-ready prompt every time.
+
+## Brand overrides
+
+Before applying Hard Defaults, check `references/` for a file matching the brand/client named in the request. If the request names Credit Republic ("credit republic", "CR") — or this skill is running inside the `credit-republic` repo at all — load `references/credit-republic.md` first and let it override palette, wordmark, typography, copy rules, the cast/avatar rule, and the identity-anchor and non-IP blocks below. State in the opening commentary line which brand reference was applied (e.g. "brand: credit republic v4"). With no matching reference file, fall back to the generic Higgs*/house-acid defaults as written.
 
 ## Response format (strict)
 

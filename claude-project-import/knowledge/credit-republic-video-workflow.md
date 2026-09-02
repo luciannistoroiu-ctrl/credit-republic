@@ -213,6 +213,17 @@ d=180 = durata în cadre (6 s × 30 fps). zoom maxim 1,12 — peste asta se vede
 ________________
 
 
+calea 04 — film generat prin AI (text-to-video)
+pentru mecanisme cinematice pe care motion-engine.js (CSS determinist, în social-creator) nu le poate produce — morph continuu, parallax 3D, tranziții de lume, resurse care nu există ca footage real — promptul se scrie cu skill-ul Claude Code `minimax-n3-motion-design` (`.claude/skills/minimax-n3-motion-design/`), care încarcă automat referința de brand `references/credit-republic.md` (paletă v4, regula albastrului o singură dată — la rezultat confirmat, „toate băncile" fără cifră, fără DAE, fără avatar AI care vorbește).
+
+output-ul generat (MiniMax N3, Veo, sau alt model text-to-video) nu ocolește QA-ul doar pentru că a fost generat de AI — intră în calea 01 ca orice captură: tăiere, crop la format, overlay pastile, export. verifică separat, pe cadrele randate: #2C86F6 nu a apărut mai devreme decât beat-ul de confirmare, nicio cifră de bănci n-a apărut spontan într-un UI generat, wordmark-ul „credit republic" e minusculă — dacă modelul l-a randat cu majusculă sau deloc curat, îl suprapui tu în pastilă, nu-l lași pe al modelului.
+
+segmentare: majoritatea modelelor text-to-video nu produc 15s dintr-o bucată (Veo ~8s per generare, MiniMax N3 variază) — skill-ul oferă un plan de segmentare pe 2-3 tăieturi naturale, fiecare segment reluând paleta și ancora de identitate; le concatenezi cu calea 01, pasul 3 (concat).
+
+
+________________
+
+
 compositing pastile
 pastila ca PNG cu alpha
 wkhtmltoimage --transparent --width 900 --disable-smart-width pill.html pill.png
