@@ -70,6 +70,21 @@ Nistoroiu Financial Solutions SRL, intermediar de credit autorizat ANPC) negocia
 dosarul la semnare. **0 lei pentru client — comisionul vine de la bancă.** Obiectivul de
 conversie e clicul pe „obține precalificarea" / CTA-ul echivalent din fiecare unghi.
 
+### Tabel-rezumat: audiență · obiecție adresată · diferențiator · CTA
+
+Detaliile și motivul fiecărei schimbări sunt în secțiunile de mai jos; tabelul e varianta
+scanabilă a celor patru lucruri cerute pentru fiecare unghi.
+
+| # unghi | audiență (persoană) | obiecția adresată | diferențiator vs competiție | CTA |
+|---|---|---|---|---|
+| 01 mecanismul | scepticul comisionului („unde e șmecheria?") | „cum poate fi gratuit — cine plătește de fapt?" | brokerii locali zic „gratuit" fără mecanism; fintech-urile pur-algoritm nu au un om care negociază | „verifică poziția ta" (self-serve, pt. un sceptic care vrea să verifice singur) |
+| 02 refinanțarea amânată | cel care amână refinanțarea (ROBOR/IRCC) | „oricum m-ar suna banca dacă ar fi o ofertă mai bună" / „nu e efortul meu prioritar acum" | banca proprie n-are niciun motiv să te anunțe de o ofertă externă mai bună | „calculează refinanțarea" |
+| 03 venitul variabil | PFA / dividende / IT | „am fost deja refuzat, nu mă calific" | băncile clasice au un singur algoritm rigid pentru venit non-standard; un refuz devine „verdict al pieței" | „vezi unde te califici" |
+| 04 designul opac | victima reclamei cu dobândă mică | „am deja o ofertă cu dobândă mică, ce rost are să mai caut" | reclamele bancare arată procentul, nu costul total (asigurări, comisioane) | soft, în caption („verificarea durează 4 minute") — fără buton, registru observațional |
+| 05 casa vs creditul | căutătorul de apartament la prima achiziție | „trebuie să semnez rapid, nu am timp să compar" | agenția imobiliară vinde casa, nu compară creditul; presiunea de timp e folosită de concurență, nu dezamorsată | soft, în caption — fără buton, registru observațional |
+| 06 algoritm + om | 40+ / decizie prea mare pentru o aplicație (persoană nouă) | „nu am încredere doar într-un algoritm pentru o decizie de zeci de mii de euro" | fintech 100% automate nu au om responsabil; brokerii tradiționali sunt umani dar lenți/opaci | „discută cu Florența..." (uman, nu self-serve) |
+| 07 birocrația | cuplul copleșit de dosare/drumuri | „sună a mult efort, dosare, drumuri la ghișeu" | procesul manual cere 4-5 drumuri la sucursale diferite, cu formulare re-completate de la zero | „precalifică-te, fără drumuri" (fricțiune zero — vezi de ce era greșit înainte, mai jos) |
+
 ### 01 · mecanismul — scepticul („unde e șmecheria?")
 - **Competiție:** brokerii locali repetă „100% gratuit" ca slogan, fără mecanism — creează
   zgomot, nu încredere. Fintech-urile pur-algoritm nu au un om care negociază.
@@ -82,7 +97,7 @@ conversie e clicul pe „obține precalificarea" / CTA-ul echivalent din fiecare
   singur, nu să fie convins).
 
 ### 02 · refinanțarea amânată — cel care amână (ROBOR/IRCC)
-- **Competiție — cel mai ascuțit unghi din cercetarea originală, needus în cod:** banca
+- **Competiție — cel mai ascuțit unghi din cercetarea originală, neadus până acum în cod:** banca
   proprie nu are niciun motiv să te sune când apare o ofertă mai bună. Vechiul copy vorbea
   doar despre „costul amânării" fără să numească de ce oamenii amână (presupun că banca i-ar
   anunța).
@@ -125,7 +140,7 @@ conversie e clicul pe „obține precalificarea" / CTA-ul echivalent din fiecare
 - **Ce am schimbat:** „funcționează **cel mai bine**" (superlativ nedetectat) → „de ce
   alegem această combinație". Am adăugat o propoziție de agitare a durerii cu subiect pe
   sistem, nu pe cititor („un dosar poate pierde timp în comitetele de risc", nu „tu pierzi
-  timp"). **CTA schimbat din „începe precalificarea" în „află de la Florența..."** — celelalte
+  timp"). **CTA schimbat din „începe precalificarea" în „discută cu Florența"** — celelalte
   unghiuri „exact" au CTA-uri self-serve; acesta e singurul unghi „uman" prin design, așa
   că CTA-ul trebuie să ofere un om, nu un formular.
 - **Persoană nouă (`decizie_prea_mare`):** 40+ sau oricine a folosit deja un simulator dar
@@ -175,3 +190,20 @@ schimbarea de CTA e ipoteza cu cel mai clar mecanism cauzal din tot setul.
 - `elementor-embed.html` pare un export vechi cu encoding stricat (mojibake pe diacritice) —
   neatins în această iterație, nu face parte din cele 7 unghiuri; merită verificat separat
   dacă fișierul e încă folosit undeva.
+
+---
+
+## Iterația 2 — ce s-a adăugat
+
+Copy-ul din iterația 1 a rezistat la o a doua citire critică (nimic de rescris) — recitirea
+în sine e verificarea, nu semn că nu s-a lucrat. Ce era totuși de terminat:
+
+- Tabelul de mai sus (audiență · obiecție adresată · diferențiator · CTA) — cerința inițială
+  numea explicit aceste patru lucruri „per unghi"; iterația 1 le avea pe toate prin text, dar
+  nu într-o formă scanabilă, per-unghi.
+- Consistență buton ↔ caption la unghiul 06: butonul zice „discută cu florența", dar caption-ul
+  se închidea cu „află de la Florența..." — mesaj corect, dar altă formulare decât butonul.
+  Unificat pe „discută cu Florența, fără cost și fără obligație — află ce se schimbă..." (are
+  ambele verbe: cel din buton, pentru consistență, și „află", pentru ca ScriptGrader să
+  recunoască CTA-ul din caption). Rescor: tot 100/100, neschimbat — era deja despre formulare,
+  nu despre punctaj.
