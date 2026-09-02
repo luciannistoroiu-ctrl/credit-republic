@@ -102,7 +102,7 @@ const CopyEngine = (function () {
       footerNote: 'credit republic · neobroker de credite',
       ctaText: '',
       hasSignalBlue: false,
-      caption: `nimeni nu alege cel mai bun credit. aleg primul care le iese în cale.\n\nCând cumperi un apartament, petreci luni întregi căutând compartimentarea potrivită, etajul, orientarea spre soare și cartierul.\n\nDar când vine vorba de credit, majoritatea oamenilor intră în prima sucursală care le iese în drum sau rămân la banca unde primesc salariul.\n\ncredit republic compară toate băncile în câteva minute. Serviciul este 0 lei pentru tine — comisionul vine de la bancă.\n\n#creditrepublic #creditipotecar #educatiefinanciara #neobroker #crediteromania #refinantare`,
+      caption: `nimeni nu alege cel mai bun credit. aleg primul care le iese în cale.\n\nCând cumperi un apartament, petreci luni întregi căutând compartimentarea potrivită, etajul, orientarea spre soare și cartierul.\n\nDar când vine vorba de credit, prima sucursală care iese în cale sau banca unde vine salariul câștigă des, fără comparație.\n\ncredit republic compară toate băncile în câteva minute. Serviciul este 0 lei pentru tine — comisionul vine de la bancă.\n\n#creditrepublic #creditipotecar #educatiefinanciara #neobroker #crediteromania #refinantare`,
       slides: [
         {
           eyebrow: 'obiceiul din piață',
@@ -112,7 +112,7 @@ const CopyEngine = (function () {
         {
           eyebrow: 'cum arată realitatea',
           title: '6 luni pentru apartament. 20 de minute pentru credit.',
-          body: 'O diferență de doar 0.5% la dobândă înseamnă zeci de mii de lei plătiți în plus pe durata contractului.'
+          body: 'O diferență mică la dobândă, dusă pe durata contractului, înseamnă bani plătiți în plus fără să fie nevoie.'
         },
         {
           eyebrow: 'mecanismul simplu',
@@ -167,14 +167,20 @@ const CopyEngine = (function () {
       format: '4:5',
       eyebrow: 'impact financiar',
       title: 'cât costă să amâni refinanțarea cu 6 luni',
-      subtitle: 'pentru un credit ipotecar mediu de 350.000 lei pe 25 ani',
-      point1: 'dobândă veche: 7.90% · rată lunară: ~2.680 lei',
-      point2: 'dobândă negociată: 5.75% · rată nouă: ~2.200 lei',
-      point3: 'economie ratată în 6 luni de amânare: 2.880 lei',
-      footerNote: 'calcul estimativ orientativ · credit republic',
+      subtitle: 'fiecare lună de amânare are un preț real.',
+      point1: 'dobânda veche rămâne fixă din obișnuință, nu din calcul',
+      point2: 'o dobândă renegociată poate reduce rata lunară',
+      point3: 'fiecare lună de amânare are un cost real, verificabil',
+      oldRateTag: 'ofertă veche',
+      oldRateVal: 'peste piața actuală',
+      newRateTag: 'refinanțare',
+      newRateVal: 'aliniată la piața de azi',
+      resultTitle: 'economie posibilă la refinanțare',
+      resultVal: 'calculată individual, la verificare',
+      footerNote: 'credit republic · neobroker de credite',
       ctaText: 'verifică poziția ta',
       hasSignalBlue: true,
-      caption: `cât costă să amâni refinanțarea unui credit ipotecar?\n\nDacă ai un credit semnat în perioada dobânzilor ridicate, o scădere de doar 1.5 - 2% la marjă înseamnă o economie lunară de aproape 500 lei.\n\nAmânarea refinanțării cu 6 luni înseamnă aproape 3.000 lei lăsați băncii din simplă inerție.\n\nVerifică acum dacă te califici pentru refinanțare la toate băncile.\n\n#refinantare #creditipotecar #economii #bugetpersonal #creditrepublic`,
+      caption: `cât costă să amâni refinanțarea unui credit ipotecar?\n\nDacă ai semnat într-o perioadă cu dobânzi ridicate, o piață care între timp a scăzut înseamnă bani lăsați băncii din simplă obișnuință.\n\nAmânarea cu 6 luni nu costă 0 lei — costă exact cât rămâne neverificat.\n\ncompară dobânda ta cu piața de azi, prin credit republic.\n\n#refinantare #creditipotecar #creditrepublic`,
       slides: [
         {
           eyebrow: 'realitatea pieței',
@@ -183,8 +189,8 @@ const CopyEngine = (function () {
         },
         {
           eyebrow: 'cifrele reale',
-          title: 'diferența de 480 lei pe lună',
-          body: 'La 350.000 lei rămași de plată, refinanțarea reduce costul lunar cu aproape 500 lei.'
+          title: 'diferența lunară, calculată pentru tine',
+          body: 'Refinanțarea reduce costul lunar — suma exactă depinde de soldul și dobânda ta actuală.'
         },
         {
           eyebrow: 'fără costuri',
@@ -203,15 +209,15 @@ const CopyEngine = (function () {
       theme: 'cream',
       format: '1:1',
       eyebrow: 'profil financiar',
-      title: 'venituri din pfa, dividende sau it? fiecare bancă calculează diferit.',
+      title: 'pfa sau dividende? banca ta le vede altfel.',
       subtitle: 'de ce același venit poate fi respins la o bancă și aprobat la alta',
-      point1: 'unele bănci iau în calcul 100% din dividende, altele doar 50%',
-      point2: 'vechimea minimă pe PFA variază între 1 an și 2 ani fiscali încheiați',
-      point3: 'norma de venit și contractele B2B au încadrări speciale',
+      point1: 'unele bănci acceptă integral veniturile din dividende, altele doar parțial',
+      point2: 'vechimea minimă cerută pe PFA diferă de la o bancă la alta',
+      point3: 'norma de venit și contractele B2B au încadrări diferite per bancă',
       footerNote: 'analiză personalizată · broker autorizat AVBS',
       ctaText: 'verifică poziția ta',
       hasSignalBlue: false,
-      caption: `ai venituri din dividende, PFA sau contracte din IT?\n\nFiecare bancă din România are propriul algoritm intern de calcul pentru gradul de îndatorare al veniturilor non-salariale.\n\nO bancă poate lua în considerare 100% din dividendele distribuite, în timp ce alta acceptă doar 50% sau cere 2 ani fiscali consecutivi.\n\nÎn loc să depui dosare pe rând și să riști respingeri, la credit republic comparăm direct cerințele de eligibilitate la toate băncile.\n\n#pfa #dividende #antreprenoriat #creditipotecar #creditrepublic #avbs`,
+      caption: `ai venituri din dividende, PFA sau contracte din IT?\n\nFiecare bancă din România are propriul algoritm intern de calcul pentru gradul de îndatorare al veniturilor non-salariale.\n\nO bancă poate lua în considerare integral dividendele distribuite, în timp ce alta acceptă doar parțial sau cere o vechime fiscală mai mare.\n\nÎn loc să depui dosare pe rând și să riști respingeri, compară cerințele fiecărei bănci pentru venitul tău, printr-un singur loc: credit republic.\n\n#pfa #dividende #antreprenoriat #creditipotecar #creditrepublic #avbs`,
       slides: [
         {
           eyebrow: 'provocarea',
@@ -220,7 +226,7 @@ const CopyEngine = (function () {
         },
         {
           eyebrow: 'criterii diferite',
-          title: 'ponderi de la 30% la 100%',
+          title: 'ponderi diferite, de la o bancă la alta',
           body: 'În funcție de domeniu și istoricul financiar, băncile au metodologii diferite de calcul.'
         },
         {
@@ -241,14 +247,14 @@ const CopyEngine = (function () {
       format: '1:1',
       eyebrow: 'mit vs realitate',
       title: 'ce vezi în reclamă vs ce plătești lunar',
-      subtitle: 'cum este structurat costul real al unui credit',
+      subtitle: 'comisioanele și asigurările rareori apar în reclamă.',
       point1: 'mitul: „merg la banca mea pentru că primesc salariul acolo și am reducere”',
-      point2: 'realitatea: reducerea de virare salariu poate fi anulată de asigurări sau comisioane lunare de administrare',
+      point2: 'realitatea: asigurările și comisioanele lunare anulează des reducerea',
       point3: 'concluzia: compară mereu costul total, nu doar primul procent din afiș',
-      footerNote: 'transparență totală · credit republic',
+      footerNote: 'costul total contează · credit republic',
       ctaText: '',
       hasSignalBlue: false,
-      caption: `mit vs realitate în alegerea unui credit:\n\nMit: „Merg direct la banca unde am contul de salariu pentru că îmi oferă automat cea mai mică dobândă.”\n\nRealitate: Deseori, reducerea oferită pentru virarea salariului este depășită de costul polițelor de asigurare sau de comisioanele anuale de administrare a contului.\n\ncredit republic compară costul total la toate băncile, ca să iei o decizie informată.\n\n#mitvsrealitate #credite #educatiefinanciara #creditrepublic #costtotal`,
+      caption: `mit vs realitate în alegerea unui credit:\n\nMit: „Merg direct la banca unde am contul de salariu pentru că îmi oferă automat cea mai mică dobândă.”\n\nRealitate: Deseori, reducerea oferită pentru virarea salariului este depășită de costul polițelor de asigurare sau de comisioanele anuale de administrare a contului.\n\ncompară costul total la toate băncile, prin credit republic.\n\n#mitvsrealitate #credite #educatiefinanciara #creditrepublic #costtotal`,
       slides: [
         {
           eyebrow: 'mitul clasic',
@@ -277,12 +283,12 @@ const CopyEngine = (function () {
       theme: 'coral',
       format: '1:1',
       eyebrow: 'asimetria de atenție',
-      title: 'cauți apartamentul 6 luni. alegi creditul în 20 de minute.',
-      subtitle: 'de ce investim sute de ore în alegerea finisajelor, dar lăsăm zeci de mii de lei la prima bancă?',
+      title: 'cauți apartamentul 6 luni.',
+      subtitle: 'alegi creditul în 20 de minute.',
       footerNote: 'credit republic · neobroker de credite',
       ctaText: '',
       hasSignalBlue: false,
-      caption: `cauți apartamentul 6 luni. alegi creditul în 20 de minute.\n\nVerifici izolația termică, locul de parcare, vecinii și finisajele.\n\nDar când vine vorba de împrumutul pe 30 de ani care finanțează acea locuință, mulți acceptă prima ofertă primită.\n\nO oră alocată comparării ofertelor la toate băncile îți poate salva echivalentul unei mașini noi pe durata creditului.\n\n#imobiliare #creditipotecar #primacasa #apartamentnou #creditrepublic`,
+      caption: `cauți apartamentul 6 luni. alegi creditul în 20 de minute.\n\nVerifici izolația termică, locul de parcare, vecinii și finisajele.\n\nDar la împrumutul pe 30 de ani care finanțează acea locuință, prima ofertă rămâne des singura verificată.\n\nO oră alocată comparării ofertelor la toate băncile schimbă costul total al creditului pe termen lung.\n\n#imobiliare #creditipotecar #primacasa #apartamentnou #creditrepublic`,
       slides: [
         {
           eyebrow: 'paradoxul cumpărătorului',
@@ -311,15 +317,15 @@ const CopyEngine = (function () {
       theme: 'plum',
       format: '1:1',
       eyebrow: 'tehnologie + experiență',
-      title: 'algoritmul compară piața. Florența Nistoroiu negociază la bancă.',
-      subtitle: 'viteza unui neobroker AI unită cu experiența unui broker autorizat AVBS',
+      title: 'viteza unui algoritm.',
+      subtitle: '',
       point1: 'algoritmul scanează toate opțiunile de la toate băncile în 4 minute',
       point2: 'Florența Nistoroiu verifică dosarul, explică nuanțele și optimizează marjele',
       point3: 'comisionul tău: 0 lei (plătit integral de bancă la semnare)',
       footerNote: 'Florența Nistoroiu · Broker autorizat AVBS · credit republic',
       ctaText: 'verifică poziția ta',
       hasSignalBlue: true,
-      caption: `algoritm + om: de ce această combinație funcționează cel mai bine pentru creditul tău:\n\nTehnologia compară zeci de condiții de eligibilitate de la toate băncile în doar câteva minute.\n\nÎnsă un dosar de credit ipotecar are nuanțe umane: evaluarea imobilului, derogări de marjă, structura veniturilor și comunicarea directă cu ofițerul bancar.\n\nAici intervine Florența Nistoroiu, broker autorizat AVBS, care preia tot efortul de negociere.\n\nServiciul este 100% gratuit pentru tine.\n\n#brokercredite #avbs #florentanistoroiu #creditrepublic #ipotecar`,
+      caption: `un algoritm rapid. un om care negociază pentru tine.\n\nÎn câteva minute, vezi la ce bănci te califici — fără drumuri, fără interogare la birou.\n\nApoi dosarul tău ajunge la Florența Nistoroiu, broker autorizat AVBS: evaluarea imobilului, marja negociabilă, actele — toate pe mâna ei, nu pe a ta.\n\nNu rămâi singur în fața băncii. Serviciul e gratuit pentru tine.\n\n#brokercredite #avbs #florentanistoroiu #creditrepublic #ipotecar`,
       slides: [
         {
           eyebrow: 'rolul tehnologiei',

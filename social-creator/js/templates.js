@@ -136,6 +136,7 @@ const TemplatesEngine = (function () {
         ${renderHeader(postData)}
         <div class="post-body">
           <h2 class="post-main-title">${escapeHtml(postData.title)}</h2>
+          ${postData.subtitle ? `<p class="myth-reality-lead">${escapeHtml(postData.subtitle)}</p>` : ''}
           <div class="myth-reality-cards">
             <div class="mr-card card-myth">
               <div class="mr-badge badge-myth">mitul din piață</div>
@@ -162,23 +163,35 @@ const TemplatesEngine = (function () {
    * Render Template 3: Calculator & Financial Impact
    */
   function renderCalcImpact(postData) {
+    // fără cifre inventate sau ilustrative într-un chip de rezultat (regulă de brand):
+    // eticheta veche/nouă e text calitativ implicit; o cifră reală apare doar dacă
+    // postData chiar o furnizează (rezultat verificat, nu exemplu generic)
+    const oldLabel = postData.oldRateTag || 'ofertă veche';
+    const oldVal = postData.oldRateVal || 'dobânda ta actuală';
+    const oldSub = postData.oldRateSub || '';
+    const newLabel = postData.newRateTag || 'refinanțare';
+    const newVal = postData.newRateVal || 'dobânda renegociată';
+    const newSub = postData.newRateSub || '';
+    const resultTitle = postData.resultTitle || 'economie posibilă la refinanțare';
+    const resultVal = postData.resultVal || 'calculată individual, la verificare';
+
     return `
       <div class="post-layout layout-calc-impact">
         ${renderHeader(postData)}
         <div class="post-body">
           <h2 class="post-main-title">${escapeHtml(postData.title)}</h2>
           ${postData.subtitle ? `<p class="calc-subtitle">${escapeHtml(postData.subtitle)}</p>` : ''}
-          
+
           <div class="calc-metrics-grid">
             <div class="calc-metric-card card-old">
-              <span class="metric-tag">ofertă veche</span>
-              <span class="metric-val text-strike">7.90%</span>
-              <span class="metric-sub">~2.680 lei / lună</span>
+              <span class="metric-tag">${escapeHtml(oldLabel)}</span>
+              <span class="metric-val text-strike">${escapeHtml(oldVal)}</span>
+              ${oldSub ? `<span class="metric-sub">${escapeHtml(oldSub)}</span>` : ''}
             </div>
             <div class="calc-metric-card card-new">
-              <span class="metric-tag tag-mint">refinanțare</span>
-              <span class="metric-val text-mint">5.75%</span>
-              <span class="metric-sub">~2.200 lei / lună</span>
+              <span class="metric-tag tag-mint">${escapeHtml(newLabel)}</span>
+              <span class="metric-val text-mint">${escapeHtml(newVal)}</span>
+              ${newSub ? `<span class="metric-sub">${escapeHtml(newSub)}</span>` : ''}
             </div>
           </div>
 
@@ -187,8 +200,8 @@ const TemplatesEngine = (function () {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
             <div class="confirmed-content">
-              <span class="conf-title">economie estimată în 6 luni</span>
-              <span class="conf-amount">2.880 lei economisiți</span>
+              <span class="conf-title">${escapeHtml(resultTitle)}</span>
+              <span class="conf-amount">${escapeHtml(resultVal)}</span>
             </div>
           </div>
         </div>
@@ -208,6 +221,8 @@ const TemplatesEngine = (function () {
       <div class="post-layout layout-broker-ai">
         ${renderHeader(postData)}
         <div class="post-body">
+          ${postData.title ? `<h2 class="post-main-title broker-headline">${escapeHtml(postData.title)}</h2>` : ''}
+          ${postData.subtitle ? `<p class="broker-lead ${isDark ? 'text-cream-70' : 'text-plum-70'}">${escapeHtml(postData.subtitle)}</p>` : ''}
           <div class="broker-hero-row">
             <div class="broker-avatar-wrap">
               <img src="assets/Florenta Broker v2.webp" alt="Florența Nistoroiu" class="broker-img" onerror="this.src='assets/Florenta Broker.webp'">
@@ -217,9 +232,9 @@ const TemplatesEngine = (function () {
               <h2 class="broker-name">Florența Nistoroiu</h2>
               <p class="broker-role">broker autorizat AVBS · negociator credite</p>
               <div class="broker-dual-tag">
-                <span class="tag-ai">AI compară piața</span>
+                <span class="tag-ai">${escapeHtml(postData.aiTag || 'AI compară piața')}</span>
                 <span class="tag-divider">+</span>
-                <span class="tag-human">Omul negociază</span>
+                <span class="tag-human">${escapeHtml(postData.humanTag || 'omul negociază')}</span>
               </div>
             </div>
           </div>
@@ -322,24 +337,27 @@ const TemplatesEngine = (function () {
    * Render Template 7: Side-by-Side Comparison
    */
   function renderComparison(postData) {
+    const oldItems = (postData.oldItems && postData.oldItems.length) ? postData.oldItems : [
+      '5 drumuri la 5 sucursale', 'formulare repetate de 5 ori', 'fără pârghie de negociere'
+    ];
+    const newItems = (postData.newItems && postData.newItems.length) ? postData.newItems : [
+      '1 singură aplicare online', 'toate băncile comparate', 'broker autorizat AVBS dedicat'
+    ];
     return `
       <div class="post-layout layout-comparison">
         ${renderHeader(postData)}
         <div class="post-body">
           <h2 class="post-main-title">${escapeHtml(postData.title)}</h2>
-          
+          ${postData.subtitle ? `<p class="comparison-lead">${escapeHtml(postData.subtitle)}</p>` : ''}
+
           <div class="comp-table">
             <div class="comp-col col-old">
-              <div class="comp-col-header">pe cont propriu</div>
-              <div class="comp-item"><span class="comp-cross">✕</span> 5 drumuri la 5 sucursale</div>
-              <div class="comp-item"><span class="comp-cross">✕</span> Formulare repetate de 5 ori</div>
-              <div class="comp-item"><span class="comp-cross">✕</span> Fără pârghie de negociere</div>
+              <div class="comp-col-header">${escapeHtml(postData.oldColHeader || 'pe cont propriu')}</div>
+              ${oldItems.map(item => `<div class="comp-item"><span class="comp-cross">✕</span> ${escapeHtml(item)}</div>`).join('')}
             </div>
             <div class="comp-col col-cr">
-              <div class="comp-col-header">credit republic</div>
-              <div class="comp-item"><span class="comp-check">✓</span> 1 singură aplicare online</div>
-              <div class="comp-item"><span class="comp-check">✓</span> Toate băncile comparate</div>
-              <div class="comp-item"><span class="comp-check">✓</span> Broker autorizat AVBS dedicat</div>
+              <div class="comp-col-header">${escapeHtml(postData.newColHeader || 'credit republic')}</div>
+              ${newItems.map(item => `<div class="comp-item"><span class="comp-check">✓</span> ${escapeHtml(item)}</div>`).join('')}
             </div>
           </div>
         </div>

@@ -537,6 +537,14 @@
 }
 
 /* 4. Broker AVBS + AI */
+.broker-headline {
+  margin-bottom: 8px;
+}
+.broker-lead {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0 0 20px;
+}
 .broker-hero-row {
   display: flex;
   align-items: center;
