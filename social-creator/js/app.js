@@ -720,6 +720,7 @@
       markType: 'auto',
       bgImage: preset.bgImage || '',
       photoIsLight: preset.photoIsLight || false,
+      textPosition: preset.textPosition || 'cap',
       imageFilter: '',
       caption: preset.caption || '',
       slides: preset.slides ? JSON.parse(JSON.stringify(preset.slides)) : []
