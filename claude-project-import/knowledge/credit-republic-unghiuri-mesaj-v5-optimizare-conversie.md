@@ -284,7 +284,38 @@ Nicio schimbare de cod — a doua verificare vizuală la rând care nu a găsit 
 
 ---
 
-## Stare finală (după 5 iterații)
+## Iterația 6 — consistență cu site-ul live (`index.html`), neverificată până acum
+
+Toate iterațiile 1-5 au verificat unghiurile în `copy-engine.js` și în aplicația
+`social-creator` — niciuna nu a comparat cu `index.html`, site-ul live, care are propriul
+copy scris independent (predată din cercetarea v4.1, nu din acest exercițiu).
+
+- **Confirmare, nu problemă:** secțiunea „obs" din `index.html` (linia 868) are deja live
+  exact hook-ul unghiului 02 rescris în iterația 1: „banca ta nu te sună când apare o
+  ofertă mai bună." — două surse independente (cercetarea originală și site-ul live) au
+  convers la același hook, semn bun.
+- **Ce am împrumutat înapoi:** elaborarea de acolo („nu e rea-voință. e pur și simplu că
+  nimeni nu e plătit să-ți spună") e mai bună decât „de ce ar face-o?" din caption-ul
+  `p_02_costul_amanarii` — explică mecanismul direct, fără întrebare retorică. Am adus
+  formularea site-ului în caption, ca mesajul să fie coerent pe ambele canale. Scor
+  neschimbat (100/100) — din nou, o îmbunătățire de claritate, nu de compliance.
+- **Verificat și lăsat neschimbat, cu motiv:** tabelul de comparație (`#produse`,
+  liniile 985-1011) confirmă independent poziționarea competitivă din acest document
+  (bancă = o ofertă, broker clasic = birocrație fizică, noi = AI + broker, toate băncile,
+  0 lei) — nimic de adăugat. Marquee-ul cu bănci reale numite (Banca Transilvania, ING,
+  BCR...) e o soluție mai bună decât o cifră la problema „câte bănci" semnalată în
+  `08-sapte-unghiuri...` — arată acoperirea fără să inventeze un număr. CTA-ul site-ului
+  („obține precalificarea", un singur buton global către widget-ul AVBS) e altă arhitectură
+  decât CTA-urile per-unghi din `copy-engine.js` — corect așa, pentru că site-ul e o pagină
+  unică cu un widget persistent, nu postări social de sine stătătoare; nu era un bug de
+  reparat.
+- Nu am modificat `index.html` — pagina live nu face parte din codul testat de
+  `test-suite.js` și orice schimbare acolo ar trebui văzută înainte de publicare, nu doar
+  verificată prin regex.
+
+---
+
+## Stare finală (după 6 iterații)
 
 | iterație | ce a adus |
 |---|---|
@@ -293,9 +324,15 @@ Nicio schimbare de cod — a doua verificare vizuală la rând care nu a găsit 
 | 3 | fix trunchiere caption unghi 03; a treia locație cu superlativ nedetectat (`ANGLES[].desc`); teste 48→55 |
 | 4 | verificare end-to-end în aplicația reală (Playwright) — persoana nouă generează+evaluează 100/100 din UI; 0 erori JS |
 | 5 | verificare vizuală pe canvas + mockup Instagram nativ — 0 overflow, fix-ul din iterația 3 confirmat în mockup-ul propriu al aplicației |
+| 6 | verificare de consistență cu `index.html` (site-ul live, neatins până acum) — hook-ul unghiului 02 confirmat independent live; elaborarea de acolo împrumutată în caption; poziționare competitivă validată de tabelul comparativ al site-ului |
 
 Rezultat: 7 unghiuri, 7 persoane (una nouă), 55 teste automate toate verzi, scor mediu D2C
-95/100, 0 erori de compliance reale, verificat atât prin logică (Node) cât și vizual
-(browser). Nu mai am schimbări de făcut fără date noi din trafic real — pasul următor
-onest e testarea A/B pe unghiurile 02 și 07 (unde schimbarea de CTA are mecanismul cauzal
-cel mai clar), nu o nouă rescriere de birou.
+95/100, 0 erori de compliance reale, verificat prin logică (Node), vizual (browser) și prin
+consistență cu site-ul live. Nu mai am schimbări de făcut fără date noi din trafic real —
+pasul următor onest e testarea A/B pe unghiurile 02 și 07 (unde schimbarea de CTA are
+mecanismul cauzal cel mai clar), nu o nouă rescriere de birou.
+
+`elementor-embed.html` rămâne un fișier separat, neatins (are encoding stricat și pare un
+draft neactualizat pentru un widget Elementor extern acestui repo) — semnalat ca task
+separat (`task_932e4c7f`), pentru că necesită o confirmare de la om despre dacă mai e
+folosit, nu o reparare automată oarbă.
