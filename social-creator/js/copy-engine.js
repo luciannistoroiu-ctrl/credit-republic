@@ -20,7 +20,7 @@ const CopyEngine = (function () {
       num: '02',
       title: 'refinanțarea amânată',
       subtitle: 'costul invizibil al inerției',
-      desc: 'Fiecare lună în care un credit cu dobândă mare este amânat înseamnă bani lăsați la bancă din simplă obișnuință.',
+      desc: 'Banca ta nu are niciun motiv să te sune când apare o ofertă mai bună — fiecare lună de amânare înseamnă bani lăsați la banca inițială.',
       defaultRegister: 'exact'
     },
     {
@@ -44,7 +44,7 @@ const CopyEngine = (function () {
       num: '05',
       title: 'casa vs creditul',
       subtitle: 'asimetria de atenție',
-      desc: 'Cumpărătorii caută 6 luni apartamentul perfect, dar acceptă prima ofertă de credit în 20 de minute.',
+      desc: 'Cumpărătorii caută 6 luni apartamentul potrivit, dar acceptă prima ofertă de credit în 20 de minute.',
       defaultRegister: 'observational'
     },
     {
@@ -211,7 +211,7 @@ const CopyEngine = (function () {
       footerNote: 'analiză personalizată · broker autorizat AVBS',
       ctaText: 'vezi unde te califici',
       hasSignalBlue: false,
-      caption: `ai venituri din dividende, PFA sau contracte din IT?\n\nFiecare bancă din România are propriul algoritm intern de calcul pentru gradul de îndatorare al veniturilor non-salariale. O bancă poate lua în considerare 100% din dividendele distribuite, în timp ce alta acceptă doar 50% sau cere 2 ani fiscali consecutivi.\n\nUn refuz de la o bancă nu e un refuz din partea pieței — e doar o singură metodologie de risc, dintre multe.\n\nFlorența Nistoroiu, broker autorizat AVBS, verifică manual unde se încadrează exact profilul tău, înainte să depui vreun dosar. Serviciul e 0 lei pentru tine.\n\nvezi unde te califici — verificarea e gratuită.\n\n#pfa #dividende #antreprenoriat #creditipotecar #creditrepublic #avbs`,
+      caption: `o bancă ți-a spus nu. nu înseamnă că piața a spus nu.\n\nDacă ai venituri din dividende, PFA sau contracte din IT, un refuz nu e un refuz din partea pieței — e doar o singură metodologie de risc, dintre multe.\n\nFiecare bancă din România are propriul algoritm intern de calcul pentru gradul de îndatorare al veniturilor non-salariale. O bancă poate lua în considerare 100% din dividendele distribuite, în timp ce alta acceptă doar 50% sau cere 2 ani fiscali consecutivi.\n\nFlorența Nistoroiu, broker autorizat AVBS, verifică manual unde se încadrează exact profilul tău, înainte să depui vreun dosar. Serviciul e 0 lei pentru tine.\n\nvezi unde te califici — verificarea e gratuită.\n\n#pfa #dividende #antreprenoriat #creditipotecar #creditrepublic #avbs`,
       slides: [
         {
           eyebrow: 'provocarea',

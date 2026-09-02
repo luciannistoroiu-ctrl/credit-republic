@@ -136,6 +136,15 @@ assert(brokerPhotoPrompt.includes('consultation desk') || brokerPhotoPrompt.incl
 
 console.log('\n--- 3. Testing CopyEngine Matrix & Presets ---');
 assert(CopyEngine.ANGLES.length === 7, 'Has exactly 7 brand angles');
+
+// Regression coverage: ANGLES[].desc is internal (shown in the tool's own picker UI, never
+// published directly), so nothing validated it either — it shipped with an unflagged
+// "apartamentul perfect" superlative until this test existed.
+CopyEngine.ANGLES.forEach(angle => {
+  const errors = [angle.title, angle.subtitle, angle.desc].flatMap(t => BrandValidator.validateText(t)).filter(i => i.rule.severity === 'error');
+  assert(errors.length === 0, `Angle "${angle.id}" title/subtitle/desc are 100% brand compliant (0 errors)`);
+});
+
 CopyEngine.PRESETS.forEach(preset => {
   const report = BrandValidator.validatePost(preset);
   assert(report.isValid, `Preset "${preset.id}" is 100% brand compliant (0 errors)`);

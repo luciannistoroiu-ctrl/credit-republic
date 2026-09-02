@@ -207,3 +207,27 @@ Copy-ul din iterația 1 a rezistat la o a doua citire critică (nimic de rescris
   ambele verbe: cel din buton, pentru consistență, și „află", pentru ca ScriptGrader să
   recunoască CTA-ul din caption). Rescor: tot 100/100, neschimbat — era deja despre formulare,
   nu despre punctaj.
+
+---
+
+## Iterația 3 — ce s-a adăugat
+
+- **Verificare de trunchiere Instagram/Facebook (primele ~125 caractere).** Feed-ul taie
+  caption-ul la ~125 caractere înainte de „...more" — am extras exact ce se vede pe fiecare
+  din cele 8 preset-uri. Șapte din opt aveau hook complet sau aproape complet vizibil în
+  fereastra aia. Unghiul 03 nu: titlul de pe grafică fusese rescris cu hook-ul ascuțit
+  („o bancă ți-a spus nu...") dar caption-ul pornea tot cu întrebarea veche, mai blândă
+  („ai venituri din dividende...") — cine citea doar caption-ul (fără să deschidă imaginea)
+  nu vedea deloc hook-ul nou. Rescris să înceapă cu același hook ca titlul, apoi calificarea
+  de audiență („dacă ai venituri din...") imediat după. Scor neschimbat (100/100) — nu era
+  o problemă de compliance, era o problemă de ce se vede primul.
+- **A treia locație cu același bug de acoperire de test.** `ANGLES[].desc` (descrierea
+  internă din picker-ul de unghiuri al tool-ului, nu copy publicat) conținea „apartamentul
+  **perfect**" — al treilea loc, după preset-uri (iterația 1) și micro-persoane (iterația 1),
+  unde superlativul interzis stătuse nedetectat pentru că nimic nu testa acel câmp. Corectat
+  („apartamentul potrivit") și adăugat `ANGLES` în `test-suite.js`. Am actualizat și descrierea
+  unghiului 02, care încă descria varianta veche („bani lăsați din simplă obișnuință") după ce
+  hook-ul propriu-zis fusese rescris cu insight-ul „banca nu te sună" în iterația 1.
+- Acum toată suprafața de copy a sistemului de unghiuri — `ANGLES`, `PRESETS`,
+  `MicroPersonas`, briefurile generate de `ScriptEngine` — trece prin `BrandValidator`
+  automat. 48 → **55 teste, toate verzi.**
