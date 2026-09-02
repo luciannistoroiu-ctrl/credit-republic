@@ -2,8 +2,9 @@
 
 Rescriere a celor 7 unghiuri de brand (`social-creator/js/copy-engine.js`) și a celor 6→7
 micro-persoane (`social-creator/js/micro-personas.js`), pornind de la audiență, modelul de
-business, competitori și obiectivul de conversie. Prima iterație dintr-un loop de rafinare
-(Ralph loop, max 5 iterații) — acest document e rezultatul iterației 1.
+business, competitori și obiectivul de conversie. Scris pe parcursul a 5 iterații
+(Ralph loop, max 5 iterații) — istoricul complet e mai jos, secțiune cu secțiune; starea
+finală e rezumată la capătul documentului.
 
 De ce „6 sau 7": codul are **7 unghiuri** dar avea doar **6 micro-persoane** — unghiul
 06 (algoritm + om) nu avea o persoană dedicată. Am adăugat-o (`decizie_prea_mare`, vezi mai
@@ -256,3 +257,45 @@ pentru compliance/scor, dar niciodată deschis efectiv în browser. Am pornit to
   întrebare generică de la început).
 
 Nicio schimbare de cod din această verificare — era o verificare, nu o rescriere.
+
+---
+
+## Iterația 5 (finală) — randare pe canvas real + mockup Instagram nativ
+
+Ultima verificare: captură de ecran pe canvas-ul real (nu doar câmpurile de input) pentru
+unghiurile 02, 03, 06, 07, plus tab-ul „Instagram Feed" al aplicației — un mockup nativ de
+post Instagram (avatar, like/comment/share, caption cu „...more"), mai autoritar decât
+estimarea manuală de 125 caractere din iterația 3.
+
+- **Niciun overflow sau text tăiat** pe niciuna din cele 4 șabloane verificate (calc_impact,
+  checklist, broker_ai, comparison) — titlurile mai lungi din unghiurile 02 și 03 se
+  încadrează pe 2-3 rânduri fără să deformeze layout-ul.
+- **Mockup-ul Instagram confirmă direct fix-ul din iterația 3**: caption-ul unghiului 03
+  apare sub post exact ca „creditrepublic **o bancă ți-a spus nu. nu înseamnă că piața a
+  spus nu.** Dacă ai venituri din dividende, PFA sau contracte din IT, un refuz nu e un
+  refuz din ..." — hook-ul nou e complet vizibil înainte de trunchiere, în simulatorul
+  propriu al aplicației, nu doar în calculul meu de caractere.
+- Butoanele CTA mai lungi („discută cu florența", „precalifică-te, fără drumuri") se
+  încadrează curat pe 2 rânduri în buton, fără tăiere — și la unghiul 07, CTA-ul „fără
+  drumuri" stă vizual chiar lângă tabelul „✗ 5 drumuri la 5 sucursale" pe care îl
+  dezamorsează, deci payoff-ul e la vedere, nu doar în text.
+
+Nicio schimbare de cod — a doua verificare vizuală la rând care nu a găsit nimic de reparat.
+
+---
+
+## Stare finală (după 5 iterații)
+
+| iterație | ce a adus |
+|---|---|
+| 1 | rescriere completă a 7 unghiuri + 6→7 persoane; 2 bug-uri de regex + 1 violare live reparate; scor D2C 73.1→95.0, teste 29→48 |
+| 2 | tabel-rezumat audiență/obiecție/diferențiator/CTA (cerut explicit); consistență buton↔caption unghi 06 |
+| 3 | fix trunchiere caption unghi 03; a treia locație cu superlativ nedetectat (`ANGLES[].desc`); teste 48→55 |
+| 4 | verificare end-to-end în aplicația reală (Playwright) — persoana nouă generează+evaluează 100/100 din UI; 0 erori JS |
+| 5 | verificare vizuală pe canvas + mockup Instagram nativ — 0 overflow, fix-ul din iterația 3 confirmat în mockup-ul propriu al aplicației |
+
+Rezultat: 7 unghiuri, 7 persoane (una nouă), 55 teste automate toate verzi, scor mediu D2C
+95/100, 0 erori de compliance reale, verificat atât prin logică (Node) cât și vizual
+(browser). Nu mai am schimbări de făcut fără date noi din trafic real — pasul următor
+onest e testarea A/B pe unghiurile 02 și 07 (unde schimbarea de CTA are mecanismul cauzal
+cel mai clar), nu o nouă rescriere de birou.
