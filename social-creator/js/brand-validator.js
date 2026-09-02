@@ -55,6 +55,18 @@ const BrandValidator = (function () {
       severity: 'error',
       title: 'Nicio pastilă peste fotografie',
       desc: 'Peste o fotografie textul rulează liber (cream pe imagine închisă, plum pe imagine deschisă) — fără cutie, fără umbră, fără contur. Verifică faptul că postarea are fotografie de fundal (bgImage) și mod „text liber” activ (on-photo), nu pastile pline.'
+    },
+    NO_GENERIC_EYEBROW: {
+      id: 'rule_no_generic_eyebrow',
+      severity: 'warning',
+      title: 'Fără etichetă-pastilă generică deasupra titlului',
+      desc: 'Categorii abstracte de 2 cuvinte („impact financiar”, „profil financiar”, „mit vs realitate”) citesc ca generate automat. Titlul + logo-ul sunt suficiente — lasă eyebrow gol, decât dacă e strict funcțional (ex. eticheta unui pas din carusel).'
+    },
+    SINGLE_HOOK_TITLE: {
+      id: 'rule_single_hook_title',
+      severity: 'warning',
+      title: 'Titlul e un singur hook, nu două fraze legate prin punct',
+      desc: 'Un titlu cu 2 clauze complete („X. Y.”) cere citire completă pentru sens — desparte-l în title + subtitle (câmpuri separate, nu concatenate), sau scurtează-l la o singură idee de sub 9 cuvinte.'
     }
   };
 
@@ -113,7 +125,7 @@ const BrandValidator = (function () {
     }
 
     // 4. Reader Blame Check
-    const blameRegex = /\b(ai l[aă]sat|nu [sș]tii|ai gre[sș]it|de ce s[aă] te opre[sș]ti la|ai pierdut|faci o gre[sș]eal[aă]|pl[aă]te[sș]ti degeaba|nu ai comparat)\b/gi;
+    const blameRegex = /\b(ai l[aă]sat|nu [sș]tii|ai gre[sș]it|de ce s[aă] te opre[sș]ti la|ai pierdut|faci o gre[sș]eal[aă]|pl[aă]te[sș]ti degeaba|nu ai comparat|nu ai verificat)\b/gi;
     const blameMatch = text.match(blameRegex);
     if (blameMatch) {
       issues.push({
@@ -195,6 +207,32 @@ const BrandValidator = (function () {
         issues.push(...found);
       }
     });
+
+    // Eyebrow generic (post-level, nu per-slide — eyebrow-ul de carusel e funcțional)
+    if (postData.eyebrow && postData.eyebrow.trim()) {
+      issues.push({
+        rule: RULES.NO_GENERIC_EYEBROW,
+        field: 'Eyebrow',
+        match: postData.eyebrow,
+        suggestion: '(lasă gol)',
+        autoFix: (data) => { data.eyebrow = ''; return data; }
+      });
+    }
+
+    // Titlu = un singur hook, nu 2 clauze legate prin punct („X. Y.”)
+    // excepție: linia master a brandului, deliberat 2 clauze, brand-canonică
+    if (postData.title && !postData.title.toLowerCase().includes('nimeni nu alege cel mai bun credit')) {
+      const t = postData.title.trim();
+      const hasInternalPeriod = /\.\s+\S/.test(t.slice(0, -1));
+      if (hasInternalPeriod) {
+        issues.push({
+          rule: RULES.SINGLE_HOOK_TITLE,
+          field: 'Titlu',
+          match: t,
+          suggestion: 'desparte în title + subtitle, sau scurtează la o singură frază'
+        });
+      }
+    }
 
     // Check Signal Blue Count rule — reflectă câmpurile reale folosite de
     // app.js/templates.js (postData.hasSignalBlue), nu nume vechi neutilizate.

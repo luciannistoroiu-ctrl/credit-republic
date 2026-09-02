@@ -398,12 +398,12 @@ const CopyEngine = (function () {
       bgImage: 'assets/photo_modern_interior.jpg',
       photoIsLight: true,
       eyebrow: '',
-      title: '3 luni la vizionări. 20 de minute la credit.',
-      subtitle: 'atenția se împarte inegal — apartamentul primește luni, creditul primește minute.',
+      title: '3 luni la vizionări.',
+      subtitle: '20 de minute la credit.',
       footerNote: 'credit republic · neobroker de credite',
       ctaText: '',
       hasSignalBlue: false,
-      caption: `3 luni la vizionări. 20 de minute la credit.\n\nCumpărătorii caută compartimentarea potrivită, etajul, orientarea spre soare și cartierul — luni întregi.\n\nDar la credit, majoritatea acceptă prima ofertă care le iese în cale.\n\ncredit republic compară toate băncile în câteva minute, ca să nu mai fie nevoie de acest compromis.\n\n#creditrepublic #creditipotecar #educatiefinanciara #neobroker`,
+      caption: `3 luni la vizionări. 20 de minute la credit.\n\nCumpărătorii caută compartimentarea potrivită, etajul, orientarea spre soare și cartierul — luni întregi.\n\nDar la credit, prima ofertă care iese în cale câștigă des, fără comparație.\n\ncompară toate băncile în câteva minute, prin credit republic.\n\n#creditrepublic #creditipotecar #educatiefinanciara #neobroker`,
       slides: []
     },
 
@@ -419,12 +419,12 @@ const CopyEngine = (function () {
       photoIsLight: true,
       textPosition: 'talpa',
       eyebrow: '',
-      title: 'venitul variabil nu e un venit mai slab. e un venit calculat altfel.',
+      title: 'venitul variabil, calculat altfel.',
       subtitle: 'PFA, dividende, bonusuri — fiecare bancă are propria formulă.',
       footerNote: 'credit republic · neobroker de credite',
       ctaText: 'verifică poziția ta',
       hasSignalBlue: false,
-      caption: `venitul variabil nu e un venit mai slab. e un venit calculat altfel.\n\nPFA, dividende, bonusuri, venituri din IT pe proiect — fiecare bancă are propria formulă de calcul al gradului de îndatorare pentru venituri non-standard.\n\ncredit republic compară toate băncile și găsește formula care se potrivește profilului tău real de venit.\n\n#venitvariabil #pfa #creditipotecar #creditrepublic`,
+      caption: `venitul variabil nu e un venit mai slab. e un venit calculat altfel.\n\nPFA, dividende, bonusuri, venituri din IT pe proiect — fiecare bancă are propria formulă de calcul al gradului de îndatorare pentru venituri non-standard.\n\ncompară toate băncile și găsește formula care se potrivește venitului tău, prin credit republic.\n\n#venitvariabil #pfa #creditipotecar #creditrepublic`,
       slides: []
     },
 
@@ -445,7 +445,7 @@ const CopyEngine = (function () {
       footerNote: 'credit republic · neobroker de credite',
       ctaText: 'verifică poziția ta',
       hasSignalBlue: false,
-      caption: `fiecare lună de amânare are un preț.\n\nUn credit cu dobândă peste piața actuală, lăsat neverificat, înseamnă bani plătiți în plus din simplă obișnuință.\n\ncredit republic compară toate băncile și îți arată dacă o refinanțare chiar merită, în câteva minute.\n\n#refinantare #creditipotecar #creditrepublic`,
+      caption: `fiecare lună de amânare are un preț.\n\nUn credit cu dobândă peste piața actuală, lăsat neverificat, înseamnă bani plătiți în plus din simplă obișnuință.\n\ncompară toate băncile și vezi dacă o refinanțare chiar merită, în câteva minute, prin credit republic.\n\n#refinantare #creditipotecar #creditrepublic`,
       slides: []
     },
 
@@ -487,7 +487,7 @@ const CopyEngine = (function () {
       footerNote: 'credit republic · neobroker de credite',
       ctaText: '',
       hasSignalBlue: false,
-      caption: `ce vezi în reclamă nu e ce plătești.\n\nDobânda afișată e doar o parte din cost. Comisionul lunar și asigurarea obligatorie rareori apar în același cadru.\n\ncredit republic compară costul total, nu doar cifra din titlu.\n\n#educatiefinanciara #creditipotecar #creditrepublic`,
+      caption: `ce vezi în reclamă nu e ce plătești.\n\nDobânda afișată e doar o parte din cost. Comisionul lunar și asigurarea obligatorie rareori apar în același cadru.\n\ncompară costul total, nu doar cifra din titlu, prin credit republic.\n\n#educatiefinanciara #creditipotecar #creditrepublic`,
       slides: []
     },
 
@@ -500,8 +500,8 @@ const CopyEngine = (function () {
       theme: 'plum',
       format: '1:1',
       eyebrow: '',
-      title: 'un algoritm rapid. o singură persoană care răspunde de tine.',
-      subtitle: 'Florența Nistoroiu îți explică fiecare clauză înainte de semnare.',
+      title: 'un algoritm rapid.',
+      subtitle: 'o singură persoană răspunde de tine: Florența Nistoroiu.',
       point1: '1. algoritmul compară toate băncile în câteva minute',
       point2: '2. Florența Nistoroiu (broker AVBS) verifică actele și răspunde la întrebări reale',
       point3: '3. rămâi cu un singur om de contact, nu cu un centru de suport',
