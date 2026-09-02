@@ -55,7 +55,7 @@ const ScriptEngine = (function () {
       id: 'body_1_logical',
       phases: {
         '2_problem_id': `Știu că te gândești că ${persona.TEEP.painPoint.toLowerCase()}`,
-        '3_pain_agitation': `Iar asta înseamnă că pierzi și timp și bani dacă te duci din bancă în bancă.`,
+        '3_pain_agitation': `Iar asta înseamnă timp pierdut și bani lăsați la bănci diferite, dacă dosarul circulă de la una la alta.`,
         '4_unique_mechanism': `Dar la credit republic, algoritmul nostru compară toate băncile instant.`,
         '5_visual_proof': `[Ecran telefon scrollând printre oferte] Fără Excel-uri complicate.`,
         '6_social_proof': `Iar Florența Nistoroiu, broker autorizat AVBS, negociază dobânda direct pentru tine.`
@@ -77,8 +77,8 @@ const ScriptEngine = (function () {
     const cta1 = {
       id: 'cta_1_direct',
       phases: {
-        '7_risk_reversal': `Și partea cea mai bună? 0 lei comision. Banca ne plătește pe noi, nu tu.`,
-        '8_cta': `Apasă pe link și află opțiunile tale în 3 minute.`
+        '7_risk_reversal': `Costul pentru tine? 0 lei comision. Banca ne plătește pe noi, nu tu.`,
+        '8_cta': `Verifică-ți opțiunile acum — 4 minute, gratuit.`
       }
     };
 
@@ -86,7 +86,7 @@ const ScriptEngine = (function () {
       id: 'cta_2_soft',
       phases: {
         '7_risk_reversal': `Comision zero la analiză și acordare, costurile noastre sunt suportate de bancă.`,
-        '8_cta': `Calculează-ți rata corectă chiar acum pe site.`
+        '8_cta': `Calculează-ți rata în 4 minute, direct pe site.`
       }
     };
 

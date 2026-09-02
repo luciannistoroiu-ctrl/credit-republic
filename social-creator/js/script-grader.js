@@ -28,14 +28,18 @@ const ScriptGrader = (function () {
       name: '3. Agitarea Durerii (Cost of Inaction)',
       desc: 'De ce soluțiile clasice au eșuat / Cât îl costă dacă nu acționează?',
       weight: 10,
-      check: (text) => /(pierd|cost[aă]|timp|luni de zile|bani|am[aâ]ni|iner[tț]ia)/i.test(text)
+      // am[aâ]n (not am[aâ]ni) so the noun "amânare/amânarea" matches too, not just the verb "amâni/amâna".
+      check: (text) => /(pierd|cost[aă]|timp|luni de zile|bani|am[aâ]n|iner[tț]ia)/i.test(text)
     },
     {
       id: 'd2c_unique_mech',
       name: '4. Mecanismul Unic',
       desc: 'Se menționează abordarea nouă (Algoritm + Broker)?',
       weight: 10,
-      check: (text) => /(algoritm|compara|tehnologie|platform[aă])/i.test(text)
+      // "compar" (not "compara") because Romanian conjugates the verb as compară/comparăm/
+      // comparat — all of those contain "compar", but only the bare infinitive-ish "compara"
+      // matches the literal substring "compara", so the old pattern missed most real usage.
+      check: (text) => /(algoritm|compar|tehnologie|platform[aă])/i.test(text)
     },
     {
       id: 'd2c_social_proof',

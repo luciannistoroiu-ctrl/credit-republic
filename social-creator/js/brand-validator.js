@@ -55,6 +55,14 @@ const BrandValidator = (function () {
   // Master line exception
   const MASTER_LINE = "nimeni nu alege cel mai bun credit. aleg primul care le iese în cale.";
 
+  // JS's \b only treats [A-Za-z0-9_] as "word" characters, so a plain \b silently fails
+  // at the edge of any Romanian diacritic (ă â î ș ț) — e.g. \b(...dobând[aă])\b never
+  // matches "dobândă" because "ă" isn't a word char, so there's no word/non-word transition
+  // for \b to find. These two lookaround boundaries treat diacritics as word characters too.
+  const RO_WORD = 'A-Za-zĂÂÎȘȚăâîșț0-9_';
+  const roBefore = `(?<![${RO_WORD}])`;
+  const roAfter = `(?![${RO_WORD}])`;
+
   /**
    * Validate a single string of text
    * @param {string} text 
@@ -93,7 +101,7 @@ const BrandValidator = (function () {
     // 3. Superlatives Check
     const isMasterLine = lower.includes("nimeni nu alege cel mai bun credit");
     if (!isMasterLine) {
-      const superlativeRegex = /\b(cel mai bun|cea mai bun[aă]|cel mai avantajos|cea mai avantajoas[aă]|maxim[aă]?|perfect[aă]?|nr\.?\s*1|num[aă]rul 1|f[aă]r[aă] concuren[tț][aă]|cea mai mic[aă] dob[aâ]nd[aă])\b/gi;
+      const superlativeRegex = new RegExp(roBefore + '(cel mai bun|cea mai bun[aă]|cel mai avantajos|cea mai avantajoas[aă]|cel mai bine|cea mai bine|maxim[aă]?|perfect[aă]?|nr\\.?\\s*1|num[aă]rul 1|f[aă]r[aă] concuren[tț][aă]|cea mai mic[aă] dob[aâ]nd[aă])' + roAfter, 'gi');
       const match = text.match(superlativeRegex);
       if (match) {
         issues.push({
@@ -107,7 +115,7 @@ const BrandValidator = (function () {
     }
 
     // 4. Reader Blame Check
-    const blameRegex = /\b(ai l[aă]sat|nu [sș]tii|ai gre[sș]it|de ce s[aă] te opre[sș]ti la|ai pierdut|faci o gre[sș]eal[aă]|pl[aă]te[sș]ti degeaba|nu ai comparat)\b/gi;
+    const blameRegex = new RegExp(roBefore + '(ai l[aă]sat|nu [sș]tii|ai gre[sș]it|de ce s[aă] te opre[sș]ti la|ai pierdut|faci o gre[sș]eal[aă]|pl[aă]te[sș]ti degeaba|nu ai comparat)' + roAfter, 'gi');
     const blameMatch = text.match(blameRegex);
     if (blameMatch) {
       issues.push({

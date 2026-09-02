@@ -102,7 +102,7 @@ const CopyEngine = (function () {
       footerNote: 'credit republic · neobroker de credite',
       ctaText: '',
       hasSignalBlue: false,
-      caption: `nimeni nu alege cel mai bun credit. aleg primul care le iese în cale.\n\nCând cumperi un apartament, petreci luni întregi căutând compartimentarea potrivită, etajul, orientarea spre soare și cartierul.\n\nDar când vine vorba de credit, majoritatea oamenilor intră în prima sucursală care le iese în drum sau rămân la banca unde primesc salariul.\n\ncredit republic compară toate băncile în câteva minute. Serviciul este 0 lei pentru tine — comisionul vine de la bancă.\n\n#creditrepublic #creditipotecar #educatiefinanciara #neobroker #crediteromania #refinantare`,
+      caption: `nimeni nu alege cel mai bun credit. aleg primul care le iese în cale.\n\nCând cumperi un apartament, petreci luni întregi căutând compartimentarea potrivită, etajul, orientarea spre soare și cartierul.\n\nDar când vine vorba de credit, majoritatea oamenilor intră în prima sucursală care le iese în drum sau rămân la banca unde primesc salariul.\n\ncredit republic există pentru mecanismul din spatele acestei propoziții: un algoritm compară toate băncile, un broker autorizat AVBS duce dosarul la capăt. Serviciul este 0 lei pentru tine — comisionul vine de la bancă.\n\ncine vrea cifra reală, o verifică în 4 minute. gratuit.\n\n#creditrepublic #creditipotecar #educatiefinanciara #neobroker #crediteromania #refinantare`,
       slides: [
         {
           eyebrow: 'obiceiul din piață',
@@ -137,7 +137,7 @@ const CopyEngine = (function () {
       footerNote: 'broker autorizat AVBS · credit republic',
       ctaText: 'verifică poziția ta',
       hasSignalBlue: true,
-      caption: `cum funcționează credit republic de la prima simulare până la semnarea la bancă:\n\n1. Algoritmul compară opțiunile de creditare de la toate băncile în 4 minute.\n2. Florența Nistoroiu, broker autorizat AVBS, analizează dosarul și negociază direct condițiile optime.\n3. Semnezi la bancă. Serviciul este complet gratuit pentru tine (comisionul este achitat de bancă).\n\nFără interogare la biroul de credit, fără dosare plimbate la 5 sucursale.\n\n#creditrepublic #brokercredite #avbs #creditipotecar #transparentafinanciara`,
+      caption: `cum funcționează credit republic de la prima simulare până la semnarea la bancă:\n\n1. Algoritmul compară opțiunile de creditare de la toate băncile în 4 minute.\n2. Florența Nistoroiu, broker autorizat AVBS, analizează dosarul și negociază direct condițiile optime.\n3. Semnezi la bancă. Serviciul este complet gratuit pentru tine (comisionul este achitat de bancă).\n\nFără interogare la biroul de credit, fără dosare plimbate la 5 sucursale — și fără nicio bancă necomparată.\n\nverifică poziția ta acum: 4 minute, 0 lei.\n\n#creditrepublic #brokercredite #avbs #creditipotecar #transparentafinanciara`,
       slides: [
         {
           eyebrow: 'pasul 01',
@@ -166,15 +166,15 @@ const CopyEngine = (function () {
       theme: 'plum',
       format: '4:5',
       eyebrow: 'impact financiar',
-      title: 'cât costă să amâni refinanțarea cu 6 luni',
-      subtitle: 'pentru un credit ipotecar mediu de 350.000 lei pe 25 ani',
+      title: 'banca ta nu te sună când apare o ofertă mai bună.',
+      subtitle: 'pentru un credit ipotecar mediu de 350.000 lei pe 25 ani, o marjă renegociată poate însemna aproape 500 lei economisiți pe lună',
       point1: 'dobândă veche: 7.90% · rată lunară: ~2.680 lei',
       point2: 'dobândă negociată: 5.75% · rată nouă: ~2.200 lei',
       point3: 'economie ratată în 6 luni de amânare: 2.880 lei',
       footerNote: 'calcul estimativ orientativ · credit republic',
       ctaText: 'calculează refinanțarea',
       hasSignalBlue: true,
-      caption: `cât costă să amâni refinanțarea unui credit ipotecar?\n\nDacă ai un credit semnat în perioada dobânzilor ridicate, o scădere de doar 1.5 - 2% la marjă înseamnă o economie lunară de aproape 500 lei.\n\nAmânarea refinanțării cu 6 luni înseamnă aproape 3.000 lei lăsați băncii din simplă inerție.\n\nVerifică acum dacă te califici pentru refinanțare la toate băncile.\n\n#refinantare #creditipotecar #economii #bugetpersonal #creditrepublic`,
+      caption: `banca ta nu te sună când apare o ofertă mai bună. de ce ar face-o?\n\nDacă ai un credit ipotecar semnat în perioada dobânzilor ridicate, o scădere de doar 1.5-2% la marjă înseamnă o economie lunară de aproape 500 lei.\n\nPentru un credit de 350.000 lei pe 25 de ani: dobândă veche 7.90% (rată ~2.680 lei) vs dobândă renegociată 5.75% (rată ~2.200 lei). Amânarea cu 6 luni înseamnă aproape 3.000 lei rămași la banca inițială.\n\nAlgoritmul credit republic compară oferta ta cu toate băncile, iar Florența Nistoroiu (broker autorizat AVBS) preia negocierea și transferul dosarului. 0 lei pentru tine.\n\ncalculează refinanțarea ta acum — 4 minute.\n\n#refinantare #creditipotecar #economii #bugetpersonal #creditrepublic`,
       slides: [
         {
           eyebrow: 'realitatea pieței',
@@ -203,15 +203,15 @@ const CopyEngine = (function () {
       theme: 'cream',
       format: '1:1',
       eyebrow: 'profil financiar',
-      title: 'venituri din pfa, dividende sau it? fiecare bancă calculează diferit.',
-      subtitle: 'de ce același venit poate fi respins la o bancă și aprobat la alta',
+      title: 'o bancă ți-a spus nu. nu înseamnă că piața a spus nu.',
+      subtitle: 'fiecare bancă are propriul calcul pentru venituri din pfa, dividende sau it — un refuz nu e un verdict',
       point1: 'unele bănci iau în calcul 100% din dividende, altele doar 50%',
       point2: 'vechimea minimă pe PFA variază între 1 an și 2 ani fiscali încheiați',
       point3: 'norma de venit și contractele B2B au încadrări speciale',
       footerNote: 'analiză personalizată · broker autorizat AVBS',
       ctaText: 'vezi unde te califici',
       hasSignalBlue: false,
-      caption: `ai venituri din dividende, PFA sau contracte din IT?\n\nFiecare bancă din România are propriul algoritm intern de calcul pentru gradul de îndatorare al veniturilor non-salariale.\n\nO bancă poate lua în considerare 100% din dividendele distribuite, în timp ce alta acceptă doar 50% sau cere 2 ani fiscali consecutivi.\n\nÎn loc să depui dosare pe rând și să riști respingeri, la credit republic comparăm direct cerințele de eligibilitate la toate băncile.\n\n#pfa #dividende #antreprenoriat #creditipotecar #creditrepublic #avbs`,
+      caption: `ai venituri din dividende, PFA sau contracte din IT?\n\nFiecare bancă din România are propriul algoritm intern de calcul pentru gradul de îndatorare al veniturilor non-salariale. O bancă poate lua în considerare 100% din dividendele distribuite, în timp ce alta acceptă doar 50% sau cere 2 ani fiscali consecutivi.\n\nUn refuz de la o bancă nu e un refuz din partea pieței — e doar o singură metodologie de risc, dintre multe.\n\nFlorența Nistoroiu, broker autorizat AVBS, verifică manual unde se încadrează exact profilul tău, înainte să depui vreun dosar. Serviciul e 0 lei pentru tine.\n\nvezi unde te califici — verificarea e gratuită.\n\n#pfa #dividende #antreprenoriat #creditipotecar #creditrepublic #avbs`,
       slides: [
         {
           eyebrow: 'provocarea',
@@ -248,12 +248,12 @@ const CopyEngine = (function () {
       footerNote: 'transparență totală · credit republic',
       ctaText: '',
       hasSignalBlue: false,
-      caption: `mit vs realitate în alegerea unui credit:\n\nMit: „Merg direct la banca unde am contul de salariu pentru că îmi oferă automat cea mai mică dobândă.”\n\nRealitate: Deseori, reducerea oferită pentru virarea salariului este depășită de costul polițelor de asigurare sau de comisioanele anuale de administrare a contului.\n\ncredit republic compară costul total la toate băncile, ca să iei o decizie informată.\n\n#mitvsrealitate #credite #educatiefinanciara #creditrepublic #costtotal`,
+      caption: `mit vs realitate în alegerea unui credit:\n\nMit: „Merg direct la banca unde am contul de salariu pentru că acolo primesc automat o reducere la dobândă.”\n\nRealitate: reducerea pentru virarea salariului este deseori depășită de costul polițelor de asigurare sau de comisioanele anuale de administrare a contului — costul total contează, nu primul procent din afiș.\n\ncredit republic compară costul total la toate băncile, cu un broker autorizat AVBS care verifică fiecare condiție din contract. 0 lei pentru tine.\n\ndacă vrei să vezi costul real, verificarea durează 4 minute.\n\n#mitvsrealitate #credite #educatiefinanciara #creditrepublic #costtotal`,
       slides: [
         {
           eyebrow: 'mitul clasic',
-          title: '„banca mea îmi dă automat cea mai bună ofertă”',
-          body: 'Fidelitatea bancară este rareori răsplătită cu cel mai mic cost din piață.'
+          title: '„banca mea îmi dă automat o reducere la dobândă”',
+          body: 'Fidelitatea bancară nu spune nimic despre costul total din contract — asigurări și comisioane pot cântări mai mult decât reducerea.'
         },
         {
           eyebrow: 'realitatea din contract',
@@ -282,7 +282,7 @@ const CopyEngine = (function () {
       footerNote: 'credit republic · neobroker de credite',
       ctaText: '',
       hasSignalBlue: false,
-      caption: `cauți apartamentul 6 luni. alegi creditul în 20 de minute.\n\nVerifici izolația termică, locul de parcare, vecinii și finisajele.\n\nDar când vine vorba de împrumutul pe 30 de ani care finanțează acea locuință, mulți acceptă prima ofertă primită.\n\nO oră alocată comparării ofertelor la toate băncile îți poate salva echivalentul unei mașini noi pe durata creditului.\n\n#imobiliare #creditipotecar #primacasa #apartamentnou #creditrepublic`,
+      caption: `cauți apartamentul 6 luni. alegi creditul în 20 de minute.\n\nVerifici izolația termică, locul de parcare, vecinii și finisajele.\n\nDar când vine vorba de împrumutul pe 30 de ani care finanțează acea locuință, mulți acceptă prima ofertă primită.\n\nO oră alocată comparării ofertelor la toate băncile îți poate salva echivalentul unei mașini noi pe durata creditului. Un algoritm compară piața, un broker autorizat AVBS verifică fiecare condiție — credit republic, 0 lei pentru tine.\n\ndacă vrei cifra ta, verificarea durează 4 minute.\n\n#imobiliare #creditipotecar #primacasa #apartamentnou #creditrepublic`,
       slides: [
         {
           eyebrow: 'paradoxul cumpărătorului',
@@ -317,9 +317,9 @@ const CopyEngine = (function () {
       point2: 'Florența Nistoroiu verifică dosarul, explică nuanțele și optimizează marjele',
       point3: 'comisionul tău: 0 lei (plătit integral de bancă la semnare)',
       footerNote: 'Florența Nistoroiu · Broker autorizat AVBS · credit republic',
-      ctaText: 'începe precalificarea',
+      ctaText: 'discută cu florența',
       hasSignalBlue: true,
-      caption: `algoritm + om: de ce această combinație funcționează cel mai bine pentru creditul tău:\n\nTehnologia compară zeci de condiții de eligibilitate de la toate băncile în doar câteva minute.\n\nÎnsă un dosar de credit ipotecar are nuanțe umane: evaluarea imobilului, derogări de marjă, structura veniturilor și comunicarea directă cu ofițerul bancar.\n\nAici intervine Florența Nistoroiu, broker autorizat AVBS, care preia tot efortul de negociere.\n\nServiciul este 100% gratuit pentru tine.\n\n#brokercredite #avbs #florentanistoroiu #creditrepublic #ipotecar`,
+      caption: `algoritm + om: de ce alegem această combinație pentru dosarul tău de credit.\n\nTehnologia compară zeci de condiții de eligibilitate de la toate băncile în doar câteva minute — dar un dosar de credit ipotecar are nuanțe umane: evaluarea imobilului, derogări de marjă, structura veniturilor și comunicarea directă cu ofițerul bancar.\n\nFără negociere umană, un dosar poate pierde timp în comitetele de risc ale băncii, cu întrebări la care nimeni nu răspunde imediat. Aici intervine Florența Nistoroiu, broker autorizat AVBS, care preia tot efortul de negociere.\n\nServiciul este 100% gratuit pentru tine — comisionul vine de la bancă la semnare.\n\naflă de la Florența ce se schimbă pentru dosarul tău — fără cost, fără obligație.\n\n#brokercredite #avbs #florentanistoroiu #creditrepublic #ipotecar`,
       slides: [
         {
           eyebrow: 'rolul tehnologiei',
@@ -354,7 +354,7 @@ const CopyEngine = (function () {
       point2: 'prin credit republic: o singură aplicare digitală, toate băncile comparate',
       point3: 'asistență pas cu pas până la primirea banilor sau semnarea contractului',
       footerNote: 'simplu · digital · gratuit',
-      ctaText: 'aplică acum',
+      ctaText: 'precalifică-te, fără drumuri',
       hasSignalBlue: true,
       caption: `cât timp pierzi dacă mergi pe cont propriu la bănci vs o singură aplicare online prin credit republic:\n\nPe cont propriu:\n- 4-5 drumuri la sucursale diferite\n- formulare re-completate de la zero\n- săptămâni de așteptare pentru răspunsuri parțiale\n\nPrin credit republic:\n- o singură aplicare online de 4 minute\n- toate băncile comparate simultan\n- broker autorizat AVBS care se ocupă de acte\n- 0 lei comision\n\n#birocratie #creditipotecar #economisestetimp #neobroker #creditrepublic`,
       slides: [

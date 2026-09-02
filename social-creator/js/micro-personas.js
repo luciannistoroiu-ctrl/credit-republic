@@ -22,7 +22,8 @@ const MicroPersonas = (function () {
       winningHooks: [
         'Dacă ai PFA sau încasezi dividende, oprește-te din scroll.',
         'De ce banca ta nu vrea să îți dea credit deși câștigi bine.',
-        'Băncile au formule complet diferite pentru venituri non-standard.'
+        'Băncile au formule complet diferite pentru venituri non-standard.',
+        'O bancă ți-a spus nu. nu înseamnă că piața a spus nu.'
       ],
       forbiddenPhrases: [
         'Nu știi cum să aplici.',
@@ -42,7 +43,8 @@ const MicroPersonas = (function () {
       winningHooks: [
         'Fiecare lună în care amâni refinanțarea înseamnă bani lăsați la bancă.',
         'Cel mai mare cost al creditului tău nu e dobânda, e inerția.',
-        'Cum să îți scazi rata fără să faci tu vreun drum la bancă.'
+        'Cum să îți scazi rata fără să faci tu vreun drum la bancă.',
+        'Banca ta nu te sună când apare o ofertă mai bună. de ce ar face-o?'
       ],
       forbiddenPhrases: [
         'Ai pierdut bani.',
@@ -60,7 +62,7 @@ const MicroPersonas = (function () {
         painPoint: 'Riscă să aleagă primul credit care îi iese în cale din disperare de timp.'
       },
       winningHooks: [
-        'Ai căutat 6 luni apartamentul perfect, dar alegi primul credit care îți iese în cale.',
+        'Cauți apartamentul 6 luni. Alegi primul credit care îți iese în cale.',
         'De ce decizia de 20 de minute te va costa mii de euro.',
         'Nu accepta prima ofertă doar ca să semnezi mai repede.'
       ],
@@ -94,7 +96,7 @@ const MicroPersonas = (function () {
       title: 'Cuplul Copleșit de Birocrație',
       defaultAngleId: '07_birocratia',
       TEEP: {
-        trigger: 'Au încercat să obțină oferte de la 3 bănci diferite și și-au epuizat zilele de concediu.',
+        trigger: 'Au încercat să obțină oferte de la mai multe bănci diferite și și-au epuizat zilele de concediu.',
         emotion: 'Epuizare, lipsă de timp.',
         expectation: 'Un sistem care face treaba în locul lor ("done for you").',
         painPoint: 'Dosare plimbate, documente expirate, program flexibil inexistent.'
@@ -127,6 +129,26 @@ const MicroPersonas = (function () {
       forbiddenPhrases: [
         'Serviciu gratis.',
         'Mocăciune.'
+      ]
+    },
+    {
+      id: 'decizie_prea_mare',
+      title: '40+ / decizia prea mare pentru o aplicație',
+      defaultAngleId: '06_algoritm_om',
+      TEEP: {
+        trigger: 'A folosit deja un simulator sau o aplicație online, dar la pasul de decizie vrea să audă explicația de la un om, nu doar un rezultat pe ecran.',
+        emotion: 'Precauție, nevoie de confirmare — nu respingerea tehnologiei, ci neîncrederea într-un rezultat fără nimeni în spate.',
+        expectation: 'Un om cu autoritate reală (broker autorizat) care explică ce înseamnă cifrele pentru cazul lui exact.',
+        painPoint: 'O decizie de zeci de mii de euro, pe 25-30 de ani, nu se simte rezolvată doar de un algoritm.'
+      },
+      winningHooks: [
+        'Un algoritm compară ofertele. Un om îți explică de ce contează diferența.',
+        'O decizie pe 25 de ani merită și un răspuns de la un om, nu doar un ecran.',
+        'Tehnologia găsește oferta. Florența Nistoroiu îți explică ce înseamnă pentru tine.'
+      ],
+      forbiddenPhrases: [
+        'Nu te pricepi la tehnologie.',
+        'E simplu, orice aplicație face asta.'
       ]
     }
   ];

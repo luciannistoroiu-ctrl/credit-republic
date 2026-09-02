@@ -25,6 +25,9 @@ const MediaEngine = global.window.MediaEngine;
 const VideoRecorder = global.window.VideoRecorder;
 const TemplatesEngine = global.window.TemplatesEngine;
 const Exporter = global.window.Exporter;
+const { ScriptGrader } = require('./js/script-grader.js');
+const { MicroPersonas } = require('./js/micro-personas.js');
+const { ScriptEngine } = require('./js/script-engine.js');
 
 let passed = 0;
 let failed = 0;
@@ -75,6 +78,24 @@ assert(cleaned.title.includes('credit republic'), 'Auto-fix cleans brand casing'
 assert(cleaned.title.includes('toate băncile'), 'Auto-fix cleans numeric banks');
 assert(!cleaned.useSignalBlueButton, 'Auto-fix limits signal blue occurrences to max 1');
 
+// Test 1.7: Regression - diacritic-ending superlatives were silently skipped by a plain
+// \b, since JS treats "ă" as a non-word character (this exact phrase shipped live on
+// parteneri.html uncaught before the fix).
+const dropAccentSuperlative = BrandValidator.validateText('el primește cea mai mică dobândă din piață');
+assert(dropAccentSuperlative.some(i => i.rule.id === 'rule_no_superlatives'), 'Flags feminine/diacritic-ending superlative ("cea mai mică dobândă")');
+
+// Test 1.8: Regression - "cel/cea mai bine" (adverbial "works best") is the same claim
+// as "cel mai bun" and should be treated as a superlative too.
+const worksBestSuperlative = BrandValidator.validateText('combinația funcționează cel mai bine pentru creditul tău');
+assert(worksBestSuperlative.some(i => i.rule.id === 'rule_no_superlatives'), 'Flags adverbial superlative ("cel mai bine")');
+
+console.log('\n--- 1b. Testing ScriptGrader ---');
+
+// Test 1b.1: Regression - the mechanism check looked for the literal substring "compara",
+// which Romanian conjugation almost never produces ("compară", "comparăm" don't contain it).
+const mechScore = ScriptGrader.evaluateScript('algoritmul nostru compară ofertele de la toate băncile în 4 minute.');
+assert(mechScore.d2cChecks.find(c => c.id === 'd2c_unique_mech').passed, 'Detects unique-mechanism mention in conjugated form ("compară", not just "compara")');
+
 console.log('\n--- 2. Testing Step 2 -> Step 3 Dynamic Prompt Synthesis ---');
 
 // Test 2.1: Apartment / Home purchase context synthesis
@@ -118,6 +139,25 @@ assert(CopyEngine.ANGLES.length === 7, 'Has exactly 7 brand angles');
 CopyEngine.PRESETS.forEach(preset => {
   const report = BrandValidator.validatePost(preset);
   assert(report.isValid, `Preset "${preset.id}" is 100% brand compliant (0 errors)`);
+});
+
+console.log('\n--- 3b. Testing MicroPersonas Content (TEEP + winning hooks) ---');
+// Regression coverage: this file's copy (hooks that get fed straight into ScriptEngine
+// briefs) was never run through BrandValidator before, and shipped with an unflagged
+// "perfect" superlative and a hardcoded "3 bănci" — both silent because nothing tested it.
+const personas = MicroPersonas.getPersonas();
+assert(personas.length >= 6, 'Has at least the 6 documented micro-personas');
+personas.forEach(p => {
+  const fields = [p.title, p.TEEP.trigger, p.TEEP.emotion, p.TEEP.expectation, p.TEEP.painPoint, ...p.winningHooks];
+  const errors = fields.flatMap(t => BrandValidator.validateText(t)).filter(i => i.rule.severity === 'error');
+  assert(errors.length === 0, `Persona "${p.id}" TEEP + hooks are 100% brand compliant (0 errors)`);
+});
+assert(personas.some(p => p.defaultAngleId === '06_algoritm_om'), 'The "algoritm + om" angle has a dedicated micro-persona');
+
+personas.forEach(p => {
+  const brief = ScriptEngine.generateModularBrief(p);
+  const briefErrors = BrandValidator.validateText(ScriptEngine.toJSONPrompt(brief)).filter(i => i.rule.severity === 'error');
+  assert(briefErrors.length === 0, `Generated ScriptEngine brief for "${p.id}" is 100% brand compliant (0 errors)`);
 });
 
 console.log('\n--- 4. Testing MotionEngine & Video Modules ---');
