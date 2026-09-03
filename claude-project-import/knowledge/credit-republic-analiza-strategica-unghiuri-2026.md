@@ -7,6 +7,26 @@ compliance, scor D2C — pornind de la cercetarea calitativă deja din proiect. 
 pornește de la altceva: **condiții de piață curente**, verificate acum (nu presupuse din
 cercetarea de brand, care nu cita surse externe verificabile pentru starea pieței).
 
+## Pe scurt, dacă citești doar atât
+
+Cele 7 unghiuri sunt corect construite ca *voce* (deja verificat, scor D2C 95/100) — problema
+găsită aici nu e text prost, e o premisă de poziționare care nu mai stă în picioare fără
+ajustare:
+
+1. **„Un algoritm compară toate băncile" nu (mai) diferențiază pe nimeni** — minim 7
+   competitori direcți spun identic, iar francizorul AVBS își promovează public *același*
+   soft AI ca argument propriu, folosit deja de peste 90% din brokerii din rețea. H1-ul
+   site-ului chiar acum e 100% pe acest mecanism comun.
+2. **Portofoliul e ponderat greșit față de piața reală**: unghiul cu insight-ul cel mai
+   „ascuțit" (02, refinanțare) țintește ~16% din piață într-un climat de dobânzi calme;
+   unghiurile pentru achiziție nouă (03, 05, 07) acoperă 84%+ din piață și sunt tratate cu
+   aceeași prioritate.
+3. **Cea mai mare obiecție nouă din piață — „a devenit mai scump, poate aștept" (TVA la
+   locuințe noi 21%, tranzacții în scădere) — nu are niciun unghi dedicat.**
+
+Recomandarea de prioritizare și verdictul detaliat, per unghi, sunt mai jos. N-am schimbat
+nimic în cod în această analiză — verdictul e strategic, nu de compilat.
+
 ## Ce am verificat și de ce contează
 
 Trei căutări despre piața ipotecară din România, septembrie 2026, au produs trei constatări
@@ -117,8 +137,14 @@ doar clarific ce fel de competitor e.
 
 Nu, 7 unghiuri nu sunt „prea multe" în sensul de diluare a brandului — problema aia (7 tonuri
 diferite = 7 branduri) a fost deja rezolvată în ciclul v4→v5 (o singură voce, trei registre).
-Riscul real nu e diluarea, e **ponderea greșită**: tratarea celor 7 ca fiind egale, când piața
-nu e împărțită egal.
+Descoperirea despre AVBS (mai sus) chiar întărește acest verdict, nu-l slăbește: dacă
+mecanismul (algoritmul) e potențial comun tuturor brokerilor din rețea, atunci el nu poate fi
+motivul pentru care cineva alege credit republic — motivul trebuie să fie *cui* i se
+adresează mesajul și *cum* sună, adică exact ce fac cele 7 unghiuri (7 dureri diferite, o
+singură voce). Cu alte cuvinte: dacă ai avea un singur unghi, ai vinde mecanismul comun —
+cu 7, vinzi potrivirea cu situația cititorului, care chiar diferă de la un broker AVBS la
+altul. Riscul real nu e diluarea, e **ponderea greșită**: tratarea celor 7 ca fiind egale,
+când piața nu e împărțită egal.
 
 - **Nivel 1 (buget de achiziție, prioritate maximă):** 03 (venitul variabil), 06/01 tratate ca
   un singur mesaj de intrare condus de diferențiatorul uman, 07. Motiv: mapează pe cei 84% din
@@ -140,6 +166,33 @@ primește, ce lipsește), nu de compilat — textul propriu-zis a fost deja veri
 (ex. mutarea accentului unghiului 01 de pe mecanism pe brokerul nominal) e o decizie de
 conținut cu impact vizibil pe brand, potrivită pentru o tură separată, cu confirmare explicită
 înainte de a rescrie hook-ul de bază al site-ului.
+
+## Ce înseamnă asta pentru pragul de „peste 10% conversie"
+
+Cerința inițială a acestui proiect (ciclul v5) a fost o rată de conversie de peste 10% pe
+copy. Analiza de execuție a răspuns la partea pe care copy-ul o controlează — claritate,
+mecanism explicat, risc-zero, CTA fără fricțiune (scor D2C 95/100). Analiza asta răspunde la
+partea pe care **strategia** o controlează, și pe care niciun polish de text n-o rezolvă:
+
+- Dacă unghiul de intrare (01 / H1) vinde un mecanism pe care orice alt broker AVBS îl poate
+  revendica la fel de adevărat, un vizitator sceptic care compară 2-3 oferte (exact
+  comportamentul pe care brandul îl încurajează) va vedea propoziții identice în altă parte —
+  ceea ce erodează exact încrederea pe care unghiul 01 încearcă s-o construiască.
+- Dacă bugetul de achiziție tratează unghiul 02 (16% din piață) la fel ca 03/07 (84% din
+  piață), o parte din trafic e cheltuit pe un segment structural mai mic, la rată de conversie
+  potențial mai mică per leu cheltuit, nu pentru că textul e slab, ci pentru că audiența
+  disponibilă e mai mică.
+- Dacă cel mai mare motiv nou de ezitare din piață (TVA, „poate aștept") nu are niciun unghi,
+  o parte din trafic bun pe alte unghiuri se pierde la exact acest obstacol, nerezolvat de
+  nimic din portofoliul curent.
+
+**Dacă faci un singur lucru din analiza asta:** confirmă (cu Florența sau cu AVBS) dacă
+algoritmul e soft de rețea sau tehnologie proprie. E întrebarea cu cel mai mare efect de
+pârghie — răspunsul decide dacă unghiul 01 și H1-ul site-ului au nevoie de o repoziționare
+urgentă (dacă e soft de rețea) sau doar de o menționare mai explicită a ce anume e proprietar
+(dacă nu e). Totul altceva din acest document — prioritizarea, unghiul 8 potențial pe TVA — e
+util, dar reversibil și fără impact urgent; asta e singura întrebare care blochează o decizie
+corectă pe unghiul cel mai vizibil din brand.
 
 ---
 
