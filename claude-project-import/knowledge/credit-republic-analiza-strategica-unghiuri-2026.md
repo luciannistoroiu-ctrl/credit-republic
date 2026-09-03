@@ -37,10 +37,31 @@ Ipotecare.ro, 123Credit.ro etc. ar putea-o semna la fel de bine. Nu am schimbat 
 e o decizie cu impact vizibil pe tot site-ul, care merită confirmare explicită înainte de
 rescriere — dar dacă se cere o continuare, ăsta e primul loc de atacat, nu unghiul 02 sau 05.
 
+**Descoperire mai importantă, din iterația 2 — posibil nu e doar o problemă de piață, ci una
+de rețea:** AVBS însuși (rețeaua/francizorul din spatele autorizării „broker autorizat AVBS"
+pe care credit republic o citează peste tot ca semnal de încredere) își promovează public,
+pe avbs.ro, exact același mecanism ca diferențiator propriu — „**Soft AI Credit Ipotecar
+AVBS — Unicul și cel mai avansat broker AI de credite ipotecare din România**" — și declară
+că **peste 90% din clienții AVBS, inclusiv francizele, deja folosesc acest AI**. „Francizele"
+i-ar include, plauzibil, pe toți brokerii autorizați AVBS — inclusiv credit republic.
+
+Nu am nicio dovadă directă că algoritmul din spatele credit republic E acest soft AVBS
+(vs. ceva construit separat, în plus față de el) — dar dacă e, atunci mesajul „un algoritm
+compară toate băncile" nu doar că e comun în piață (constatarea de mai sus), ci e literalmente
+disponibil oricărui alt broker din rețeaua AVBS, cu drepturi egale. Ar deveni imposibil de
+diferențiat pe cont propriu, la orice nivel de rescriere — nu contează cât de bine formulezi
+propoziția, dacă orice alt broker AVBS o poate spune la fel de adevărat despre el însuși.
+**Asta merită verificat direct, nu presupus:** e algoritmul de la credit republic soft-ul de
+rețea AVBS, o versiune a lui, sau ceva construit independent? Răspunsul schimbă nu doar
+unghiul 01, ci greutatea pe care brokerul-nume-propriu (Florența) trebuie s-o ducă în tot
+restul mesajelor — de la „un motiv în plus" la „singurul motiv real".
+
 ### 2. Refinanțarea e ~16% din piață, nu jumătate din ea
 
-Un competitor direct (Ipotecare.ro, citat într-o analiză de piață) și-a făcut public mixul:
-16% refinanțare, 84% finanțare pentru achiziție nouă. Dobânzile sunt în plus stabile — IRCC
+Actualizare iterația 2: nu e doar mixul unui singur competitor — Forbes.ro titrează direct
+„creditarea ipotecară urcă la 57% la nivel național, refinanțările scad la 16%", deci e o
+cifră de piață, nu doar cartea de clienți a Ipotecare.ro (care raportează aceeași proporție
+pentru propriul portofoliu — cele două se confirmă reciproc). Dobânzile sunt în plus stabile — IRCC
 5.56% (iul-sep 2026) → 5.57% (din oct. 2026), ROBOR 3-6 luni „stagnat" la 5.84%/5.92% — nu
 există un șoc de dobândă chiar acum care să creeze urgență acută. Insight-ul unghiului 02
 („banca ta nu te sună") rămâne adevărat, dar motorul lui e o asimetrie structurală de
@@ -124,6 +145,10 @@ conținut cu impact vizibil pe brand, potrivită pentru o tură separată, cu co
 
 ## Surse
 
+- [Creditarea ipotecară urcă la 57% la nivel național, refinanțările scad la 16% — Forbes.ro](https://www.forbes.ro/creditarea-ipotecara-urca-la-57-la-nivel-national-refinantarile-scad-la-16-513814)
+- [Soft AI Credit Ipotecar AVBS — Unicul și cel mai avansat broker AI de credite ipotecare din România](https://avbs.ro/2026/07/31/soft-ai-credit-ipotecar-avbs-unicul-si-cel-mai-avansat-broker-ai-de-credite-ipotecare-din-romania/)
+- [Credite „instant" în România, acordate de roboți — Economica.net](https://www.economica.net/record-au-aparut-creditele-ai-o-platforma-proceseaza-o-cerere-in-doar-2-minute-iar-peste-90-dintre-clientii-borkerului-de-credite-avbs-inclusiv-francizele-deja-o-utilizeaza_892177.html)
+- [Frână pe piața imobiliară. Majorarea TVA și teama de criză au prăbușit volumul creditelor ipotecare — Adevărul.ro](https://adevarul.ro/economie/frana-pe-piata-imobiliara-majorarea-tva-si-teama-2526752.html)
 - [ROBOR și IRCC, la niveluri care influențează costul creditelor în lei pentru debitori](https://business24.ro/robor/robor-ircc-niveluri-cost-credite-debitori-1662419)
 - [IRCC, Indicele de referință pentru creditele consumatorilor — Curs BNR](https://www.cursbnr.ro/ircc)
 - [Piața creditelor intră într-o fază de maturizare în 2026 — Forbes.ro](https://www.forbes.ro/piata-creditelor-intra-intr-o-faza-de-maturizare-in-2026-prin-crestere-moderata-refinantari-si-focus-pe-predictibilitate-479819)
