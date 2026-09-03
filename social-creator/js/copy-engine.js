@@ -12,7 +12,7 @@ const CopyEngine = (function () {
       num: '01',
       title: 'mecanismul',
       subtitle: 'cum funcționează neobrokerul',
-      desc: 'AI compară piața, Florența Nistoroiu — broker autorizat AVBS — negociază și duce dosarul la semnare. 0 lei pentru client, comisionul vine de la bancă.',
+      desc: 'Florența Nistoroiu — broker autorizat AVBS — negociază și duce dosarul la semnare, cu un AI care compară piața. 0 lei pentru client, comisionul vine de la bancă.',
       defaultRegister: 'exact'
     },
     {
@@ -102,7 +102,7 @@ const CopyEngine = (function () {
       footerNote: 'credit republic · neobroker de credite',
       ctaText: '',
       hasSignalBlue: false,
-      caption: `nimeni nu alege cel mai bun credit. aleg primul care le iese în cale.\n\nCând cumperi un apartament, petreci luni întregi căutând compartimentarea potrivită, etajul, orientarea spre soare și cartierul.\n\nDar când vine vorba de credit, majoritatea oamenilor intră în prima sucursală care le iese în drum sau rămân la banca unde primesc salariul.\n\ncredit republic există pentru mecanismul din spatele acestei propoziții: un algoritm compară toate băncile, un broker autorizat AVBS duce dosarul la capăt. Serviciul este 0 lei pentru tine — comisionul vine de la bancă.\n\ncine vrea cifra reală, o verifică în 4 minute. gratuit.\n\n#creditrepublic #creditipotecar #educatiefinanciara #neobroker #crediteromania #refinantare`,
+      caption: `nimeni nu alege cel mai bun credit. aleg primul care le iese în cale.\n\nCând cumperi un apartament, petreci luni întregi căutând compartimentarea potrivită, etajul, orientarea spre soare și cartierul.\n\nDar când vine vorba de credit, majoritatea oamenilor intră în prima sucursală care le iese în drum sau rămân la banca unde primesc salariul.\n\ncredit republic există pentru mecanismul din spatele acestei propoziții: Florența Nistoroiu, broker autorizat AVBS, duce dosarul la capăt cu numele ei — sprijinită de un algoritm care compară toate băncile. Serviciul este 0 lei pentru tine — comisionul vine de la bancă.\n\ncine vrea cifra reală, o verifică în 4 minute. gratuit.\n\n#creditrepublic #creditipotecar #educatiefinanciara #neobroker #crediteromania #refinantare`,
       slides: [
         {
           eyebrow: 'obiceiul din piață',
@@ -130,7 +130,7 @@ const CopyEngine = (function () {
       format: '1:1',
       eyebrow: 'procesul de lucru',
       title: 'cum funcționează de la aplicare la semnare',
-      subtitle: 'fără drumuri la ghișee, fără costuri pentru tine',
+      subtitle: 'Florența Nistoroiu, broker autorizat AVBS, răspunde cu numele ei de fiecare dosar',
       point1: '1. algoritmul compară ofertele de la toate băncile în 4 minute',
       point2: '2. Florența Nistoroiu (broker AVBS) negociază dosarul direct cu banca',
       point3: '3. semnezi oferta optimă. comisionul nostru este 0 lei pentru tine',
@@ -278,11 +278,11 @@ const CopyEngine = (function () {
       format: '1:1',
       eyebrow: 'asimetria de atenție',
       title: 'cauți apartamentul 6 luni. alegi creditul în 20 de minute.',
-      subtitle: 'de ce investim sute de ore în alegerea finisajelor, dar lăsăm zeci de mii de lei la prima bancă?',
+      subtitle: 'cu costurile de azi, fiecare procent din dobândă cântărește mai mult — motiv în plus să nu grăbești tocmai partea asta.',
       footerNote: 'credit republic · neobroker de credite',
       ctaText: '',
       hasSignalBlue: false,
-      caption: `cauți apartamentul 6 luni. alegi creditul în 20 de minute.\n\nVerifici izolația termică, locul de parcare, vecinii și finisajele.\n\nDar când vine vorba de împrumutul pe 30 de ani care finanțează acea locuință, mulți acceptă prima ofertă primită.\n\nO oră alocată comparării ofertelor la toate băncile îți poate salva echivalentul unei mașini noi pe durata creditului. Un algoritm compară piața, un broker autorizat AVBS verifică fiecare condiție — credit republic, 0 lei pentru tine.\n\ndacă vrei cifra ta, verificarea durează 4 minute.\n\n#imobiliare #creditipotecar #primacasa #apartamentnou #creditrepublic`,
+      caption: `cauți apartamentul 6 luni. alegi creditul în 20 de minute.\n\nVerifici izolația termică, locul de parcare, vecinii și finisajele.\n\nDar când vine vorba de împrumutul pe 30 de ani care finanțează acea locuință, mulți acceptă prima ofertă primită.\n\nCu costul unei locuințe noi mai mare ca acum un an, diferența dintre o dobândă comparată și una acceptată din grabă contează mai mult ca oricând — nu mai puțin.\n\nO oră alocată comparării ofertelor la toate băncile îți poate salva echivalentul unei mașini noi pe durata creditului. Florența Nistoroiu, broker autorizat AVBS, verifică fiecare condiție — credit republic, 0 lei pentru tine.\n\ndacă vrei cifra ta, verificarea durează 4 minute.\n\n#imobiliare #creditipotecar #primacasa #apartamentnou #creditrepublic`,
       slides: [
         {
           eyebrow: 'paradoxul cumpărătorului',
