@@ -151,8 +151,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --cream-25:rgba(255,248,240,.25);
     --display:'omnes','Omnes','Plus Jakarta Sans','Outfit','Helvetica Neue',Arial,sans-serif;
     --corp:'Helvetica Neue','Plus Jakarta Sans',Helvetica,Arial,sans-serif;
+    
+    /* Spacing System (4pt / 8pt base) */
+    --space-05: 4px;
+    --space-1: 8px;
+    --space-1-5: 12px;
+    --space-2: 16px;
+    --space-3: 24px;
+    --space-4: 32px;
+    --space-5: 40px;
+    --space-6: 48px;
+    --space-8: 64px;
+    --space-10: 80px;
+    --space-12: 96px;
+    --space-15: 120px;
+
     --max:1180px;
-    --pad:clamp(20px,5vw,64px);
+    --pad:clamp(var(--space-3),5vw,var(--space-8));
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
@@ -169,7 +184,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .pz-hide { display: none !important; }
   .wrap{max-width:var(--max);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
-  section{padding:clamp(56px,9vw,120px) 0}
+  section{padding:clamp(var(--space-6),9vw,var(--space-15)) 0}
+
+  /* ---------- Focus States (A11y) ---------- */
+  :focus-visible {
+    outline: 2px solid var(--semnal);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+  .btn:focus-visible, .pill:focus-visible, .eyebrow:focus-visible {
+    border-radius: 9999px;
+  }
+  .on-dark:focus-visible {
+    outline-color: var(--sunshine);
+  }
 
   /* ---------- scroll progress bar ---------- */
   .scroll-progress-bar{
@@ -215,11 +243,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* eyebrow — pastilă mică, minuscule, niciodată caps */
   .eyebrow{
-    display:inline-flex;align-items:center;gap:9px;
+    display:inline-flex;align-items:center;gap:var(--space-1);
     font-size:.8rem;font-weight:600;letter-spacing:.01em;
-    padding:7px 15px;border-radius:999px;
+    padding:var(--space-1) var(--space-2);border-radius:999px;
     background:var(--plum);color:var(--cream);
-    margin-bottom:26px;
+    margin-bottom:var(--space-3);
     transition:transform .2s ease;
   }
   .eyebrow:hover{transform:translateY(-1px)}
@@ -231,16 +259,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .sigmark .rest{fill:var(--plum);opacity:.14}
   .sigmark .better{fill:var(--mint)}
   .sigmark.on-dark .rest{fill:var(--cream);opacity:.22}
-  .sig-hero{width:100%;max-width:340px;margin-top:30px}
-  .sig-hero .cap{font-size:.78rem;color:var(--plum-70);margin-top:12px;max-width:340px;display:flex;justify-content:space-between;gap:8px}
+  .sig-hero{width:100%;max-width:340px;margin-top:var(--space-4)}
+  .sig-hero .cap{font-size:.78rem;color:var(--plum-70);margin-top:var(--space-1-5);max-width:340px;display:flex;justify-content:space-between;gap:var(--space-1)}
   .sig-hero .cap span{flex:0 1 auto}
   .sig-nav{width:74px;height:20px;flex:none}
 
   /* ---------- pastile ---------- */
-  .pill{display:inline-block;border-radius:999px;padding:12px 24px;font-weight:700;letter-spacing:-.015em}
+  .pill{display:inline-block;border-radius:999px;padding:var(--space-1-5) var(--space-3);font-weight:700;letter-spacing:-.015em}
   .btn{
-    display:inline-flex;align-items:center;gap:10px;
-    border-radius:999px;padding:16px 30px;
+    display:inline-flex;align-items:center;gap:var(--space-1-5);
+    border-radius:999px;padding:var(--space-2) var(--space-4);
     font-size:1.02rem;font-weight:700;letter-spacing:-.015em;
     text-decoration:none;border:1.5px solid transparent;cursor:pointer;
     transition:transform .2s cubic-bezier(.16,1,.3,1),background .2s ease,color .2s ease,box-shadow .2s ease;
@@ -690,6 +718,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     #pozitie input[type=range]::-webkit-slider-thumb{width:40px;height:40px}
     #pozitie input[type=range]::-moz-range-thumb{width:40px;height:40px}
   }
+  /* ================= TRUST MODULE ================= */
+  .trust-grid { display:grid; grid-template-columns:1fr; gap:var(--space-4); margin-top:var(--space-5); }
+  @media(min-width: 900px) {
+    .trust-grid { grid-template-columns: 1.25fr 1fr; gap:var(--space-6); align-items: stretch; }
+  }
+  .trust-avbs {
+    background:var(--plum); color:var(--cream);
+    padding:clamp(32px, 5vw, 64px); border-radius:32px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .trust-avbs h3 { font-size:clamp(1.6rem, 3vw, 2.2rem); margin-bottom:var(--space-3); max-width:18ch; line-height:1.2; letter-spacing:-.02em; }
+  .trust-avbs p.sub { font-size:1.1rem; color:var(--cream-70); line-height:1.5; margin-bottom:var(--space-6); max-width:35ch; }
+  
+  .trust-stats { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-4); }
+  .trust-stat .n { display:block; font-family:var(--display); font-size:clamp(2.5rem, 4vw, 3.8rem); font-weight:800; color:var(--coral); line-height:1; letter-spacing:-.03em; margin-bottom:var(--space-1); }
+  .trust-stat .l { display:block; font-size:.95rem; font-weight:600; color:rgba(255,248,240,.85); line-height:1.4; }
+  
+  .trust-media { display:flex; gap:var(--space-4); margin-top:var(--space-8); opacity:.5; flex-wrap:wrap; align-items:center; }
+  .trust-media span.logo-text { font-family:var(--display); font-weight:800; font-size:1.2rem; letter-spacing:-0.04em; }
+  .trust-media span.logo-text.forbes { text-transform:uppercase; font-weight:600; letter-spacing:0.02em; }
+  
+  .trust-revs { display:flex; flex-direction:column; gap:var(--space-3); justify-content:space-between; }
+  .trust-revs .rev { flex: 1; margin:0; } 
 </style>
 </head>
 <body>
@@ -1083,26 +1134,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ============ recenzii ============ -->
+<!-- ============ recenzii & trust ============ -->
 <section style="padding-top:0">
   <div class="wrap">
-    <span class="eyebrow reveal">recenzii verificate</span>
-    <h2 class="reveal stagger-1">povești reale.</h2>
-    <div class="revs">
-      <div class="rev reveal stagger-1">
-        <h3>„am înțeles ce semnez înainte să semnez.”</h3>
-        <p>credeam că birocrația bancară durează săptămâni. am primit comparația într-o după-amiază și am putut compara ofertele una lângă alta, în aceleași cifre.</p>
-        <p class="by"><strong>Andrei și Ioana M.</strong>credit ipotecar și noua casă</p>
+    <span class="eyebrow reveal">încredere și rețea</span>
+    <h2 class="reveal stagger-1">rezultate reale.</h2>
+    <div class="trust-grid reveal stagger-2">
+      <!-- Left side AVBS Authority -->
+      <div class="trust-avbs">
+        <h3 style="margin-top:0">parte din rețeaua națională AVBS.</h3>
+        <p class="sub">credit republic operează sub licența AVBS Credite România, unul dintre cei mai vechi și solizi brokeri de credite din țară.</p>
+        <div class="trust-stats">
+          <div class="trust-stat"><span class="n">17</span><span class="l">ani de expertiză<br>bancară</span></div>
+          <div class="trust-stat"><span class="n">50+</span><span class="l">birouri fizice<br>la nivel național</span></div>
+          <div class="trust-stat" style="grid-column: 1 / -1"><span class="n">10.000+</span><span class="l">clienți finanțați cu succes</span></div>
+        </div>
+        <div class="trust-media">
+          <span style="font-size:0.75rem; letter-spacing:0.05em; font-weight:700; color:var(--cream-70)">AVBS ÎN PRESĂ:</span>
+          <span class="logo-text forbes">Forbes</span>
+          <span class="logo-text">Ziarul Financiar</span>
+          <span class="logo-text">Wall-Street.ro</span>
+        </div>
       </div>
-      <div class="rev reveal stagger-2">
-        <h3>„am comasat două credite într-o singură rată, mai mică.”</h3>
-        <p>aveam două credite vechi luate la momente diferite. le-am înlocuit cu unul singur, la condițiile de acum, fără să mă deplasez la nicio bancă.</p>
-        <p class="by"><strong>Mihai P.</strong>refinanțare</p>
-      </div>
-      <div class="rev reveal stagger-3">
-        <h3>„zero comisioane ascunse, spus din prima.”</h3>
-        <p>știam exact cât mă costă în total înainte să semnez. când am avut o întrebare despre o clauză, m-a sunat florența și mi-a explicat pe loc.</p>
-        <p class="by"><strong>Cristina V.</strong>credit de nevoi personale</p>
+      
+      <!-- Right side Reviews -->
+      <div class="trust-revs">
+        <div class="rev">
+          <h3 style="font-size:1.4rem">„am înțeles ce semnez înainte să semnez.”</h3>
+          <p>credeam că birocrația bancară durează săptămâni. am primit comparația într-o după-amiază și am putut compara ofertele una lângă alta, în aceleași cifre.</p>
+          <p class="by"><strong>Andrei și Ioana M.</strong>credit ipotecar și noua casă</p>
+        </div>
+        <div class="rev">
+          <h3 style="font-size:1.4rem">„zero comisioane ascunse, spus din prima.”</h3>
+          <p>știam exact cât mă costă în total înainte să semnez. când am avut o întrebare despre o clauză, m-a sunat florența și mi-a explicat pe loc.</p>
+          <p class="by"><strong>Cristina V.</strong>credit de nevoi personale</p>
+        </div>
       </div>
     </div>
   </div>
