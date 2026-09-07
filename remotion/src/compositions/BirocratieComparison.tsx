@@ -8,6 +8,7 @@ import {
 	useVideoConfig,
 } from 'remotion';
 import {colors, fonts, easeOutCubic} from '../tokens';
+import {QueueMark} from '../components/QueueMark';
 
 /**
  * Ziua 3 — "obiceiul 03: alergi la 5 sucursale în loc de o singură aplicare"
@@ -52,7 +53,7 @@ const PillIcon: React.FC<{delayFrames: number; size: number}> = ({delayFrames, s
 				height: size * 0.4,
 				borderRadius: 999,
 				background: colors.plum,
-				opacity: 0.28 * appear,
+				opacity: 0.4 * appear,
 				transform: `scale(${appear})`,
 			}}
 		/>
@@ -87,7 +88,14 @@ export const BirocratieComparison: React.FC<BirocratieComparisonProps> = (props)
 	const total = 11 * fps;
 
 	const countdown = useCountdown(props.fromCount, props.toCount, s2, 2.4 * fps);
-	const headlineSwap = interpolate(frame, [s2, s2 + 20], [0, 1], {
+	// exit-apoi-enter secvențial, nu crossfade simultan — la un singur cadru static
+	// (scroll oprit, screenshot) un crossfade suprapune două headline-uri lizibile
+	// deodată; secvențial garantează că niciun cadru nu arată ambele variante.
+	const oldOpacity = interpolate(frame, [s2, s2 + 8], [1, 0], {
+		extrapolateLeft: 'clamp',
+		extrapolateRight: 'clamp',
+	});
+	const newOpacity = interpolate(frame, [s2 + 8, s2 + 18], [0, 1], {
 		extrapolateLeft: 'clamp',
 		extrapolateRight: 'clamp',
 	});
@@ -106,27 +114,24 @@ export const BirocratieComparison: React.FC<BirocratieComparisonProps> = (props)
 				opacity: fadeOutTail,
 			}}
 		>
-			<AbsoluteFill
-				style={{
-					padding: isVertical ? '10% 8%' : '8%',
-					display: 'flex',
-					flexDirection: 'column',
-					justifyContent: 'center',
-					gap: 28,
-				}}
-			>
-				{/* headline — dizolvă de la varianta veche la cea nouă, o singură mișcare principală pe cadru */}
-				<div style={{position: 'relative', minHeight: isVertical ? 180 : 120}}>
+			{/* ancoră de brand — mic, colț sus, prezent tot filmul (consistent cu ziua 02) */}
+			<div style={{position: 'absolute', top: isVertical ? '6%' : '8%', left: isVertical ? '8%' : '6%'}}>
+				<QueueMark size={isVertical ? 44 : 38} background="light" />
+			</div>
+			<AbsoluteFill style={{padding: isVertical ? '0 8%' : '0 8%'}}>
+				{/* headline — poziționat fix aproape de vârf, nu centrat ca bloc — vezi
+				    notă despre distribuția verticală pe tot canvas-ul, nu doar scala */}
+				<div style={{position: 'absolute', top: isVertical ? '17%' : '20%', left: '8%', right: '8%'}}>
 					<h1
 						style={{
 							position: 'absolute',
 							margin: 0,
 							fontFamily: fonts.display,
 							fontWeight: 800,
-							fontSize: isVertical ? 46 : 40,
+							fontSize: isVertical ? 92 : 60,
 							lineHeight: 1.15,
 							color: colors.plum,
-							opacity: 1 - headlineSwap,
+							opacity: oldOpacity,
 						}}
 					>
 						{props.headlineOld}
@@ -137,10 +142,10 @@ export const BirocratieComparison: React.FC<BirocratieComparisonProps> = (props)
 							margin: 0,
 							fontFamily: fonts.display,
 							fontWeight: 800,
-							fontSize: isVertical ? 46 : 40,
+							fontSize: isVertical ? 92 : 60,
 							lineHeight: 1.15,
 							color: colors.plum,
-							opacity: headlineSwap,
+							opacity: newOpacity,
 						}}
 					>
 						{props.headlineNew}
@@ -149,16 +154,28 @@ export const BirocratieComparison: React.FC<BirocratieComparisonProps> = (props)
 
 				{/* Sequence 1 — 5 pastile reprezentând drumurile la sucursale */}
 				<Sequence from={s1} durationInFrames={s3 - s1} layout="none">
-					<div style={{display: 'flex', gap: 14, flexWrap: 'wrap'}}>
+					<div style={{position: 'absolute', top: '44%', left: '8%', right: '8%', display: 'flex', gap: 14, flexWrap: 'wrap'}}>
 						{Array.from({length: props.fromCount}).map((_, i) => (
-							<PillIcon key={i} delayFrames={s1 + i * 6} size={isVertical ? 96 : 84} />
+							<PillIcon key={i} delayFrames={s1 + i * 6} size={isVertical ? 130 : 100} />
 						))}
 					</div>
 				</Sequence>
 
 				{/* Sequence 2 — numărătoarea parametrizată fromCount → toCount */}
 				<Sequence from={s2} durationInFrames={total - s2} layout="none">
-					<div style={{display: 'flex', alignItems: 'baseline', gap: 16}}>
+					<div
+						style={{
+							position: 'absolute',
+							top: '55%',
+							left: '8%',
+							display: 'flex',
+							alignItems: 'baseline',
+							gap: 16,
+							border: `2px solid ${colors.coral}`,
+							borderRadius: 999,
+							padding: '10px 32px 10px 28px',
+						}}
+					>
 						<span
 							style={{
 								fontFamily: fonts.display,
@@ -170,7 +187,7 @@ export const BirocratieComparison: React.FC<BirocratieComparisonProps> = (props)
 						>
 							{countdown}
 						</span>
-						<span style={{fontFamily: fonts.body, fontSize: 22, color: colors.plum, opacity: 0.7}}>
+						<span style={{fontFamily: fonts.body, fontSize: 26, color: colors.plum, opacity: 0.7}}>
 							{countdown === props.fromCount ? props.fromLabel : props.toLabel}
 						</span>
 					</div>
@@ -180,9 +197,13 @@ export const BirocratieComparison: React.FC<BirocratieComparisonProps> = (props)
 				<Sequence from={s3} durationInFrames={s4 - s3} layout="none">
 					<p
 						style={{
+							position: 'absolute',
+							top: '73%',
+							left: '8%',
+							right: '8%',
 							margin: 0,
 							fontFamily: fonts.body,
-							fontSize: isVertical ? 26 : 22,
+							fontSize: isVertical ? 34 : 24,
 							color: colors.plum,
 							opacity: 0.85,
 							maxWidth: 560,
@@ -192,24 +213,26 @@ export const BirocratieComparison: React.FC<BirocratieComparisonProps> = (props)
 					</p>
 				</Sequence>
 
-				{/* Sequence 4 — lockup: CTA + footer, semnal albastru absent — rezervat piesei mecanismului */}
+				{/* Sequence 4 — lockup: CTA + footer, semnal albastru absent — rezervat piesei mecanismului.
+				    Poziționat aproape de baza cadrului, nu doar mai jos în flux — asta închide
+				    golul din treimea de jos semnalat de criticul de craft. */}
 				<Sequence from={s4} durationInFrames={total - s4} layout="none">
-					<div style={{display: 'flex', flexDirection: 'column', gap: 12, opacity: ctaAppear}}>
+					<div style={{position: 'absolute', top: '85%', left: '8%', display: 'flex', flexDirection: 'column', gap: 18, opacity: ctaAppear}}>
 						<span
 							style={{
 								alignSelf: 'flex-start',
-								padding: '10px 22px',
+								padding: '14px 30px',
 								borderRadius: 999,
-								background: colors.plum,
+								background: colors.coral,
 								color: colors.cream,
 								fontFamily: fonts.display,
 								fontWeight: 700,
-								fontSize: 20,
+								fontSize: 34,
 							}}
 						>
 							{props.ctaText}
 						</span>
-						<span style={{fontFamily: fonts.body, fontSize: 15, color: colors.plum, opacity: 0.55}}>
+						<span style={{fontFamily: fonts.body, fontSize: 17, color: colors.plum, opacity: 0.6}}>
 							{props.footerNote}
 						</span>
 					</div>

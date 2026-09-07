@@ -5,7 +5,9 @@ import {Config} from '@remotion/cli/config';
 // The /animatie-video pieces render in-browser at 60fps; this remotion piece
 // renders headless frame-by-frame, so 30fps here is fine and gets converted
 // (frame-interpolated) in post if it needs to sit next to the 60fps pieces.
-Config.setVideoImageFormat('jpeg');
+// png, nu jpeg — evită orice bandare de compresie pe câmpurile plate de
+// culoare când criticii din /design-loop inspectează cadre statice.
+Config.setVideoImageFormat('png');
 Config.setOverwriteOutput(true);
 Config.setConcurrency(2);
 
