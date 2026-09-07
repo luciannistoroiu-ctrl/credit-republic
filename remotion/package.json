@@ -1,0 +1,25 @@
+{
+  "name": "credit-republic-remotion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Remotion compositions for credit republic — piesa 3/4 din seria \"obiceiurile care îți scumpesc creditul\" (ziua 3, birocrația) și viitoare piese cu numărători parametrizate.",
+  "scripts": {
+    "start": "remotion studio src/index.ts",
+    "build": "remotion bundle src/index.ts",
+    "render:birocratie-9x16": "remotion render src/index.ts BirocratieComparison9x16 out/ziua-03-birocratia-9x16.mp4",
+    "render:birocratie-1x1": "remotion render src/index.ts BirocratieComparison1x1 out/ziua-03-birocratia-1x1.mp4",
+    "still:birocratie-9x16": "remotion still src/index.ts BirocratieComparison9x16 out/ziua-03-birocratia-9x16-frame0.png",
+    "upgrade": "remotion upgrade"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.522",
+    "@remotion/cli": "4.0.522"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "typescript": "5.6.3"
+  }
+}
