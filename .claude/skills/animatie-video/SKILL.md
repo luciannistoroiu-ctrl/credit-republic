@@ -1,5 +1,5 @@
 ---
-name: minimax-h3-motion-design
+name: animatie-video
 description: A system for writing motion-design / launch-video prompts targeting MiniMax H3 (and similar text-to-video models). Use WHENEVER the user asks for a launch video, motion design, product film, brand video, explainer, promo or ad video, or any video prompt in a named style (SaaS motion, Apple style, punk collage, claymation, 2D vector, Unreal Engine, hyper motion 3D, tilt-shift, Y2K chrome, anime, blueprint, liquid morph, pixel art, etc.), or drops a new product/style with a quick "go" — even if MiniMax is not mentioned by name. Also use when iterating on a previous prompt ("redo it", "now make it about X", "change the style/colors", "make it 9:16"). Do NOT use for Seedance shotlists (use seedance-shotlist-director) or single-image prompts.
 ---
 
