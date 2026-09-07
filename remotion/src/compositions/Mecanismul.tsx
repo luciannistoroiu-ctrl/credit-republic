@@ -13,8 +13,7 @@ import {KineticText} from '../components/KineticText';
  * exact o dată, pe cifra finală — fără suma economisită afișată.
  */
 export type MecanismulProps = {
-	text1: string;
-	text2: string;
+	introText: string;
 	rateFrom: string;
 	rateTo: string;
 	rateFromValue: number;
@@ -25,8 +24,7 @@ export type MecanismulProps = {
 };
 
 export const mecanismulDefaultProps: MecanismulProps = {
-	text1: 'am vorbit trei zile despre obiceiuri care te costă bani.',
-	text2: 'al 4-lea obicei — cel bun — e să lași verificarea pe seama cuiva care o face în fiecare zi.',
+	introText: 'al 4-lea obicei — cel bun — e să lași verificarea pe seama cuiva care o face în fiecare zi.',
 	rateFrom: '7,90%',
 	rateTo: '4,75%',
 	rateFromValue: 7.9,
@@ -40,7 +38,6 @@ const FPS = 30;
 export const MECANISMUL_DURATION = 12 * FPS; // 360 cadre
 
 const S_TEXT1 = 0;
-const S_TEXT2 = 1.6 * FPS;
 const S_TEXT_OUT = 3.2 * FPS; // introducerea dispare complet...
 const S_MARK = 3.8 * FPS; // ...înainte să înceapă să apară semnul-coadă (exit-apoi-enter, nu simultan)
 const S_COUNTER_SHOW = 4.8 * FPS;
@@ -81,22 +78,13 @@ export const Mecanismul: React.FC<MecanismulProps> = (props) => {
 
 	return (
 		<AbsoluteFill style={{background: colors.cream, opacity: tailFade}}>
-			{/* intro — două linii, dispar complet înainte să apară semnul-coadă */}
+			{/* intro — o singură linie, dispare complet înainte să apară semnul-coadă */}
 			{frame < S_MARK && (
 				<AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', padding: '0 9%', opacity: introOpacity}}>
-					<div style={{display: 'flex', flexDirection: 'column', gap: 22}}>
-						<KineticText
-							text={props.text1}
-							style={{fontFamily: fonts.display, fontWeight: 800, fontSize: 52, color: colors.plum, lineHeight: 1.2}}
-						/>
-						{frame >= S_TEXT2 && (
-							<KineticText
-								text={props.text2}
-								delayFrames={S_TEXT2}
-								style={{fontFamily: fonts.body, fontSize: 32, color: colors.plum, lineHeight: 1.3, opacity: 0.85}}
-							/>
-						)}
-					</div>
+					<KineticText
+						text={props.introText}
+						style={{fontFamily: fonts.display, fontWeight: 800, fontSize: 60, color: colors.plum, lineHeight: 1.25}}
+					/>
 				</AbsoluteFill>
 			)}
 
