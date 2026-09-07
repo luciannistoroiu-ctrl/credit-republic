@@ -24,7 +24,7 @@ export type MecanismulProps = {
 };
 
 export const mecanismulDefaultProps: MecanismulProps = {
-	introText: 'al 4-lea obicei — cel bun — e să lași verificarea pe seama cuiva care o face în fiecare zi.',
+	introText: 'lasă verificarea pe seama cuiva care o face în fiecare zi.',
 	rateFrom: '7,90%',
 	rateTo: '4,75%',
 	rateFromValue: 7.9,
@@ -83,7 +83,7 @@ export const Mecanismul: React.FC<MecanismulProps> = (props) => {
 				<AbsoluteFill style={{alignItems: 'center', justifyContent: 'center', padding: '0 9%', opacity: introOpacity}}>
 					<KineticText
 						text={props.introText}
-						style={{fontFamily: fonts.display, fontWeight: 800, fontSize: 60, color: colors.plum, lineHeight: 1.25}}
+						style={{fontFamily: fonts.display, fontWeight: 800, fontSize: 76, color: colors.plum, lineHeight: 1.22}}
 					/>
 				</AbsoluteFill>
 			)}
