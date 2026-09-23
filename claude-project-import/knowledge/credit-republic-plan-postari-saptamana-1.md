@@ -75,7 +75,7 @@ TikTok și story-urile înclină spre video (formatul nativ); X spre imagine (te
   apare pe cel mult un element.
 - **Tipografie:** titluri Omnes, corp Helvetica Neue, sentence case, fără majuscule complete.
 - **Text în pastile** rotunjite, niciodată liber pe fotografie. Imaginile Nano Banana Pro vin fără text.
-- **Florența:** fotografie reală (`knowledge/Florenta Broker.webp`) sau filmare reală. Niciodată
+- **Florența:** fotografie reală (`social-creator/assets/florenta-nistoroiu.webp`) sau filmare reală. Niciodată
   avatar sau imagine generată.
 - **Marcă:** jos-stânga, varianta potrivită fundalului (`marca/`).
 - **Zone sigure 9:16:** fără text în primele 220 px de sus și ultimele 380 px de jos (acolo stau
@@ -220,7 +220,7 @@ Opțiuni sondaj: „un procent din credit" / „0 lei".
 >
 > slide 3: același venit, altă sumă eligibilă.
 >
-> slide 4: Florența știe cum citește fiecare bancă un venit non-standard. 0 lei pentru tine.
+> slide 4: venit din pfa, dividende sau bonusuri? Florența știe ce bancă îl acceptă și cât îți poate aproba. 0 lei pentru tine. află ce sumă poți primi.
 
 - **Caption:**
 
@@ -254,7 +254,7 @@ Opțiuni sondaj: „un procent din credit" / „0 lei".
 
 > pentru un pfa sau pentru dividende, băncile nu folosesc aceeași formulă de calcul. același venit poate însemna sume eligibile diferite de la o bancă la alta.
 >
-> Florența Nistoroiu știe cum citește fiecare bancă un venit non-standard. 0 lei pentru client.
+> Florența Nistoroiu știe ce bancă acceptă un venit din pfa sau dividende și cât poate aproba. 0 lei pentru client.
 
 ---
 

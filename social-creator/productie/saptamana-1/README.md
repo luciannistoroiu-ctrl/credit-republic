@@ -60,9 +60,8 @@ Toate cele 4 filmări încap într-o singură sesiune de ~1 oră.
 
 ## de verificat înainte de publicare
 
-- **Fotografia Florenței** folosită este `social-creator/assets/Florenta Broker.webp`. Planul cere
-  fotografie reală. Dacă aceasta e generată sau retușată puternic, se înlocuiește cu una reală și
-  se re-randează.
+- **Fotografia Florenței**: `social-creator/assets/florenta-nistoroiu.webp` (originalul) și
+  `florenta-nistoroiu-cerc.jpg` (decupajul pătrat folosit în cercuri).
 - **Fontul**: titlurile trebuie să fie în Omnes, dar Omnes cere Adobe Fonts și nu e disponibil
   aici. Randarea folosește Plus Jakarta Sans, fontul de rezervă deja declarat în
   `brand-templates.css`. Cu Omnes instalat local, o re-randare îl folosește automat (e primul în

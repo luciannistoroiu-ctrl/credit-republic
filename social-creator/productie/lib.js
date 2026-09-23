@@ -1,4 +1,4 @@
-const FLO = '../assets/Florenta%20Broker.webp';
+const FLO = '../assets/florenta-nistoroiu-cerc.jpg';
 const APT = '../assets/photo_modern_interior.jpg';
 
 const MARK = {

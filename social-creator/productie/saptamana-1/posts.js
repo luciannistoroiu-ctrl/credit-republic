@@ -124,9 +124,10 @@ posts.push({
        <div><div class="disp" style="font-size:25px">Florența Nistoroiu</div><div class="body muted-d" style="font-size:16px">broker autorizat AVBS</div></div>
      </div>
      <div class="abs" style="left:${pad}px;right:${pad}px;top:210px">
-       <div class="disp pills" style="font-size:36px"><span class="pl pl-cream">Florența știe cum citește fiecare bancă un venit non-standard.</span></div>
-       <div class="disp" style="font-size:36px;margin-top:18px"><span class="pl pl-mint">0 lei pentru tine.</span></div>
-       <div style="margin-top:30px"><span class="btn pl-blue">verifică suma eligibilă</span></div>
+       <div class="body pills" style="font-size:22px;font-weight:700"><span class="pl pl-sun">venit din pfa, dividende sau bonusuri?</span></div>
+       <div class="disp pills" style="font-size:36px;margin-top:16px"><span class="pl pl-cream">Florența știe ce bancă îl acceptă și cât îți poate aproba.</span></div>
+       <div class="disp" style="font-size:32px;margin-top:16px"><span class="pl pl-mint">0 lei pentru tine.</span></div>
+       <div style="margin-top:26px"><span class="btn pl-blue">află ce sumă poți primi</span></div>
      </div>
      ${foot('dark')}`
   ]
@@ -375,7 +376,7 @@ posts.push({
     <div class="abs" style="left:48px;top:56px;width:400px">
       <div style="${inA(0.1)}"><span class="eb eb-l">venitul variabil</span></div>
       <div class="disp" style="font-size:44px;margin-top:18px;${inA(0.3)}">același venit, altă sumă eligibilă.</div>
-      <div class="body muted-l" style="font-size:19px;margin-top:20px;${inA(3.2)}">Florența știe cum citește fiecare bancă un venit non-standard.</div>
+      <div class="body muted-l" style="font-size:19px;margin-top:20px;${inA(3.2)}">Florența știe ce bancă îți acceptă venitul și cât îți poate aproba.</div>
     </div>
     <div class="abs" style="left:48px;bottom:40px">${wm('light')}</div>
     <div class="abs" style="left:520px;width:390px;top:428px;height:2px;background:var(--plum);opacity:.25"></div>
