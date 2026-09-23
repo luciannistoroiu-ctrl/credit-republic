@@ -451,6 +451,36 @@ posts.push({
     </div>`
 });
 
+// Reel-ul de luni fără filmare: aceeași poveste ca scriptul Florenței, în text animat
+const fade = (s, e) => `animation:fade .4s ease-out ${s}s both${e ? `, fout .3s ease-in ${e}s forwards` : ''}`;
+const top916 = (on) => `<div class="abs" style="left:${pad}px;top:118px">${wm(on, 'font-size:25px')}</div>`;
+posts.push({
+  id: 'cr_01_luni-reel-mecanismul_9x16_v1', ...F916, theme: 't-cream', dur: 18, cover: 7.2,
+  css: `@keyframes fade { from { opacity: 0; } to { opacity: 1; } }`,
+  html: `
+    <div class="abs t-plum" style="inset:0;${fade(5.4, 10.0)}"></div>
+    <div class="abs t-plum" style="inset:0;${fade(14.4)}"></div>
+    <div class="abs" style="inset:0;${outA(5.2)}">${top916('light')}</div>
+    <div class="abs" style="inset:0;${fade(5.4, 10.0)}">${top916('dark')}</div>
+    <div class="abs" style="inset:0;${fade(10.2, 14.2)}">${top916('light')}</div>
+    ${area916(outA(3.2), `
+      <div class="disp pills" style="font-size:52px;${inA(0.2)}"><span class="pl pl-gl">cine plătește</span></div>
+      <div class="disp pills" style="font-size:52px;margin-top:8px;${inA(0.6)}"><span class="pl pl-gl">brokerul de credite?</span></div>`)}
+    ${area916(popOut(3.6, 5.2), `<div class="disp" style="font-size:150px;color:var(--coral)">banca.</div>`)}
+    ${area916(outA(10.0), `
+      <div class="disp pills" style="font-size:124px;${popA(5.7)}"><span class="pl pl-mint">0 lei</span></div>
+      <div class="disp pills" style="font-size:54px;margin-top:14px;${inA(6.2)}"><span class="pl pl-cream">pentru client.</span></div>
+      <div class="disp pills" style="font-size:42px;margin-top:18px;${inA(6.9)}"><span class="pl pl-gd">comisionul vine de la bancă.</span></div>`)}
+    ${area916(outA(14.2), `
+      <div style="${popA(10.3)}">${photo(170, 'border:5px solid var(--coral)')}</div>
+      <div class="disp pills" style="font-size:46px;margin-top:26px;${inA(10.8)}"><span class="pl pl-gl">Florența Nistoroiu negociază.</span></div>
+      <div class="disp pills" style="font-size:42px;margin-top:14px;${inA(11.6)}"><span class="pl pl-mint">algoritmul compară toate băncile.</span></div>`)}
+    ${area916('align-items:center', `
+      <div style="${popA(14.8)}">${wm('dark', 'font-size:46px')}</div>
+      <div style="margin-top:34px;${inA(15.3)}"><span class="btn pl-blue" style="font-size:24px;padding:16px 30px">verifică poziția ta</span></div>
+      <div class="body muted-d" style="font-size:20px;font-weight:600;margin-top:20px;${inA(15.7)}">4 minute · 0 lei · creditrepublic.ro</div>`)}`
+});
+
 posts.push({
   id: 'cr_00_cadru-final-cta_9x16_v1', ...F916, theme: 't-plum', dur: 3, cover: 2.5,
   html: `

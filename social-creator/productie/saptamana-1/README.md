@@ -3,13 +3,14 @@
 Materialele pentru `claude-project-import/knowledge/credit-republic-plan-postari-saptamana-1.md`.
 Toate fișierele sunt în `out/`, la rezoluție de publicare (2x): 1080×1350, 1080×1080, 1080×1920, 1920×1080.
 
-**Gata: 14 din 14 imagini, 8 din 14 video** + un cadru final reutilizabil.
-Video-urile rămase au nevoie de filmare cu Florența (4) sau de fotografii noi (1), vezi jos.
+**Gata: 14 din 14 imagini, 9 din 14 video** + un cadru final reutilizabil.
+Video-urile rămase au nevoie de filmare cu Florența (3) sau de fotografii noi (1), vezi jos.
 
 ## gata de publicat
 
 | zi | suprafață | tip | fișier |
 |---|---|---|---|
+| luni | Meta feed — Reel | video 18 s | `cr_01_luni-reel-mecanismul_9x16_v1.mp4` (text animat, fără filmare) |
 | luni | Meta story | imagine | `cr_01_luni-story-sondaj_9x16_v1_01.png` (sondaj) + `_02.png` (răspunsul, a doua zi) |
 | luni | TikTok | video 15 s | `cr_01_luni-tiktok-text-cinetic_9x16_v1.mp4` |
 | luni | X | imagine | `cr_01_luni-x-linia-master_1x1_v1.png` |
@@ -49,7 +50,6 @@ Fiecare video are și o copertă: `*_coperta.png` (se alege ca thumbnail în Tik
 
 | zi | suprafață | ce lipsește |
 |---|---|---|
-| luni | Meta feed — Reel | filmare Florența (script în plan) + `cr_00_cadru-final-cta` la final |
 | miercuri | TikTok | filmare Florența: 3 verificări PFA |
 | joi | Meta feed — Reel | filmare Florența la telefon, jumătatea de jos a ecranului |
 | joi | Meta story | primele 8 s din Reel-ul de joi |
