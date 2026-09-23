@@ -23,6 +23,8 @@ comisionul vine de la bancă.**
 - `claude-project-import/knowledge/credit-republic-analiza-reclame-competitie-ipotecare.md`
   — analiza reclamelor ipotecare.ro (imagini în `knowledge/competitie/`), cu formate adaptate
   pe unghiuri și copy validat
+- `claude-project-import/knowledge/credit-republic-plan-postari-saptamana-1.md` — plan de
+  postări pe o săptămână (Meta, TikTok, X; 50% imagine, 50% video): strategie, copy, compoziție
 
 ## Regulile de brand (aplicate automat de `BrandValidator`, dar respectă-le și manual)
 
