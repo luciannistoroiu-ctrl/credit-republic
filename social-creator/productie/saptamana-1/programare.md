@@ -51,6 +51,8 @@ Planul gratuit Buffer permite maximum 10 postări programate simultan, de aceea 
 
 Fișierele fără commit menționat sunt în commitul 0d73c6e (URL-ul de bază de mai sus).
 
+**TVA 21%** (tweet-ul din 27.09): cifra a fost confirmată de utilizator pe 23.09, tweet-ul se programează.
+
 Textele sunt în planul de postări (secțiunea 4, ziua din plan). Pe Facebook și X se adaugă linkul
 `https://creditrepublic.ro/?utm_source=[facebook|x]&utm_medium=organic&utm_campaign=s1&utm_content=[zi]_[unghi]`,
 cu excepția tweet-ului cu întrebarea săptămânii (invită la răspuns, nu la click).
