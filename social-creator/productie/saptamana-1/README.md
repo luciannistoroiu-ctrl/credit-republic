@@ -56,7 +56,8 @@ Fiecare video are și o copertă: `*_coperta.png` (se alege ca thumbnail în Tik
 | vineri | TikTok — vizionarea 14 | 4–5 fotografii de apartamente diferite (există doar una în `assets/`) |
 | duminică | TikTok | filmare Florența: refinanțare |
 
-Toate cele 4 filmări încap într-o singură sesiune de ~1 oră.
+Alternativă fără filmare: clipuri generate cu Veo, cu prompt-uri gata scrise în
+`claude-project-import/knowledge/credit-republic-veo-prompturi-saptamana-1.md`.
 
 ## de verificat înainte de publicare
 

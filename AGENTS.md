@@ -27,6 +27,8 @@ comisionul vine de la bancă.**
   postări pe o săptămână (Meta, TikTok, X; 50% imagine, 50% video): strategie, copy, compoziție
 - `social-creator/productie/` — randare HTML → PNG/MP4 (`render.js`), cu validare automată de brand
   pe fiecare cadru; materialele săptămânii 1 sunt în `saptamana-1/out/`
+- `claude-project-import/knowledge/credit-republic-veo-prompturi-saptamana-1.md` — prompt-uri Veo
+  pentru video-urile fără filmare (Florența nu se generează niciodată; apare doar prin fotografia reală)
 
 ## Regulile de brand (aplicate automat de `BrandValidator`, dar respectă-le și manual)
 
