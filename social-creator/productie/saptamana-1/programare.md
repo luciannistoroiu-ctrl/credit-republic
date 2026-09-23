@@ -12,7 +12,7 @@ Media servită prin jsDelivr, fixată pe commit:
 Planul gratuit Buffer permite maximum 10 postări programate simultan, de aceea restul se programează
 în două tranșe, după ce pleacă postările anterioare (vezi mai jos).
 
-## programate (23.09)
+## programate (23.09; cele trei din 23.09 au plecat fără erori)
 
 | data | ora | canal | conținut (zi din plan) | fișier | id Buffer |
 |---|---|---|---|---|---|
@@ -22,19 +22,14 @@ Planul gratuit Buffer permite maximum 10 postări programate simultan, de aceea 
 | joi 24.09 | 08:30 | X | marți · checklist | `cr_07_marti-x-checklist_1x1_v1.png` | 6ab3bb77969a4e547515ab34 |
 | joi 24.09 | 19:30 | Facebook | marți · „drumul" | `cr_07_marti-feed-drumul_4x5_v1.png` | 6ab3bb7adaf288bc75ce366b |
 | joi 24.09 | 20:30 | TikTok | marți · teancul de acte | `cr_07_marti-tiktok-teanc-acte_9x16_v1.mp4` | 6ab3bb7ddaf288bc75ce36d6 |
+| joi 24.09 | 12:00 | Facebook (story) | marți · „drumul" animat | `cr_07_marti-story-drumul_9x16_v1.mp4` | 6ab41782b6396f8b6e4c1325 |
 | vin 25.09 | 08:30 | X | miercuri · trei calcule | `cr_03_miercuri-x-trei-calcule_16x9_v1.mp4` | 6ab3bb88ebc03a62a9e9ea60 |
 | vin 25.09 | 19:30 | Facebook | miercuri · carusel 4 | `cr_03_miercuri-feed-carusel_4x5_v1_01..04.png` | 6ab3bb8b85092e8db12be837 |
 | vin 25.09 | 20:30 | TikTok | miercuri · 3 verificări PFA (text animat) | `cr_03_miercuri-tiktok-trei-verificari_9x16_v1.mp4` (commit 2ed52f9) | 6ab3c483dc095c63f58cb8eb |
 | sâm 26.09 | 08:30 | X | joi · broker + algoritm | `cr_06_joi-x-broker-ai_1x1_v1.png` | 6ab3bb8ddaf288bc75ce381f |
+| sâm 26.09 | 12:00 | Facebook (story) | joi · teaser | `cr_06_joi-story-teaser_9x16_v1.mp4` (commit 2ed52f9) | 6ab4178740567a7a60b793da |
+| sâm 26.09 | 19:30 | Facebook (reel) | joi · algoritm + om | `cr_06_joi-reel-algoritm-om_9x16_v1.mp4` (commit 2ed52f9) | 6ab4178ab6396f8b6e4c14d0 |
 | sâm 26.09 | 20:30 | TikTok | joi · carusel 4 | `cr_06_joi-tiktok-carusel_9x16_v1_01..04.png` | 6ab3bb93969a4e547515ad23 |
-
-## de programat miercuri 23.09, după 21:00 (3 postări)
-
-| data | ora | canal | conținut | fișier | text |
-|---|---|---|---|---|---|
-| joi 24.09 | 12:00 | Facebook (story) | marți · „drumul" animat | `cr_07_marti-story-drumul_9x16_v1.mp4` (commit 0d73c6e) | fără text |
-| sâm 26.09 | 12:00 | Facebook (story) | joi · teaser | `cr_06_joi-story-teaser_9x16_v1.mp4` (commit 2ed52f9) | fără text |
-| sâm 26.09 | 19:30 | Facebook (reel) | joi · algoritm + om | `cr_06_joi-reel-algoritm-om_9x16_v1.mp4` (commit 2ed52f9) | caption-ul Meta feed de joi din plan + link UTM `joi_06` |
 
 ## de programat sâmbătă 26.09, după 21:00 (10 postări)
 
@@ -71,4 +66,3 @@ cu excepția tweet-ului cu întrebarea săptămânii (invită la răspuns, nu la
   sticker-ele nu se pot adăuga prin API. Se postează direct din aplicație. Story-urile video
   (marți, vineri, duminică) sunt programate pe Facebook fără link sticker.
 - **Instagram**: canalul nu e conectat în Buffer.
-- **Cele 6 video-uri** care așteaptă filmarea cu Florența sau fotografii noi.
