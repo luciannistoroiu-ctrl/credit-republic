@@ -43,12 +43,6 @@ const BrandValidator = (function () {
       severity: 'error',
       title: 'Albastru Semnal #2C86F6 apare cel mult o dată',
       desc: 'Albastrul semnal este o regulă de moment, nu de suprafață. Apare o singură dată într-un ecran, exclusiv pe un rezultat pozitiv confirmat sau buton activ.'
-    },
-    NO_UNVERIFIED_DAE: {
-      id: 'rule_no_unverified_dae',
-      severity: 'warning',
-      title: 'Fără DAE sau exemplu reprezentativ neautorizat',
-      desc: 'Fără mențiuni generice de DAE dacă nu există cifre oficiale verificate legal.'
     }
   };
 
