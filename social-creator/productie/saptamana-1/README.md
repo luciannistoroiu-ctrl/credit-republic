@@ -3,8 +3,8 @@
 Materialele pentru `claude-project-import/knowledge/credit-republic-plan-postari-saptamana-1.md`.
 Toate fișierele sunt în `out/`, la rezoluție de publicare (2x): 1080×1350, 1080×1080, 1080×1920, 1920×1080.
 
-**Gata: 14 din 14 imagini, 9 din 14 video** + un cadru final reutilizabil.
-Video-urile rămase au nevoie de filmare cu Florența (3) sau de fotografii noi (1), vezi jos.
+**Gata: 14 din 14 imagini, 14 din 14 video** + un cadru final reutilizabil.
+Video-urile care așteptau filmarea cu Florența sunt refăcute ca text animat, cu fotografia ei reală.
 
 ## gata de publicat
 
@@ -20,11 +20,15 @@ Video-urile rămase au nevoie de filmare cu Florența (3) sau de fotografii noi 
 | marți | X | imagine | `cr_07_marti-x-checklist_1x1_v1.png` |
 | miercuri | Meta feed | carusel 4 | `cr_03_miercuri-feed-carusel_4x5_v1_01..04.png` |
 | miercuri | Meta story | imagine | `cr_03_miercuri-story-intrebare_9x16_v1.png` |
+| miercuri | TikTok | video 20 s | `cr_03_miercuri-tiktok-trei-verificari_9x16_v1.mp4` |
 | miercuri | X | video 8 s | `cr_03_miercuri-x-trei-calcule_16x9_v1.mp4` |
+| joi | Meta feed — Reel | video 17 s | `cr_06_joi-reel-algoritm-om_9x16_v1.mp4` |
+| joi | Meta story | video 8 s | `cr_06_joi-story-teaser_9x16_v1.mp4` |
 | joi | TikTok | carusel 4 | `cr_06_joi-tiktok-carusel_9x16_v1_01..04.png` |
 | joi | X | imagine | `cr_06_joi-x-broker-ai_1x1_v1.png` |
 | vineri | Meta feed | imagine | `cr_05_vineri-feed-apartament_4x5_v1.png` |
 | vineri | Meta story | video 6 s | `cr_05_vineri-story-precalificare_9x16_v1.mp4` |
+| vineri | TikTok | video 18 s | `cr_05_vineri-tiktok-vizionarea-14_9x16_v1.mp4` |
 | vineri | X | video 8 s | `cr_05_vineri-x-drumul-tva_16x9_v1.mp4` |
 | sâmbătă | Meta feed | video 12 s | `cr_04_sambata-feed-reclama-contract_9x16_v1.mp4` |
 | sâmbătă | Meta story | imagine | `cr_04_sambata-story-quiz_9x16_v1.png` |
@@ -32,6 +36,7 @@ Video-urile rămase au nevoie de filmare cu Florența (3) sau de fotografii noi 
 | sâmbătă | X | imagine | `cr_04_sambata-x-comparatie_1x1_v1.png` |
 | duminică | Meta feed | imagine | `cr_02_duminica-feed-calcul_4x5_v1.png` |
 | duminică | Meta story | video 6 s | `cr_02_duminica-story-rata_9x16_v1.mp4` |
+| duminică | TikTok | video 18 s | `cr_02_duminica-tiktok-refinantare_9x16_v1.mp4` |
 | duminică | X | imagine | `cr_02_duminica-x-intrebare_1x1_v1.png` |
 | — | Reels Florența | video 3 s | `cr_00_cadru-final-cta_9x16_v1.mp4` — se lipește la finalul Reel-urilor de luni și joi |
 
@@ -48,16 +53,7 @@ Fiecare video are și o copertă: `*_coperta.png` (se alege ca thumbnail în Tik
 
 ## rămân de produs
 
-| zi | suprafață | ce lipsește |
-|---|---|---|
-| miercuri | TikTok | filmare Florența: 3 verificări PFA |
-| joi | Meta feed — Reel | filmare Florența la telefon, jumătatea de jos a ecranului |
-| joi | Meta story | primele 8 s din Reel-ul de joi |
-| vineri | TikTok — vizionarea 14 | 4–5 fotografii de apartamente diferite (există doar una în `assets/`) |
-| duminică | TikTok | filmare Florența: refinanțare |
-
-Alternativă fără filmare: clipuri generate cu Veo, cu prompt-uri gata scrise în
-`claude-project-import/knowledge/credit-republic-veo-prompturi-saptamana-1.md`.
+Nimic. Dacă apar filmări cu Florența, pot înlocui oricând versiunile animate.
 
 ## de verificat înainte de publicare
 

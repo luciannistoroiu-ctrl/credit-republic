@@ -481,6 +481,103 @@ posts.push({
       <div class="body muted-d" style="font-size:20px;font-weight:600;margin-top:20px;${inA(15.7)}">4 minute · 0 lei · creditrepublic.ro</div>`)}`
 });
 
+const disc = (n, s) => `<div class="disp" style="width:68px;height:68px;border-radius:50%;background:var(--sun);color:var(--plum);display:flex;align-items:center;justify-content:center;font-size:38px;line-height:1;flex-shrink:0;${popA(s)}">${n}</div>`;
+const step = (n, t, s) => `<div style="display:flex;align-items:center;gap:16px;margin-top:18px">${disc(n, s)}<div class="disp pills" style="font-size:30px;${inA(s + 0.2)}"><span class="pl pl-gl">${t}</span></div></div>`;
+
+// miercuri · TikTok (03): cele 3 verificări, fără filmare
+posts.push({
+  id: 'cr_03_miercuri-tiktok-trei-verificari_9x16_v1', ...F916, theme: 't-cream', dur: 20, cover: 11,
+  html: `
+    ${top916('light')}
+    ${area916(outA(12.6), `
+      <div class="disp pills" style="font-size:36px;${inA(0.2)}"><span class="pl pl-plum">3 lucruri pe care Florența le verifică la un venit din pfa</span></div>
+      ${step(1, 'istoricul activității', 2.4)}
+      ${step(2, 'cum apare venitul în declarația unică', 4.6)}
+      ${step(3, 'ce bancă îl acceptă așa cum e', 6.8)}
+      <div class="disp pills" style="font-size:28px;margin-top:26px;${inA(9.2)}"><span class="pl pl-sun">același venit poate însemna sume diferite de la o bancă la alta.</span></div>`)}
+    ${area916('', `
+      <div style="${popA(12.9)}">${photo(150, 'border:5px solid var(--coral)')}</div>
+      <div class="disp pills" style="font-size:46px;margin-top:24px;${inA(13.4)}"><span class="pl pl-gl">Florența Nistoroiu, broker autorizat AVBS.</span></div>
+      <div class="disp pills" style="font-size:46px;margin-top:14px;${inA(14.2)}"><span class="pl pl-mint">0 lei pentru tine.</span></div>
+      <div class="disp pills" style="font-size:34px;margin-top:14px;${inA(14.8)}"><span class="pl pl-gl">comisionul vine de la bancă.</span></div>`)}`
+});
+
+// joi · Reel (06): algoritmul (rânduri de oferte fără nume) → omul (Florența)
+const rows = [0, 1, 2, 3, 4, 5].map((i) => {
+  const keep = i === 3;
+  const w = [300, 360, 250, 330, 280, 340][i];
+  return `<div style="display:flex;align-items:center;gap:12px;margin-top:14px;${keep ? '' : `animation:fin .35s ${EASE} ${0.3 + i * 0.12}s both, dim .4s ease ${2.6 + i * 0.15}s forwards`};${keep ? inA(0.3 + i * 0.12, 0.35) : ''}">
+    <span style="width:34px;height:34px;border-radius:50%;background:${keep ? 'var(--mint)' : 'rgba(255,248,240,.2)'};flex-shrink:0"></span>
+    <span style="height:34px;width:${w}px;border-radius:999px;background:${keep ? 'var(--mint)' : 'rgba(255,248,240,.2)'}"></span>
+  </div>`;
+}).join('');
+const joiReel = {
+  ...F916, theme: 't-plum',
+  css: `@keyframes dim { to { opacity: .18; } } @keyframes fade { from { opacity: 0; } to { opacity: 1; } }`,
+  html: `
+    <div class="abs t-cream" style="inset:0;${fade(6.6)}"></div>
+    <div class="abs" style="inset:0;${outA(6.4)}">${top916('dark')}</div>
+    <div class="abs" style="inset:0;${fade(6.6)}">${top916('light')}</div>
+    ${area916(outA(6.4), `
+      <div>${rows}</div>
+      <div class="disp pills" style="font-size:44px;margin-top:40px;${inA(3.4)}"><span class="pl pl-mint">4 minute: algoritmul compară toate băncile.</span></div>`)}
+    ${area916(outA(13.2), `
+      <div class="disp pills" style="font-size:48px;${inA(6.9)}"><span class="pl pl-gl">restul: negocierea, dosarul, semnarea.</span></div>
+      <div style="margin-top:34px;${popA(8.6)}">${photo(170, 'border:5px solid var(--coral)')}</div>
+      <div class="disp pills" style="font-size:56px;margin-top:22px;${inA(9.0)}"><span class="pl pl-plum">acolo e Florența.</span></div>`)}
+    <div class="abs t-plum" style="inset:0;${fade(13.4)}"></div>
+    ${area916('align-items:center', `
+      <div style="${popA(13.8)}">${wm('dark', 'font-size:46px')}</div>
+      <div style="margin-top:34px;${inA(14.3)}"><span class="btn pl-blue" style="font-size:24px;padding:16px 30px">verifică poziția ta</span></div>
+      <div class="body muted-d" style="font-size:20px;font-weight:600;margin-top:20px;${inA(14.7)}">4 minute · 0 lei · creditrepublic.ro</div>`)}`
+};
+posts.push({ id: 'cr_06_joi-reel-algoritm-om_9x16_v1', ...joiReel, dur: 17, cover: 9.6 });
+posts.push({ id: 'cr_06_joi-story-teaser_9x16_v1', ...joiReel, dur: 8, cover: 7.5 });
+
+// vineri · TikTok (05): „vizionarea 14" — cadre diferite din aceeași fotografie de interior
+const view = (pos, s, e, label) => `
+  <div class="abs" style="inset:0;overflow:hidden;animation:fade .25s ease ${s}s both${e ? `, fout .25s ease ${e}s forwards` : ''}">
+    <div class="abs" style="inset:0;background:url('${APT}') ${pos}/auto 175% no-repeat;animation:kb ${(e || 18) - s + 0.5}s linear ${s}s both"></div>
+  </div>
+  ${label ? `<div class="abs" style="left:${pad}px;top:230px;animation:pop .3s ${EASE} ${s + 0.15}s both${e ? `, fout .25s ease ${e}s forwards` : ''}"><span class="disp pl pl-sun" style="font-size:40px">${label}</span></div>` : ''}`;
+posts.push({
+  id: 'cr_05_vineri-tiktok-vizionarea-14_9x16_v1', ...F916, theme: 't-cream', dur: 18, cover: 7,
+  css: `@keyframes fade { from { opacity: 0; } to { opacity: 1; } }`,
+  html: `
+    ${view('0% 45%', 0, 1.6, 'vizionarea 1.')}
+    ${view('100% 35%', 1.6, 3.2, 'vizionarea 7.')}
+    ${view('55% 100%', 3.2, 4.8, 'vizionarea 14.')}
+    ${view('58% center', 4.8, 9.4, '')}
+    <div class="abs" style="left:${pad}px;right:${pad}px;top:230px;animation:fin .45s ${EASE} 5.3s both, fout .3s ease 9.2s forwards">
+      <div class="disp pills" style="font-size:50px"><span class="pl pl-cream">apartamentul potrivit.</span></div>
+    </div>
+    <div class="abs" style="left:${pad}px;top:112px;background:var(--cream);border-radius:999px;padding:8px 16px;${outA(9.2)}">${wm('light', 'font-size:22px')}</div>
+    <div class="abs t-cream" style="inset:0;${fade(9.4)}"></div>
+    <div class="abs" style="inset:0;${fade(9.4)}">${top916('light')}</div>
+    ${area916('', `
+      <div class="disp pills" style="font-size:46px;${inA(9.8)}"><span class="pl pl-gl">creditul: prima ofertă de la ghișeu, în 20 de minute.</span></div>
+      <div class="disp pills" style="font-size:50px;margin-top:40px;${inA(12.4)}"><span class="pl pl-plum">prima casă merită și un credit comparat.</span></div>`)}`
+});
+
+// duminică · TikTok (02): refinanțarea, fără filmare
+posts.push({
+  id: 'cr_02_duminica-tiktok-refinantare_9x16_v1', ...F916, theme: 't-plum', dur: 18, cover: 10,
+  html: `
+    ${top916('dark')}
+    <div class="abs" style="left:${pad}px;right:${pad}px;top:190px;${inA(0.2)}">
+      <div class="disp pills" style="font-size:34px"><span class="pl pl-cream">am luat creditul acum câțiva ani. merită să mă uit din nou?</span></div>
+    </div>
+    ${area916('top:330px;' + outA(11.6), `
+      <div class="disp pills" style="font-size:44px;${inA(2.2)}"><span class="pl pl-sun">răspunsul stă în cifre:</span></div>
+      <div class="disp pills" style="font-size:36px;margin-top:22px;${inA(3.6)}"><span class="pl pl-gd">ce dobândă are creditul</span></div>
+      <div class="disp pills" style="font-size:36px;margin-top:12px;${inA(5.0)}"><span class="pl pl-gd">cât a rămas de plată</span></div>
+      <div class="disp pills" style="font-size:36px;margin-top:12px;${inA(6.4)}"><span class="pl pl-gd">ce prevede contractul la rambursare anticipată</span></div>`)}
+    ${area916('top:330px', `
+      <div style="${popA(11.9)}">${photo(150, 'border:5px solid var(--mint)')}</div>
+      <div class="disp pills" style="font-size:48px;margin-top:24px;${inA(12.4)}"><span class="pl pl-cream">le verificăm împreună.</span></div>
+      <div class="disp pills" style="font-size:48px;margin-top:14px;${inA(13.2)}"><span class="pl pl-mint">0 lei pentru tine.</span></div>`)}`
+});
+
 posts.push({
   id: 'cr_00_cadru-final-cta_9x16_v1', ...F916, theme: 't-plum', dur: 3, cover: 2.5,
   html: `
