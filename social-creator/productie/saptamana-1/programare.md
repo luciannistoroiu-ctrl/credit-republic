@@ -17,6 +17,7 @@ programează sâmbătă 26.09 dimineață, după ce primele postări au plecat.
 | data | ora | canal | conținut (zi din plan) | fișier | id Buffer |
 |---|---|---|---|---|---|
 | mie 23.09 | 15:00 | X | luni · linia master | `cr_01_luni-x-linia-master_1x1_v1.png` | 6ab3bb7285092e8db12be618 |
+| mie 23.09 | 19:30 | Facebook (reel) | luni · reel mecanismul (text animat) | `cr_01_luni-reel-mecanismul_9x16_v1.mp4` (commit 6973140) | 6ab3c2b89101da39d1ffc4a5 |
 | mie 23.09 | 20:30 | TikTok | luni · text cinetic | `cr_01_luni-tiktok-text-cinetic_9x16_v1.mp4` | 6ab3bb2d969a4e547515a268 |
 | joi 24.09 | 08:30 | X | marți · checklist | `cr_07_marti-x-checklist_1x1_v1.png` | 6ab3bb77969a4e547515ab34 |
 | joi 24.09 | 19:30 | Facebook | marți · „drumul" | `cr_07_marti-feed-drumul_4x5_v1.png` | 6ab3bb7adaf288bc75ce366b |
