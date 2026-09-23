@@ -20,6 +20,9 @@ comisionul vine de la bancă.**
   — istoricul complet al rescrierii celor 7 unghiuri (audiență × business × competiție × obiectiv)
 - `claude-project-import/knowledge/credit-republic-analiza-strategica-unghiuri-2026.md`
   — analiză strategică cu surse externe despre piața 2026 (vezi „Descoperiri" mai jos)
+- `claude-project-import/knowledge/credit-republic-analiza-reclame-competitie-ipotecare.md`
+  — analiza reclamelor ipotecare.ro (imagini în `knowledge/competitie/`), cu formate adaptate
+  pe unghiuri și copy validat
 
 ## Regulile de brand (aplicate automat de `BrandValidator`, dar respectă-le și manual)
 
