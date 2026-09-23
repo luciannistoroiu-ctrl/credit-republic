@@ -31,7 +31,6 @@ comisionul vine de la bancă.**
   Interzis: „ai lăsat", „nu știi", „ai greșit", „ai pierdut"
 - Sentence case peste tot, fără exclamări
 - Albastru semnal `#2C86F6` apare cel mult o dată per ecran, doar pe rezultat confirmat
-- Orice cadru cu rată/cost are nevoie de exemplul reprezentativ DAE (dacă se afișează o cifră)
 - **Trei registre de ton**: exact (cifre, CTA, zero umor) / observațional (awareness, umor fin,
   fără buton) / uman (negociere, cald, prima persoană plural)
 
