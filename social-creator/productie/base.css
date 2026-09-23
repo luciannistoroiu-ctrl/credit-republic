@@ -1,0 +1,66 @@
+@import url('fonts/fonts.css');
+
+:root {
+  --cream: #FFF8F0;
+  --plum: #2B2640;
+  --coral: #FF6B4A;
+  --sun: #FFD166;
+  --mint: #06D6A0;
+  --semnal: #2C86F6;
+  --cream-70: rgba(255, 248, 240, .72);
+  --cream-15: rgba(255, 248, 240, .14);
+  --plum-70: rgba(43, 38, 64, .72);
+  --plum-08: rgba(43, 38, 64, .07);
+  --disp: 'Omnes', 'CR Sans', sans-serif;
+  --body: 'Helvetica Neue', 'CR Sans', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: transparent; }
+
+.cv { position: relative; overflow: hidden; font-family: var(--body); -webkit-font-smoothing: antialiased; }
+.t-plum { background: var(--plum); color: var(--cream); }
+.t-cream { background: var(--cream); color: var(--plum); }
+.t-sun { background: var(--sun); color: var(--plum); }
+
+.abs { position: absolute; }
+.disp { font-family: var(--disp); font-weight: 700; letter-spacing: -.028em; line-height: 1.12; }
+.body { font-family: var(--body); font-weight: 500; line-height: 1.45; }
+.muted-d { color: var(--cream-70); }
+.muted-l { color: var(--plum-70); }
+
+/* pastile: fiecare rând de text devine o pastilă */
+.pills { line-height: 1.52; }
+.pl { display: inline; padding: .07em .42em; border-radius: 999px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.pl-cream { background: var(--cream); color: var(--plum); }
+.pl-plum { background: var(--plum); color: var(--cream); }
+.pl-mint { background: var(--mint); color: var(--plum); }
+.pl-sun { background: var(--sun); color: var(--plum); }
+.pl-coral { background: var(--coral); color: var(--cream); }
+.pl-gd { background: var(--cream-15); color: var(--cream); }
+.pl-gl { background: var(--plum-08); color: var(--plum); }
+.pl-blue { background: var(--semnal); color: #fff; }
+
+.eb { display: inline-block; font-family: var(--body); font-size: 13px; font-weight: 700; padding: 6px 14px; border-radius: 999px; }
+.eb-d { background: var(--cream-15); color: var(--cream); }
+.eb-l { background: var(--plum); color: var(--cream); }
+
+.btn { display: inline-block; font-family: var(--body); font-weight: 700; font-size: 17px; padding: 12px 22px; border-radius: 999px; }
+
+/* marca */
+.wm { display: inline-flex; align-items: center; gap: 10px; font-family: var(--disp); font-weight: 700; font-size: 19px; letter-spacing: -.03em; white-space: nowrap; }
+.wm svg { width: 2.1em; height: 1.16em; flex-shrink: 0; }
+.ip { position: relative; display: inline-block; }
+.ip::after { content: ''; position: absolute; left: 50%; transform: translateX(-50%); top: .1em; width: .42em; height: .19em; border-radius: 999px; background: var(--coral); }
+
+.photo { border-radius: 50%; background-size: cover; background-position: center 22%; }
+
+.card { border-radius: 20px; padding: 18px 20px; }
+
+/* animație — cadrele sunt pas cu pas, deci timpii sunt exacți */
+@keyframes fin { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes fout { to { opacity: 0; } }
+@keyframes pop { from { opacity: 0; transform: scale(.82); } to { opacity: 1; transform: none; } }
+@keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes kb { from { transform: scale(1); } to { transform: scale(1.12); } }
+@keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }

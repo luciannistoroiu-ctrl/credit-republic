@@ -470,6 +470,9 @@ numărătoarea ratei.
 
 **Total:** 7 idei, 1 filmare, 9 fotografii, 6 șabloane, 5 animații → 28 de postări.
 
+**Stadiu:** materialele produse sunt în `social-creator/productie/saptamana-1/out/` — 14/14 imagini
+și 8/14 video. Lista completă și ce mai lipsește: `social-creator/productie/saptamana-1/README.md`.
+
 ---
 
 ## 6. ore de postare și măsurare
