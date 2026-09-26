@@ -31,20 +31,20 @@ Planul gratuit Buffer permite maximum 10 postări programate simultan, de aceea 
 | sâm 26.09 | 19:30 | Facebook (reel) | joi · algoritm + om | `cr_06_joi-reel-algoritm-om_9x16_v1.mp4` (commit 2ed52f9) | 6ab4178ab6396f8b6e4c14d0 |
 | sâm 26.09 | 20:30 | TikTok | joi · carusel 4 | `cr_06_joi-tiktok-carusel_9x16_v1_01..04.png` | 6ab3bb93969a4e547515ad23 |
 
-## de programat sâmbătă 26.09, după 21:00 (10 postări)
+## programate sâmbătă 26.09 seara (10 postări; tot ce era până atunci a plecat fără erori)
 
-| data | ora | canal | conținut | fișier |
-|---|---|---|---|---|
-| dum 27.09 | 08:30 | X | vineri · „drumul" TVA (video) | `cr_05_vineri-x-drumul-tva_16x9_v1.mp4` |
-| dum 27.09 | 12:00 | Facebook (story) | vineri · precalificare (fără link) | `cr_05_vineri-story-precalificare_9x16_v1.mp4` |
-| dum 27.09 | 19:30 | Facebook | vineri · apartament | `cr_05_vineri-feed-apartament_4x5_v1.png` |
-| dum 27.09 | 20:30 | TikTok | vineri · vizionarea 14 (video, commit 2ed52f9) | `cr_05_vineri-tiktok-vizionarea-14_9x16_v1.mp4` |
-| lun 28.09 | 08:30 | X | sâmbătă · comparație | `cr_04_sambata-x-comparatie_1x1_v1.png` |
-| lun 28.09 | 19:30 | Facebook (reel) | sâmbătă · reclama vs contractul (video) | `cr_04_sambata-feed-reclama-contract_9x16_v1.mp4` |
-| lun 28.09 | 20:30 | TikTok | sâmbătă · carusel 5 | `cr_04_sambata-tiktok-carusel_9x16_v1_01..05.png` |
-| mar 29.09 | 08:30 | X | duminică · întrebarea săptămânii | `cr_02_duminica-x-intrebare_1x1_v1.png` |
-| mar 29.09 | 19:30 | Facebook | duminică · calcul refinanțare | `cr_02_duminica-feed-calcul_4x5_v1.png` |
-| mar 29.09 | 20:30 | TikTok | duminică · refinanțare (video, commit 2ed52f9) | `cr_02_duminica-tiktok-refinantare_9x16_v1.mp4` |
+| data | ora | canal | conținut | fișier | id Buffer |
+|---|---|---|---|---|---|
+| dum 27.09 | 08:30 | X | vineri · „drumul" TVA (video) | `cr_05_vineri-x-drumul-tva_16x9_v1.mp4` | 6ab80c179f89edbefe7b24a5 |
+| dum 27.09 | 12:00 | Facebook (story) | vineri · precalificare (fără link) | `cr_05_vineri-story-precalificare_9x16_v1.mp4` | 6ab80c1a3d66d464e5b98729 |
+| dum 27.09 | 19:30 | Facebook | vineri · apartament | `cr_05_vineri-feed-apartament_4x5_v1.png` | 6ab80c1c4b4b9f2c1c5471c5 |
+| dum 27.09 | 20:30 | TikTok | vineri · vizionarea 14 (video, commit 2ed52f9) | `cr_05_vineri-tiktok-vizionarea-14_9x16_v1.mp4` | 6ab80c273d66d464e5b98c2b |
+| lun 28.09 | 08:30 | X | sâmbătă · comparație | `cr_04_sambata-x-comparatie_1x1_v1.png` | 6ab80c2a05811e573734efc9 |
+| lun 28.09 | 19:30 | Facebook (reel) | sâmbătă · reclama vs contractul (video) | `cr_04_sambata-feed-reclama-contract_9x16_v1.mp4` | 6ab80c2d9f89edbefe7b2d1a |
+| lun 28.09 | 20:30 | TikTok | sâmbătă · carusel 5 | `cr_04_sambata-tiktok-carusel_9x16_v1_01..05.png` | 6ab80c2f05811e573734f15a |
+| mar 29.09 | 08:30 | X | duminică · întrebarea săptămânii | `cr_02_duminica-x-intrebare_1x1_v1.png` | 6ab80c319f89edbefe7b30f8 |
+| mar 29.09 | 19:30 | Facebook | duminică · calcul refinanțare | `cr_02_duminica-feed-calcul_4x5_v1.png` | 6ab80c339f89edbefe7b3127 |
+| mar 29.09 | 20:30 | TikTok | duminică · refinanțare (video, commit 2ed52f9) | `cr_02_duminica-tiktok-refinantare_9x16_v1.mp4` | 6ab80c349f89edbefe7b315f |
 
 ## de programat duminică 27.09, după 21:00 (1 postare)
 
