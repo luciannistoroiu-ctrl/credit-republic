@@ -46,11 +46,13 @@ Planul gratuit Buffer permite maximum 10 postări programate simultan, de aceea 
 | mar 29.09 | 19:30 | Facebook | duminică · calcul refinanțare | `cr_02_duminica-feed-calcul_4x5_v1.png` | 6ab80c339f89edbefe7b3127 |
 | mar 29.09 | 20:30 | TikTok | duminică · refinanțare (video, commit 2ed52f9) | `cr_02_duminica-tiktok-refinantare_9x16_v1.mp4` | 6ab80c349f89edbefe7b315f |
 
-## de programat duminică 27.09, după 21:00 (1 postare)
+## programată duminică 27.09 seara (1 postare)
 
-| data | ora | canal | conținut | fișier |
-|---|---|---|---|---|
-| mar 29.09 | 12:00 | Facebook (story) | duminică · numărătoarea ratei (fără link) | `cr_02_duminica-story-rata_9x16_v1.mp4` |
+| data | ora | canal | conținut | fișier | id Buffer |
+|---|---|---|---|---|---|
+| mar 29.09 | 12:00 | Facebook (story) | duminică · numărătoarea ratei (fără link) | `cr_02_duminica-story-rata_9x16_v1.mp4` | 6ab95d8c70ec211d1d226639 |
+
+Toată săptămâna 1 e acum programată în Buffer.
 
 Fișierele fără commit menționat sunt în commitul 0d73c6e (URL-ul de bază de mai sus).
 
